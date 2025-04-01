@@ -1,0 +1,11 @@
+C:\Users\Usuario\source\repos\StockSells\StockSells\bin\Debug\StockSells.exe.config
+C:\Users\Usuario\source\repos\StockSells\StockSells\bin\Debug\StockSells.exe
+C:\Users\Usuario\source\repos\StockSells\StockSells\bin\Debug\StockSells.pdb
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.Properties.Resources.resources
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.exe
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.pdb
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.Login.resources
+C:\Users\Usuario\source\repos\StockSells\StockSells\obj\Debug\StockSells.Menu.resources
