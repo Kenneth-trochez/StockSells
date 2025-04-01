@@ -1,6 +1,6 @@
 ﻿namespace StockSells
 {
-    partial class Form1
+    partial class Viewtables
     {
         /// <summary>
         /// Variable del diseñador necesaria.
