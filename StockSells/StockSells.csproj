@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\Agreg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Agreg.Designer.cs">
+      <DependentUpon>Agreg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\edit.Designer.cs">
+      <DependentUpon>edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Viewtables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +78,12 @@
     <Compile Include="forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Agreg.resx">
+      <DependentUpon>Agreg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\edit.resx">
+      <DependentUpon>edit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
