@@ -51,6 +51,12 @@ namespace StockSells
                 { checkBox6, "Ventas" }
             };
 
+                    if (checkBox3.Checked && checkBox6.Checked)
+                    {
+                        CargarReporteDeVentasPorProducto();
+                        return;
+                    }
+
                     foreach (var item in tablas)
                     {
                         // Verificar si el checkbox está activo
@@ -385,6 +391,44 @@ namespace StockSells
             }
         }
 
+        private void CargarReporteDeVentasPorProducto()
+        {
+            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+            DataTable reporte = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT 
+                    p.ID AS [ID Producto],
+                    p.Nombre AS [Nombre del Producto],
+                    SUM(v.Cantidad) AS [Total Vendido],
+                    SUM(v.Total) AS [Total Generado]
+                FROM Productos p
+                INNER JOIN Ventas v ON p.ID = v.Producto
+                GROUP BY p.ID, p.Nombre
+                ORDER BY [Total Vendido] DESC";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(reporte);
+                    }
+
+                    dataGridView1.DataSource = reporte;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar el reporte de productos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void ActualizarVista()
         {
             // Si ambos checkboxes están activos: Clientes y Ventas
@@ -396,7 +440,10 @@ namespace StockSells
             {
                 CargarTablas(); // Muestra las tablas seleccionadas de forma individual
             }
+
+
         }
+
 
 
     }
