@@ -26,6 +26,10 @@ namespace StockSells
             InitializeComponent();
         }
 
+        public string RolUsuario { get; set; }
+
+        public string TablaActiva { get; set; }
+
         private void CargarTablas()
         {
             // Cadena de conexión a tu base de datos SQL Server
@@ -92,7 +96,27 @@ namespace StockSells
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            
+            ConfigurarPermisos(RolUsuario);
+        }
+
+        private void ConfigurarPermisos(string rol)
+        {
+            if (rol == "Admin")
+            {
+                // Permisos para Administrador: Acceso completo
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+            }
+            else if (rol == "Usuario")
+            {
+                // Permisos para Usuario: Acceso limitado
+                button1.Enabled = false;  
+                button2.Enabled = false; 
+                button3.Enabled = false;
+                checkBox5.Enabled = false;
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -130,10 +154,33 @@ namespace StockSells
             ActualizarVista();
         }
 
+        public void ActualizarTablaActiva()
+        {
+            if (checkBox1.Checked) TablaActiva = "Clientes";
+            else if (checkBox2.Checked) TablaActiva = "FactoresDeCostos";
+            else if (checkBox3.Checked) TablaActiva = "Productos";
+            else if (checkBox4.Checked) TablaActiva = "Ubicaciones";
+            else if (checkBox5.Checked) TablaActiva = "Usuarios";
+            else if (checkBox6.Checked) TablaActiva = "Ventas";
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             // Crear una instancia del formulario FormAgregar
             Agreg formAgregar = new Agreg();
+
+            // Verificar qué checkbox está seleccionado
+            if (checkBox1.Checked) formAgregar.TablaActiva = "Clientes";
+            else if (checkBox2.Checked) formAgregar.TablaActiva = "FactoresDeCostos";
+            else if (checkBox3.Checked) formAgregar.TablaActiva = "Productos";
+            else if (checkBox4.Checked) formAgregar.TablaActiva = "Ubicaciones";
+            else if (checkBox5.Checked) formAgregar.TablaActiva = "Usuarios";
+            else if (checkBox6.Checked) formAgregar.TablaActiva = "Ventas";
+            else
+            {
+                MessageBox.Show("Seleccione una tabla antes de agregar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Determinar qué checkbox está activo y pasar el nombre de la tabla al formulario
             if (checkBox1.Checked)
@@ -261,37 +308,59 @@ namespace StockSells
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Validar que haya una fila seleccionada en el DataGridView
-            if (dataGridView1.CurrentRow == null)
+            try
             {
-                MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                // Validar que haya una fila seleccionada en el DataGridView
+                if (dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener el valor del ID del registro seleccionado
+                object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
+
+                if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+                {
+                    MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtener la tabla activa seleccionada
+                string tablaActiva = GetSelectedTable();
+                if (string.IsNullOrEmpty(tablaActiva))
+                {
+                    MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Instanciar la clase de conexión
+                ConexionBD conexion = new ConexionBD();
+
+                // Probar la conexión antes de continuar
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open(); // Abre la conexión
+
+                    MessageBox.Show($"Conexión exitosa a la base de datos para editar la tabla: {tablaActiva}", "Conexión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Enviar datos al formulario Editar
+                edit formEditar = new edit
+                {
+                    TablaActiva = tablaActiva,
+                    ID = idValue.ToString()
+                };
+
+                formEditar.ShowDialog();
+
+                // Recargar los datos en el DataGridView
+                CargarTablas();
             }
-
-            // Obtener el valor del ID del registro seleccionado
-            object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
-
-            if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+            catch (Exception ex)
             {
-                MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show($"Ocurrió un error al conectar a la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-         
-            string tablaActiva = GetSelectedTable();
-            if (string.IsNullOrEmpty(tablaActiva))
-            {
-                MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            edit formEditar = new edit();
-            formEditar.TablaActiva = tablaActiva;
-            formEditar.ID = idValue.ToString();
-            formEditar.ShowDialog();
-
-            
-            CargarTablas();
         }
 
         private void button4_Click(object sender, EventArgs e)
