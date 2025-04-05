@@ -77,23 +77,24 @@ namespace StockSells.forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 57);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(54, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 16);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 0;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(586, 314);
+            this.txtId.Location = new System.Drawing.Point(440, 255);
+            this.txtId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.Size = new System.Drawing.Size(76, 20);
             this.txtId.TabIndex = 86;
             // 
             // lblid
             // 
             this.lblid.AutoSize = true;
-            this.lblid.Location = new System.Drawing.Point(563, 300);
+            this.lblid.Location = new System.Drawing.Point(422, 244);
+            this.lblid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblid.Name = "lblid";
             this.lblid.Size = new System.Drawing.Size(18, 13);
             this.lblid.TabIndex = 85;
@@ -101,15 +102,17 @@ namespace StockSells.forms
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(584, 80);
+            this.dtpFecha.Location = new System.Drawing.Point(438, 65);
+            this.dtpFecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(158, 20);
+            this.dtpFecha.Size = new System.Drawing.Size(120, 20);
             this.dtpFecha.TabIndex = 84;
             // 
             // lblUbicacionID
             // 
             this.lblUbicacionID.AutoSize = true;
-            this.lblUbicacionID.Location = new System.Drawing.Point(562, 238);
+            this.lblUbicacionID.Location = new System.Drawing.Point(422, 193);
+            this.lblUbicacionID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUbicacionID.Name = "lblUbicacionID";
             this.lblUbicacionID.Size = new System.Drawing.Size(66, 13);
             this.lblUbicacionID.TabIndex = 83;
@@ -118,7 +121,8 @@ namespace StockSells.forms
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(562, 178);
+            this.lblTotal.Location = new System.Drawing.Point(422, 145);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(31, 13);
             this.lblTotal.TabIndex = 82;
@@ -127,7 +131,8 @@ namespace StockSells.forms
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(562, 121);
+            this.lblCantidad.Location = new System.Drawing.Point(422, 98);
+            this.lblCantidad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 81;
@@ -136,7 +141,8 @@ namespace StockSells.forms
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(562, 64);
+            this.lblFecha.Location = new System.Drawing.Point(422, 52);
+            this.lblFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(37, 13);
             this.lblFecha.TabIndex = 80;
@@ -145,7 +151,8 @@ namespace StockSells.forms
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(562, 7);
+            this.lblCliente.Location = new System.Drawing.Point(422, 6);
+            this.lblCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(39, 13);
             this.lblCliente.TabIndex = 79;
@@ -154,7 +161,8 @@ namespace StockSells.forms
             // lblProducto
             // 
             this.lblProducto.AutoSize = true;
-            this.lblProducto.Location = new System.Drawing.Point(380, 238);
+            this.lblProducto.Location = new System.Drawing.Point(285, 193);
+            this.lblProducto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(50, 13);
             this.lblProducto.TabIndex = 78;
@@ -163,7 +171,8 @@ namespace StockSells.forms
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(380, 179);
+            this.lblRol.Location = new System.Drawing.Point(285, 145);
+            this.lblRol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRol.Name = "lblRol";
             this.lblRol.Size = new System.Drawing.Size(23, 13);
             this.lblRol.TabIndex = 77;
@@ -172,7 +181,8 @@ namespace StockSells.forms
             // lblContra
             // 
             this.lblContra.AutoSize = true;
-            this.lblContra.Location = new System.Drawing.Point(380, 121);
+            this.lblContra.Location = new System.Drawing.Point(285, 98);
+            this.lblContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContra.Name = "lblContra";
             this.lblContra.Size = new System.Drawing.Size(38, 13);
             this.lblContra.TabIndex = 76;
@@ -181,7 +191,8 @@ namespace StockSells.forms
             // lblRegion
             // 
             this.lblRegion.AutoSize = true;
-            this.lblRegion.Location = new System.Drawing.Point(380, 64);
+            this.lblRegion.Location = new System.Drawing.Point(285, 52);
+            this.lblRegion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(41, 13);
             this.lblRegion.TabIndex = 75;
@@ -190,7 +201,8 @@ namespace StockSells.forms
             // lblPrecioCosto
             // 
             this.lblPrecioCosto.AutoSize = true;
-            this.lblPrecioCosto.Location = new System.Drawing.Point(380, 7);
+            this.lblPrecioCosto.Location = new System.Drawing.Point(285, 6);
+            this.lblPrecioCosto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrecioCosto.Name = "lblPrecioCosto";
             this.lblPrecioCosto.Size = new System.Drawing.Size(64, 13);
             this.lblPrecioCosto.TabIndex = 74;
@@ -199,7 +211,8 @@ namespace StockSells.forms
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(197, 238);
+            this.lblPrecio.Location = new System.Drawing.Point(148, 193);
+            this.lblPrecio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 73;
@@ -208,7 +221,8 @@ namespace StockSells.forms
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(197, 179);
+            this.lblCategoria.Location = new System.Drawing.Point(148, 145);
+            this.lblCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 72;
@@ -217,7 +231,8 @@ namespace StockSells.forms
             // lblGananciaNeta
             // 
             this.lblGananciaNeta.AutoSize = true;
-            this.lblGananciaNeta.Location = new System.Drawing.Point(197, 121);
+            this.lblGananciaNeta.Location = new System.Drawing.Point(148, 98);
+            this.lblGananciaNeta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGananciaNeta.Name = "lblGananciaNeta";
             this.lblGananciaNeta.Size = new System.Drawing.Size(76, 13);
             this.lblGananciaNeta.TabIndex = 71;
@@ -226,7 +241,8 @@ namespace StockSells.forms
             // lblCostoOperativo
             // 
             this.lblCostoOperativo.AutoSize = true;
-            this.lblCostoOperativo.Location = new System.Drawing.Point(197, 64);
+            this.lblCostoOperativo.Location = new System.Drawing.Point(148, 52);
+            this.lblCostoOperativo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCostoOperativo.Name = "lblCostoOperativo";
             this.lblCostoOperativo.Size = new System.Drawing.Size(80, 13);
             this.lblCostoOperativo.TabIndex = 70;
@@ -235,7 +251,8 @@ namespace StockSells.forms
             // lblProductoID
             // 
             this.lblProductoID.AutoSize = true;
-            this.lblProductoID.Location = new System.Drawing.Point(197, 9);
+            this.lblProductoID.Location = new System.Drawing.Point(148, 7);
+            this.lblProductoID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProductoID.Name = "lblProductoID";
             this.lblProductoID.Size = new System.Drawing.Size(61, 13);
             this.lblProductoID.TabIndex = 69;
@@ -244,7 +261,8 @@ namespace StockSells.forms
             // lblVentaID
             // 
             this.lblVentaID.AutoSize = true;
-            this.lblVentaID.Location = new System.Drawing.Point(22, 238);
+            this.lblVentaID.Location = new System.Drawing.Point(16, 193);
+            this.lblVentaID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVentaID.Name = "lblVentaID";
             this.lblVentaID.Size = new System.Drawing.Size(46, 13);
             this.lblVentaID.TabIndex = 68;
@@ -253,7 +271,8 @@ namespace StockSells.forms
             // lblPais
             // 
             this.lblPais.AutoSize = true;
-            this.lblPais.Location = new System.Drawing.Point(22, 179);
+            this.lblPais.Location = new System.Drawing.Point(16, 145);
+            this.lblPais.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(27, 13);
             this.lblPais.TabIndex = 67;
@@ -262,7 +281,8 @@ namespace StockSells.forms
             // lblCuidad
             // 
             this.lblCuidad.AutoSize = true;
-            this.lblCuidad.Location = new System.Drawing.Point(19, 121);
+            this.lblCuidad.Location = new System.Drawing.Point(14, 98);
+            this.lblCuidad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCuidad.Name = "lblCuidad";
             this.lblCuidad.Size = new System.Drawing.Size(40, 13);
             this.lblCuidad.TabIndex = 66;
@@ -271,7 +291,8 @@ namespace StockSells.forms
             // lblTipoCliente
             // 
             this.lblTipoCliente.AutoSize = true;
-            this.lblTipoCliente.Location = new System.Drawing.Point(19, 64);
+            this.lblTipoCliente.Location = new System.Drawing.Point(14, 52);
+            this.lblTipoCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTipoCliente.Name = "lblTipoCliente";
             this.lblTipoCliente.Size = new System.Drawing.Size(60, 13);
             this.lblTipoCliente.TabIndex = 65;
@@ -280,7 +301,8 @@ namespace StockSells.forms
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(22, 7);
+            this.lblNombre.Location = new System.Drawing.Point(16, 6);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 64;
@@ -288,142 +310,162 @@ namespace StockSells.forms
             // 
             // txtUbicacionID
             // 
-            this.txtUbicacionID.Location = new System.Drawing.Point(586, 254);
+            this.txtUbicacionID.Location = new System.Drawing.Point(440, 206);
+            this.txtUbicacionID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUbicacionID.Name = "txtUbicacionID";
-            this.txtUbicacionID.Size = new System.Drawing.Size(100, 20);
+            this.txtUbicacionID.Size = new System.Drawing.Size(76, 20);
             this.txtUbicacionID.TabIndex = 63;
             // 
             // txtProducto
             // 
-            this.txtProducto.Location = new System.Drawing.Point(410, 254);
+            this.txtProducto.Location = new System.Drawing.Point(308, 206);
+            this.txtProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtProducto.Size = new System.Drawing.Size(76, 20);
             this.txtProducto.TabIndex = 62;
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(212, 254);
+            this.txtPrecio.Location = new System.Drawing.Point(159, 206);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(76, 20);
             this.txtPrecio.TabIndex = 61;
             // 
             // txtVentaID
             // 
-            this.txtVentaID.Location = new System.Drawing.Point(37, 254);
+            this.txtVentaID.Location = new System.Drawing.Point(28, 206);
+            this.txtVentaID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtVentaID.Name = "txtVentaID";
-            this.txtVentaID.Size = new System.Drawing.Size(100, 20);
+            this.txtVentaID.Size = new System.Drawing.Size(76, 20);
             this.txtVentaID.TabIndex = 60;
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(586, 194);
+            this.txtTotal.Location = new System.Drawing.Point(440, 158);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.Size = new System.Drawing.Size(76, 20);
             this.txtTotal.TabIndex = 59;
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(586, 137);
+            this.txtCantidad.Location = new System.Drawing.Point(440, 111);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.Size = new System.Drawing.Size(76, 20);
             this.txtCantidad.TabIndex = 58;
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(586, 26);
+            this.txtCliente.Location = new System.Drawing.Point(440, 21);
+            this.txtCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtCliente.Size = new System.Drawing.Size(76, 20);
             this.txtCliente.TabIndex = 57;
             // 
             // txtRol
             // 
-            this.txtRol.Location = new System.Drawing.Point(410, 195);
+            this.txtRol.Location = new System.Drawing.Point(308, 158);
+            this.txtRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(100, 20);
+            this.txtRol.Size = new System.Drawing.Size(76, 20);
             this.txtRol.TabIndex = 56;
             // 
             // txtContra
             // 
-            this.txtContra.Location = new System.Drawing.Point(410, 137);
+            this.txtContra.Location = new System.Drawing.Point(308, 111);
+            this.txtContra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(100, 20);
+            this.txtContra.Size = new System.Drawing.Size(76, 20);
             this.txtContra.TabIndex = 55;
             // 
             // txtRegion
             // 
-            this.txtRegion.Location = new System.Drawing.Point(410, 80);
+            this.txtRegion.Location = new System.Drawing.Point(308, 65);
+            this.txtRegion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(100, 20);
+            this.txtRegion.Size = new System.Drawing.Size(76, 20);
             this.txtRegion.TabIndex = 54;
             // 
             // txtPrecioCosto
             // 
-            this.txtPrecioCosto.Location = new System.Drawing.Point(410, 26);
+            this.txtPrecioCosto.Location = new System.Drawing.Point(308, 21);
+            this.txtPrecioCosto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPrecioCosto.Name = "txtPrecioCosto";
-            this.txtPrecioCosto.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecioCosto.Size = new System.Drawing.Size(76, 20);
             this.txtPrecioCosto.TabIndex = 53;
             // 
             // txtCategoria
             // 
-            this.txtCategoria.Location = new System.Drawing.Point(212, 195);
+            this.txtCategoria.Location = new System.Drawing.Point(159, 158);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(100, 20);
+            this.txtCategoria.Size = new System.Drawing.Size(76, 20);
             this.txtCategoria.TabIndex = 52;
             // 
             // txtGananciaNeta
             // 
-            this.txtGananciaNeta.Location = new System.Drawing.Point(212, 137);
+            this.txtGananciaNeta.Location = new System.Drawing.Point(159, 111);
+            this.txtGananciaNeta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtGananciaNeta.Name = "txtGananciaNeta";
-            this.txtGananciaNeta.Size = new System.Drawing.Size(100, 20);
+            this.txtGananciaNeta.Size = new System.Drawing.Size(76, 20);
             this.txtGananciaNeta.TabIndex = 51;
             // 
             // txtCostoOperativo
             // 
-            this.txtCostoOperativo.Location = new System.Drawing.Point(212, 80);
+            this.txtCostoOperativo.Location = new System.Drawing.Point(159, 65);
+            this.txtCostoOperativo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCostoOperativo.Name = "txtCostoOperativo";
-            this.txtCostoOperativo.Size = new System.Drawing.Size(100, 20);
+            this.txtCostoOperativo.Size = new System.Drawing.Size(76, 20);
             this.txtCostoOperativo.TabIndex = 50;
             // 
             // txtProductoID
             // 
-            this.txtProductoID.Location = new System.Drawing.Point(212, 26);
+            this.txtProductoID.Location = new System.Drawing.Point(159, 21);
+            this.txtProductoID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtProductoID.Name = "txtProductoID";
-            this.txtProductoID.Size = new System.Drawing.Size(100, 20);
+            this.txtProductoID.Size = new System.Drawing.Size(76, 20);
             this.txtProductoID.TabIndex = 49;
             // 
             // txtPais
             // 
-            this.txtPais.Location = new System.Drawing.Point(37, 195);
+            this.txtPais.Location = new System.Drawing.Point(28, 158);
+            this.txtPais.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPais.Name = "txtPais";
-            this.txtPais.Size = new System.Drawing.Size(100, 20);
+            this.txtPais.Size = new System.Drawing.Size(76, 20);
             this.txtPais.TabIndex = 48;
             // 
             // txtCiudad
             // 
-            this.txtCiudad.Location = new System.Drawing.Point(37, 137);
+            this.txtCiudad.Location = new System.Drawing.Point(28, 111);
+            this.txtCiudad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(100, 20);
+            this.txtCiudad.Size = new System.Drawing.Size(76, 20);
             this.txtCiudad.TabIndex = 47;
             // 
             // txtTipoCliente
             // 
-            this.txtTipoCliente.Location = new System.Drawing.Point(37, 80);
+            this.txtTipoCliente.Location = new System.Drawing.Point(28, 65);
+            this.txtTipoCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTipoCliente.Name = "txtTipoCliente";
-            this.txtTipoCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtTipoCliente.Size = new System.Drawing.Size(76, 20);
             this.txtTipoCliente.TabIndex = 46;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(37, 26);
+            this.txtNombre.Location = new System.Drawing.Point(28, 21);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.Size = new System.Drawing.Size(76, 20);
             this.txtNombre.TabIndex = 45;
             // 
             // btnguardar
             // 
-            this.btnguardar.Location = new System.Drawing.Point(22, 325);
+            this.btnguardar.Location = new System.Drawing.Point(16, 264);
+            this.btnguardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(75, 23);
+            this.btnguardar.Size = new System.Drawing.Size(56, 19);
             this.btnguardar.TabIndex = 44;
             this.btnguardar.Text = "Guardar";
             this.btnguardar.UseVisualStyleBackColor = true;
@@ -431,12 +473,9 @@ namespace StockSells.forms
             // 
             // edit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize = new System.Drawing.Size(1015, 437);
-
-            this.ClientSize = new System.Drawing.Size(761, 355);
+            this.ClientSize = new System.Drawing.Size(603, 319);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblid);
             this.Controls.Add(this.dtpFecha);
@@ -481,7 +520,6 @@ namespace StockSells.forms
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "edit";
             this.Text = "edit";
             this.Load += new System.EventHandler(this.edit_Load);

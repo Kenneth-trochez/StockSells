@@ -29,14 +29,14 @@ namespace StockSells
         private void CargarTablas()
         {
             // Cadena de conexión a tu base de datos SQL Server
-            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             // Crear un DataTable para combinar datos
             DataTable combinedTable = new DataTable();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open(); // Abrir la conexión
 
@@ -182,11 +182,11 @@ namespace StockSells
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string connectionString = "JOSE;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
@@ -377,12 +377,12 @@ namespace StockSells
         //funcion para cruzar datos de las tablas ventas y clientes
         private void CargarReporteVentasPorCliente()
         {
-            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
