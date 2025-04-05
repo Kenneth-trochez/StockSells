@@ -1,4 +1,4 @@
-﻿using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +17,12 @@ namespace StockSells.forms
         {
             InitializeComponent();
         }
+
+
+        private void edit_Load(object sender, EventArgs e)
+        {
+
+
         public string TablaActiva { get; set; }
         public string ID { get; set; }
 
@@ -189,6 +195,7 @@ namespace StockSells.forms
             {
                 MessageBox.Show($"Ocurrió un error al guardar los cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
