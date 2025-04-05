@@ -112,12 +112,6 @@
     <Compile Include="forms\edit.Designer.cs">
       <DependentUpon>edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormGraficos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\FormGraficos.Designer.cs">
-      <DependentUpon>FormGraficos.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\Viewtables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,9 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\edit.resx">
       <DependentUpon>edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormGraficos.resx">
-      <DependentUpon>FormGraficos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
