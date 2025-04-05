@@ -74,6 +74,11 @@ namespace StockSells.forms
         {
             this.Close();
         }
+
+        private void FormGraficos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class SerieDatos

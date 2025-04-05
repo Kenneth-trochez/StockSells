@@ -42,7 +42,8 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(57, 12);
+            this.chart1.Location = new System.Drawing.Point(43, 10);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -51,15 +52,16 @@
             series1.Name = "Series1";
             series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1045, 398);
+            this.chart1.Size = new System.Drawing.Size(784, 323);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
             // btn_salir
             // 
-            this.btn_salir.Location = new System.Drawing.Point(522, 432);
+            this.btn_salir.Location = new System.Drawing.Point(392, 351);
+            this.btn_salir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_salir.Name = "btn_salir";
-            this.btn_salir.Size = new System.Drawing.Size(75, 23);
+            this.btn_salir.Size = new System.Drawing.Size(56, 19);
             this.btn_salir.TabIndex = 1;
             this.btn_salir.Text = "Salir";
             this.btn_salir.UseVisualStyleBackColor = true;
@@ -67,13 +69,15 @@
             // 
             // FormGraficos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 467);
+            this.ClientSize = new System.Drawing.Size(846, 379);
             this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.chart1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormGraficos";
             this.Text = "FormGraficos";
+            this.Load += new System.EventHandler(this.FormGraficos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
