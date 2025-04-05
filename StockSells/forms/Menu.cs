@@ -359,7 +359,7 @@ namespace StockSells
                             CampoY = "TotalCompras"
                         });
                         break;
-                        // Puedes seguir agregando otras tablas si quieres...
+                        
                 }
             }
             // Crear una instancia del formulario FormGraficos
