@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConexionBD.cs" />
     <Compile Include="forms\Agreg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ojot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="iTextSharp">
+      <Version>5.5.13.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

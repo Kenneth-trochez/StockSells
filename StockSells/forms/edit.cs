@@ -1,4 +1,4 @@
-﻿using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
 
 namespace StockSells.forms
 {
@@ -17,6 +18,7 @@ namespace StockSells.forms
         {
             InitializeComponent();
         }
+
         public string TablaActiva { get; set; }
         public string ID { get; set; }
 
@@ -98,6 +100,7 @@ namespace StockSells.forms
                 MessageBox.Show($"Ocurrió un error al cargar el registro: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
@@ -189,6 +192,7 @@ namespace StockSells.forms
             {
                 MessageBox.Show($"Ocurrió un error al guardar los cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
