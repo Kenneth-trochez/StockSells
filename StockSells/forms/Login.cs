@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +45,11 @@ namespace StockSells
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             // Cadena de conexión a tu base de datos SQL Server
+
             ConexionBD conexion = new ConexionBD();
+
+            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+
 
             string usuario = txtusuario.Text;
             string contraseña = txtpassword.Text;

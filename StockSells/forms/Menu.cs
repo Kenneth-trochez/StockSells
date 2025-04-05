@@ -197,14 +197,14 @@ namespace StockSells
                         return;
                     }
 
-                    // Validar que la columna 'ID' exista en el DataGridView
+                    
                     if (!dataGridView1.Columns.Contains("ID"))
                     {
                         MessageBox.Show("La columna 'ID' no está presente en los datos actuales del DataGridView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    // Obtener el valor del ID de la fila seleccionada
+              
                     object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
 
                     if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
@@ -216,7 +216,7 @@ namespace StockSells
                     // El ID es un valor alfanumérico, así que lo tratamos como texto
                     string id = idValue.ToString();
 
-                    // Determinar qué tabla está seleccionada y construir el comando DELETE
+                    
                     string query = "";
                     if (checkBox1.Checked) query = "DELETE FROM Clientes WHERE ID = @ID";
                     else if (checkBox2.Checked) query = "DELETE FROM FactoresDeCostos WHERE ID = @ID";
@@ -235,10 +235,10 @@ namespace StockSells
                     command.Parameters.AddWithValue("@ID", id);
                     command.ExecuteNonQuery();
 
-                    // Mostrar mensaje de confirmación
+                    
                     MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Recargar los datos en el DataGridView
+                   
                     CargarTablas();
                 }
             }
@@ -261,7 +261,37 @@ namespace StockSells
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Validar que haya una fila seleccionada en el DataGridView
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener el valor del ID del registro seleccionado
+            object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
+
+            if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+            {
+                MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+         
+            string tablaActiva = GetSelectedTable();
+            if (string.IsNullOrEmpty(tablaActiva))
+            {
+                MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            edit formEditar = new edit();
+            formEditar.TablaActiva = tablaActiva;
+            formEditar.ID = idValue.ToString();
+            formEditar.ShowDialog();
+
             
+            CargarTablas();
         }
 
         private void button5_Click(object sender, EventArgs e)
