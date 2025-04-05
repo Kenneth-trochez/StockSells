@@ -30,8 +30,8 @@ namespace StockSells.forms
         {
             try
             {
-                conectar = new SqlConnection("Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;");
-                conectar.Open();
+                ConexionBD conexion = new ConexionBD();
+                conexion.ObtenerConexion();
 
                 chart1.Series.Clear();//Limpiar datos previos
                 chart1.ChartAreas.Clear(); // Limpiar áreas anteriores
@@ -75,10 +75,6 @@ namespace StockSells.forms
             this.Close();
         }
 
-        private void FormGraficos_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class SerieDatos

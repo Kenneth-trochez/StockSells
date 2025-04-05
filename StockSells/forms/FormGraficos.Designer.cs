@@ -1,4 +1,6 @@
-﻿namespace StockSells.forms
+﻿using System;
+
+namespace StockSells.forms
 {
     partial class FormGraficos
     {
@@ -81,6 +83,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void FormGraficos_Load(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
