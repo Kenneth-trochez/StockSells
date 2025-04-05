@@ -66,7 +66,6 @@ namespace StockSells
                 {
                     connection.Open(); // Abrir la conexión
 
-                   
                     string query = "SELECT COUNT(*) FROM Usuarios WHERE Nombre = @usuario AND Contra = @contraseña";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
