@@ -45,7 +45,6 @@ namespace StockSells
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             // Cadena de conexión a tu base de datos SQL Server
-
             ConexionBD conexion = new ConexionBD();
 
             string usuario = txtusuario.Text;
