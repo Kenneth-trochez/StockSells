@@ -16,5 +16,10 @@ namespace StockSells.forms
         {
             InitializeComponent();
         }
+
+        private void edit_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

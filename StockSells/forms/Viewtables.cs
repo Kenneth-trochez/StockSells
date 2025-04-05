@@ -16,5 +16,10 @@ namespace StockSells
         {
             InitializeComponent();
         }
+
+        private void Viewtables_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
