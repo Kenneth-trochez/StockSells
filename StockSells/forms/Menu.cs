@@ -427,7 +427,5 @@ namespace StockSells
                 CargarTablas(); // Muestra las tablas seleccionadas de forma individual
             }
         }
-
-
     }
 }
