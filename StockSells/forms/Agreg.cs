@@ -96,7 +96,7 @@ namespace StockSells.forms
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
 
             try
             {

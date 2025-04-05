@@ -26,7 +26,7 @@ namespace StockSells
         private void CargarTablas()
         {
             // Cadena de conexión a tu base de datos SQL Server
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
 
             // Crear un DataTable para combinar datos
             DataTable combinedTable = new DataTable();
@@ -290,5 +290,81 @@ namespace StockSells
             
             CargarTablas();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var tablas = new Dictionary<CheckBox, string>
+    {
+        { checkBox1, "Clientes" },
+        { checkBox2, "FactoresDeCostos" },
+        { checkBox3, "Productos" },
+        { checkBox4, "Ubicaciones" },
+        { checkBox5, "Usuarios" },
+        { checkBox6, "Ventas" }
+    };
+
+            var seleccionadas = tablas.Where(t => t.Key.Checked).Select(t => t.Value).ToList();
+
+            if (seleccionadas.Count == 0)
+            {
+                MessageBox.Show("Selecciona al menos una tabla para graficar.");
+                return;
+            }
+
+            List<SerieDatos> series = new List<SerieDatos>();
+
+            foreach (string tabla in seleccionadas)
+            {
+                switch (tabla)
+                {
+                    case "Ventas":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Ventas",
+                            Consulta = "SELECT Fecha, Total FROM Ventas",
+                            CampoX = "Fecha",
+                            CampoY = "Total"
+                        });
+                        break;
+
+                    case "Productos":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Productos más vendidos por Ciudad",
+                            Consulta = "SELECT P.Nombre AS Producto, U.Ciudad AS Ciudad, SUM(V.Cantidad) AS TotalVendido FROM Ventas V INNER JOIN Productos P ON V.Producto = P.Nombre INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY P.Nombre, U.Ciudad ORDER BY U.Ciudad, TotalVendido DESC",
+                            CampoX = "Producto",
+                            CampoY = "TotalVendido"
+                        });
+                        break;
+
+                    case "Ubicaciones":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Ventas por Ubicación",
+                            Consulta = "SELECT U.Ciudad AS Ciudad, SUM(V.Total) AS TotalVentas FROM Ventas V INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY U.Ciudad",
+                            CampoX = "Ciudad",
+                            CampoY = "TotalVentas"
+                        });
+                        break;
+
+                    case "Clientes":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Clientes y sus compras",
+                            Consulta = "SELECT C.Nombre AS Cliente, SUM(V.Total) AS TotalCompras FROM Ventas V INNER JOIN Clientes C ON V.Cliente = C.ID GROUP BY C.Nombre ORDER BY TotalCompras DESC",
+                            CampoX = "Cliente",
+                            CampoY = "TotalCompras"
+                        });
+                        break;
+                        // Puedes seguir agregando otras tablas si quieres...
+                }
+            }
+            // Crear una instancia del formulario FormGraficos
+            FormGraficos Grafi = new FormGraficos();
+            Grafi.Show();
+            Grafi.Conectar(series);
+            
+        }
+
     }
 }
