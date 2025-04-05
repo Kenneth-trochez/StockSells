@@ -48,9 +48,6 @@ namespace StockSells
 
             ConexionBD conexion = new ConexionBD();
 
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
-
-
             string usuario = txtusuario.Text;
             string contraseña = txtpassword.Text;
 
