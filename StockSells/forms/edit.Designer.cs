@@ -1,4 +1,4 @@
-﻿namespace StockSells.forms
+namespace StockSells.forms
 {
     partial class edit
     {
@@ -29,6 +29,49 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.lblid = new System.Windows.Forms.Label();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.lblUbicacionID = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.lblRol = new System.Windows.Forms.Label();
+            this.lblContra = new System.Windows.Forms.Label();
+            this.lblRegion = new System.Windows.Forms.Label();
+            this.lblPrecioCosto = new System.Windows.Forms.Label();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.lblCategoria = new System.Windows.Forms.Label();
+            this.lblGananciaNeta = new System.Windows.Forms.Label();
+            this.lblCostoOperativo = new System.Windows.Forms.Label();
+            this.lblProductoID = new System.Windows.Forms.Label();
+            this.lblVentaID = new System.Windows.Forms.Label();
+            this.lblPais = new System.Windows.Forms.Label();
+            this.lblCuidad = new System.Windows.Forms.Label();
+            this.lblTipoCliente = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtUbicacionID = new System.Windows.Forms.TextBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtVentaID = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtRol = new System.Windows.Forms.TextBox();
+            this.txtContra = new System.Windows.Forms.TextBox();
+            this.txtRegion = new System.Windows.Forms.TextBox();
+            this.txtPrecioCosto = new System.Windows.Forms.TextBox();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
+            this.txtGananciaNeta = new System.Windows.Forms.TextBox();
+            this.txtCostoOperativo = new System.Windows.Forms.TextBox();
+            this.txtProductoID = new System.Windows.Forms.TextBox();
+            this.txtPais = new System.Windows.Forms.TextBox();
+            this.txtCiudad = new System.Windows.Forms.TextBox();
+            this.txtTipoCliente = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.btnguardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -40,11 +83,403 @@
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 0;
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(586, 314);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.TabIndex = 86;
+            // 
+            // lblid
+            // 
+            this.lblid.AutoSize = true;
+            this.lblid.Location = new System.Drawing.Point(563, 300);
+            this.lblid.Name = "lblid";
+            this.lblid.Size = new System.Drawing.Size(18, 13);
+            this.lblid.TabIndex = 85;
+            this.lblid.Text = "ID";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Location = new System.Drawing.Point(584, 80);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(158, 20);
+            this.dtpFecha.TabIndex = 84;
+            // 
+            // lblUbicacionID
+            // 
+            this.lblUbicacionID.AutoSize = true;
+            this.lblUbicacionID.Location = new System.Drawing.Point(562, 238);
+            this.lblUbicacionID.Name = "lblUbicacionID";
+            this.lblUbicacionID.Size = new System.Drawing.Size(66, 13);
+            this.lblUbicacionID.TabIndex = 83;
+            this.lblUbicacionID.Text = "UbicacionID";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(562, 178);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(31, 13);
+            this.lblTotal.TabIndex = 82;
+            this.lblTotal.Text = "Total";
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(562, 121);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(49, 13);
+            this.lblCantidad.TabIndex = 81;
+            this.lblCantidad.Text = "Cantidad";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Location = new System.Drawing.Point(562, 64);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(37, 13);
+            this.lblFecha.TabIndex = 80;
+            this.lblFecha.Text = "Fecha";
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Location = new System.Drawing.Point(562, 7);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(39, 13);
+            this.lblCliente.TabIndex = 79;
+            this.lblCliente.Text = "Cliente";
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Location = new System.Drawing.Point(380, 238);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(50, 13);
+            this.lblProducto.TabIndex = 78;
+            this.lblProducto.Text = "Producto";
+            // 
+            // lblRol
+            // 
+            this.lblRol.AutoSize = true;
+            this.lblRol.Location = new System.Drawing.Point(380, 179);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(23, 13);
+            this.lblRol.TabIndex = 77;
+            this.lblRol.Text = "Rol";
+            // 
+            // lblContra
+            // 
+            this.lblContra.AutoSize = true;
+            this.lblContra.Location = new System.Drawing.Point(380, 121);
+            this.lblContra.Name = "lblContra";
+            this.lblContra.Size = new System.Drawing.Size(38, 13);
+            this.lblContra.TabIndex = 76;
+            this.lblContra.Text = "Contra";
+            // 
+            // lblRegion
+            // 
+            this.lblRegion.AutoSize = true;
+            this.lblRegion.Location = new System.Drawing.Point(380, 64);
+            this.lblRegion.Name = "lblRegion";
+            this.lblRegion.Size = new System.Drawing.Size(41, 13);
+            this.lblRegion.TabIndex = 75;
+            this.lblRegion.Text = "Region";
+            // 
+            // lblPrecioCosto
+            // 
+            this.lblPrecioCosto.AutoSize = true;
+            this.lblPrecioCosto.Location = new System.Drawing.Point(380, 7);
+            this.lblPrecioCosto.Name = "lblPrecioCosto";
+            this.lblPrecioCosto.Size = new System.Drawing.Size(64, 13);
+            this.lblPrecioCosto.TabIndex = 74;
+            this.lblPrecioCosto.Text = "PrecioCosto";
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Location = new System.Drawing.Point(197, 238);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(37, 13);
+            this.lblPrecio.TabIndex = 73;
+            this.lblPrecio.Text = "Precio";
+            // 
+            // lblCategoria
+            // 
+            this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Location = new System.Drawing.Point(197, 179);
+            this.lblCategoria.Name = "lblCategoria";
+            this.lblCategoria.Size = new System.Drawing.Size(52, 13);
+            this.lblCategoria.TabIndex = 72;
+            this.lblCategoria.Text = "Categoria";
+            // 
+            // lblGananciaNeta
+            // 
+            this.lblGananciaNeta.AutoSize = true;
+            this.lblGananciaNeta.Location = new System.Drawing.Point(197, 121);
+            this.lblGananciaNeta.Name = "lblGananciaNeta";
+            this.lblGananciaNeta.Size = new System.Drawing.Size(76, 13);
+            this.lblGananciaNeta.TabIndex = 71;
+            this.lblGananciaNeta.Text = "GananciaNeta";
+            // 
+            // lblCostoOperativo
+            // 
+            this.lblCostoOperativo.AutoSize = true;
+            this.lblCostoOperativo.Location = new System.Drawing.Point(197, 64);
+            this.lblCostoOperativo.Name = "lblCostoOperativo";
+            this.lblCostoOperativo.Size = new System.Drawing.Size(80, 13);
+            this.lblCostoOperativo.TabIndex = 70;
+            this.lblCostoOperativo.Text = "CostoOperativo";
+            // 
+            // lblProductoID
+            // 
+            this.lblProductoID.AutoSize = true;
+            this.lblProductoID.Location = new System.Drawing.Point(197, 9);
+            this.lblProductoID.Name = "lblProductoID";
+            this.lblProductoID.Size = new System.Drawing.Size(61, 13);
+            this.lblProductoID.TabIndex = 69;
+            this.lblProductoID.Text = "ProductoID";
+            // 
+            // lblVentaID
+            // 
+            this.lblVentaID.AutoSize = true;
+            this.lblVentaID.Location = new System.Drawing.Point(22, 238);
+            this.lblVentaID.Name = "lblVentaID";
+            this.lblVentaID.Size = new System.Drawing.Size(46, 13);
+            this.lblVentaID.TabIndex = 68;
+            this.lblVentaID.Text = "VentaID";
+            // 
+            // lblPais
+            // 
+            this.lblPais.AutoSize = true;
+            this.lblPais.Location = new System.Drawing.Point(22, 179);
+            this.lblPais.Name = "lblPais";
+            this.lblPais.Size = new System.Drawing.Size(27, 13);
+            this.lblPais.TabIndex = 67;
+            this.lblPais.Text = "Pais";
+            // 
+            // lblCuidad
+            // 
+            this.lblCuidad.AutoSize = true;
+            this.lblCuidad.Location = new System.Drawing.Point(19, 121);
+            this.lblCuidad.Name = "lblCuidad";
+            this.lblCuidad.Size = new System.Drawing.Size(40, 13);
+            this.lblCuidad.TabIndex = 66;
+            this.lblCuidad.Text = "Cuidad";
+            // 
+            // lblTipoCliente
+            // 
+            this.lblTipoCliente.AutoSize = true;
+            this.lblTipoCliente.Location = new System.Drawing.Point(19, 64);
+            this.lblTipoCliente.Name = "lblTipoCliente";
+            this.lblTipoCliente.Size = new System.Drawing.Size(60, 13);
+            this.lblTipoCliente.TabIndex = 65;
+            this.lblTipoCliente.Text = "TipoCliente";
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(22, 7);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
+            this.lblNombre.TabIndex = 64;
+            this.lblNombre.Text = "Nombre";
+            // 
+            // txtUbicacionID
+            // 
+            this.txtUbicacionID.Location = new System.Drawing.Point(586, 254);
+            this.txtUbicacionID.Name = "txtUbicacionID";
+            this.txtUbicacionID.Size = new System.Drawing.Size(100, 20);
+            this.txtUbicacionID.TabIndex = 63;
+            // 
+            // txtProducto
+            // 
+            this.txtProducto.Location = new System.Drawing.Point(410, 254);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtProducto.TabIndex = 62;
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.Location = new System.Drawing.Point(212, 254);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.TabIndex = 61;
+            // 
+            // txtVentaID
+            // 
+            this.txtVentaID.Location = new System.Drawing.Point(37, 254);
+            this.txtVentaID.Name = "txtVentaID";
+            this.txtVentaID.Size = new System.Drawing.Size(100, 20);
+            this.txtVentaID.TabIndex = 60;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Location = new System.Drawing.Point(586, 194);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.TabIndex = 59;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(586, 137);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 58;
+            // 
+            // txtCliente
+            // 
+            this.txtCliente.Location = new System.Drawing.Point(586, 26);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtCliente.TabIndex = 57;
+            // 
+            // txtRol
+            // 
+            this.txtRol.Location = new System.Drawing.Point(410, 195);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.Size = new System.Drawing.Size(100, 20);
+            this.txtRol.TabIndex = 56;
+            // 
+            // txtContra
+            // 
+            this.txtContra.Location = new System.Drawing.Point(410, 137);
+            this.txtContra.Name = "txtContra";
+            this.txtContra.Size = new System.Drawing.Size(100, 20);
+            this.txtContra.TabIndex = 55;
+            // 
+            // txtRegion
+            // 
+            this.txtRegion.Location = new System.Drawing.Point(410, 80);
+            this.txtRegion.Name = "txtRegion";
+            this.txtRegion.Size = new System.Drawing.Size(100, 20);
+            this.txtRegion.TabIndex = 54;
+            // 
+            // txtPrecioCosto
+            // 
+            this.txtPrecioCosto.Location = new System.Drawing.Point(410, 26);
+            this.txtPrecioCosto.Name = "txtPrecioCosto";
+            this.txtPrecioCosto.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecioCosto.TabIndex = 53;
+            // 
+            // txtCategoria
+            // 
+            this.txtCategoria.Location = new System.Drawing.Point(212, 195);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(100, 20);
+            this.txtCategoria.TabIndex = 52;
+            // 
+            // txtGananciaNeta
+            // 
+            this.txtGananciaNeta.Location = new System.Drawing.Point(212, 137);
+            this.txtGananciaNeta.Name = "txtGananciaNeta";
+            this.txtGananciaNeta.Size = new System.Drawing.Size(100, 20);
+            this.txtGananciaNeta.TabIndex = 51;
+            // 
+            // txtCostoOperativo
+            // 
+            this.txtCostoOperativo.Location = new System.Drawing.Point(212, 80);
+            this.txtCostoOperativo.Name = "txtCostoOperativo";
+            this.txtCostoOperativo.Size = new System.Drawing.Size(100, 20);
+            this.txtCostoOperativo.TabIndex = 50;
+            // 
+            // txtProductoID
+            // 
+            this.txtProductoID.Location = new System.Drawing.Point(212, 26);
+            this.txtProductoID.Name = "txtProductoID";
+            this.txtProductoID.Size = new System.Drawing.Size(100, 20);
+            this.txtProductoID.TabIndex = 49;
+            // 
+            // txtPais
+            // 
+            this.txtPais.Location = new System.Drawing.Point(37, 195);
+            this.txtPais.Name = "txtPais";
+            this.txtPais.Size = new System.Drawing.Size(100, 20);
+            this.txtPais.TabIndex = 48;
+            // 
+            // txtCiudad
+            // 
+            this.txtCiudad.Location = new System.Drawing.Point(37, 137);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.Size = new System.Drawing.Size(100, 20);
+            this.txtCiudad.TabIndex = 47;
+            // 
+            // txtTipoCliente
+            // 
+            this.txtTipoCliente.Location = new System.Drawing.Point(37, 80);
+            this.txtTipoCliente.Name = "txtTipoCliente";
+            this.txtTipoCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtTipoCliente.TabIndex = 46;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(37, 26);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 45;
+            // 
+            // btnguardar
+            // 
+            this.btnguardar.Location = new System.Drawing.Point(22, 325);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(75, 23);
+            this.btnguardar.TabIndex = 44;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
+            // 
             // edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(1015, 437);
+
+            this.ClientSize = new System.Drawing.Size(761, 355);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.lblid);
+            this.Controls.Add(this.dtpFecha);
+            this.Controls.Add(this.lblUbicacionID);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblCantidad);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.lblCliente);
+            this.Controls.Add(this.lblProducto);
+            this.Controls.Add(this.lblRol);
+            this.Controls.Add(this.lblContra);
+            this.Controls.Add(this.lblRegion);
+            this.Controls.Add(this.lblPrecioCosto);
+            this.Controls.Add(this.lblPrecio);
+            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.lblGananciaNeta);
+            this.Controls.Add(this.lblCostoOperativo);
+            this.Controls.Add(this.lblProductoID);
+            this.Controls.Add(this.lblVentaID);
+            this.Controls.Add(this.lblPais);
+            this.Controls.Add(this.lblCuidad);
+            this.Controls.Add(this.lblTipoCliente);
+            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.txtUbicacionID);
+            this.Controls.Add(this.txtProducto);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtVentaID);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.txtCantidad);
+            this.Controls.Add(this.txtCliente);
+            this.Controls.Add(this.txtRol);
+            this.Controls.Add(this.txtContra);
+            this.Controls.Add(this.txtRegion);
+            this.Controls.Add(this.txtPrecioCosto);
+            this.Controls.Add(this.txtCategoria);
+            this.Controls.Add(this.txtGananciaNeta);
+            this.Controls.Add(this.txtCostoOperativo);
+            this.Controls.Add(this.txtProductoID);
+            this.Controls.Add(this.txtPais);
+            this.Controls.Add(this.txtCiudad);
+            this.Controls.Add(this.txtTipoCliente);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "edit";
@@ -58,5 +493,48 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lblid;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.Label lblUbicacionID;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.Label lblContra;
+        private System.Windows.Forms.Label lblRegion;
+        private System.Windows.Forms.Label lblPrecioCosto;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.Label lblGananciaNeta;
+        private System.Windows.Forms.Label lblCostoOperativo;
+        private System.Windows.Forms.Label lblProductoID;
+        private System.Windows.Forms.Label lblVentaID;
+        private System.Windows.Forms.Label lblPais;
+        private System.Windows.Forms.Label lblCuidad;
+        private System.Windows.Forms.Label lblTipoCliente;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.TextBox txtUbicacionID;
+        private System.Windows.Forms.TextBox txtProducto;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtVentaID;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtRol;
+        private System.Windows.Forms.TextBox txtContra;
+        private System.Windows.Forms.TextBox txtRegion;
+        private System.Windows.Forms.TextBox txtPrecioCosto;
+        private System.Windows.Forms.TextBox txtCategoria;
+        private System.Windows.Forms.TextBox txtGananciaNeta;
+        private System.Windows.Forms.TextBox txtCostoOperativo;
+        private System.Windows.Forms.TextBox txtProductoID;
+        private System.Windows.Forms.TextBox txtPais;
+        private System.Windows.Forms.TextBox txtCiudad;
+        private System.Windows.Forms.TextBox txtTipoCliente;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Button btnguardar;
     }
 }
