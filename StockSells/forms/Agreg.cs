@@ -96,11 +96,11 @@ namespace StockSells.forms
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
                     SqlCommand command;
