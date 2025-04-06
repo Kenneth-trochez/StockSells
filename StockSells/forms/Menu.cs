@@ -16,6 +16,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace StockSells
 {
@@ -566,7 +567,12 @@ namespace StockSells
                         series.Add(new SerieDatos
                         {
                             NombreSerie = "Productos más vendidos por Ciudad",
-                            Consulta = "SELECT P.Nombre AS Producto, U.Ciudad AS Ciudad, SUM(V.Cantidad) AS TotalVendido FROM Ventas V INNER JOIN Productos P ON V.Producto = P.Nombre INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY P.Nombre, U.Ciudad ORDER BY U.Ciudad, TotalVendido DESC",
+                            Consulta = "SELECT P.Nombre AS Producto, U.Ciudad AS Ciudad, SUM(V.Cantidad) AS TotalVendido " +
+                                       "FROM Ventas V " +
+                                       "INNER JOIN Productos P ON V.Producto = P.Nombre " +
+                                       "INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID " +
+                                       "GROUP BY P.Nombre, U.Ciudad " +
+                                       "ORDER BY U.Ciudad, TotalVendido DESC",
                             CampoX = "Producto",
                             CampoY = "TotalVendido"
                         });
@@ -576,7 +582,10 @@ namespace StockSells
                         series.Add(new SerieDatos
                         {
                             NombreSerie = "Ventas por Ubicación",
-                            Consulta = "SELECT U.Ciudad AS Ciudad, SUM(V.Total) AS TotalVentas FROM Ventas V INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY U.Ciudad",
+                            Consulta = "SELECT U.Ciudad AS Ciudad, SUM(V.Total) AS TotalVentas " +
+                                       "FROM Ventas V " +
+                                       "INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID " +
+                                       "GROUP BY U.Ciudad",
                             CampoX = "Ciudad",
                             CampoY = "TotalVentas"
                         });
@@ -586,24 +595,35 @@ namespace StockSells
                         series.Add(new SerieDatos
                         {
                             NombreSerie = "Clientes y sus compras",
-                            Consulta = "SELECT C.Nombre AS Cliente, SUM(V.Total) AS TotalCompras FROM Ventas V INNER JOIN Clientes C ON V.Cliente = C.ID GROUP BY C.Nombre ORDER BY TotalCompras DESC",
+                            Consulta = "SELECT C.Nombre AS Cliente, SUM(V.Total) AS TotalCompras " +
+                                       "FROM Ventas V " +
+                                       "INNER JOIN Clientes C ON V.Cliente = C.ID " +
+                                       "GROUP BY C.Nombre " +
+                                       "ORDER BY TotalCompras DESC",
                             CampoX = "Cliente",
                             CampoY = "TotalCompras"
                         });
                         break;
-                        // Puedes seguir agregando otras tablas si quieres...
+
+                        // Puedes agregar más casos si lo necesitas...
                 }
             }
-            // Crear una instancia del formulario FormGraficos
-            FormGraficos Grafi = new FormGraficos();
-            Grafi.Show();
-            Grafi.Conectar(series);
 
+            // Mostrar el formulario y pasar los datos
+            if (series.Count > 0)
+            {
+                FormGraficos grafi = new FormGraficos();
+                grafi.Conectar(series); // Conectar primero
+                grafi.Show(); // Luego mostrar
+            }
+            else
+            {
+                MessageBox.Show("No hay series válidas para graficar.");
+            }
         }
 
 
-
-private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
             {
@@ -613,16 +633,9 @@ private void button5_Click(object sender, EventArgs e)
 
             try
             {
-                // Ruta de carpeta Descargas
                 string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
-                // Código automático con fecha y hora
                 string codigo = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-
-                // Nombre del archivo
                 string nombreArchivo = $"ReporteTablas_{codigo}.pdf";
-
-                // Ruta completa
                 string rutaArchivo = Path.Combine(rutaDescargas, nombreArchivo);
 
                 // Crear documento PDF
@@ -630,17 +643,15 @@ private void button5_Click(object sender, EventArgs e)
                 PdfWriter.GetInstance(doc, new FileStream(rutaArchivo, FileMode.Create));
                 doc.Open();
 
-                // Título
                 Paragraph titulo = new Paragraph("REPORTE DE TABLAS SELECCIONADAS", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16));
                 titulo.Alignment = Element.ALIGN_CENTER;
                 doc.Add(titulo);
                 doc.Add(new Paragraph(" "));
 
-                // Crear tabla PDF
+                // Crear tabla PDF desde DataGridView
                 PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
                 pdfTable.WidthPercentage = 100;
 
-                // Encabezados
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
                     PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
@@ -648,7 +659,6 @@ private void button5_Click(object sender, EventArgs e)
                     pdfTable.AddCell(cell);
                 }
 
-                // Datos
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (!row.IsNewRow)
@@ -661,18 +671,36 @@ private void button5_Click(object sender, EventArgs e)
                 }
 
                 doc.Add(pdfTable);
+
+                // Buscar si hay un gráfico en otro formulario abierto
+                FormGraficos graficoForm = Application.OpenForms.OfType<FormGraficos>().FirstOrDefault();
+
+                if (graficoForm != null && graficoForm.Controls.OfType<Chart>().Any())
+                {
+                    Chart chart = graficoForm.Controls.OfType<Chart>().First();
+
+                    // Guardar gráfico como imagen temporal
+                    string imagenRuta = Path.Combine(Path.GetTempPath(), $"Grafico_{codigo}.png");
+                    chart.SaveImage(imagenRuta, ChartImageFormat.Png);
+
+                    // Insertar imagen en el PDF
+                    iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(imagenRuta);
+                    imagen.ScaleToFit(700f, 400f);
+                    imagen.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(new Paragraph("\n\n")); // espacio antes del gráfico
+                    doc.Add(imagen);
+                }
+
                 doc.Close();
 
-                // Mostrar mensaje de éxito
                 MessageBox.Show($"Reporte generado en:\n{rutaArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Abrir PDF sin que se cierre
                 if (File.Exists(rutaArchivo))
                 {
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
                         FileName = rutaArchivo,
-                        UseShellExecute = true // Abre con el visor por defecto (sin errores)
+                        UseShellExecute = true
                     };
                     Process.Start(psi);
                 }
@@ -682,6 +710,7 @@ private void button5_Click(object sender, EventArgs e)
                 MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //funcion para cruzar datos de las tablas ventas y clientes
         private void CargarReporteClientesConVentas()
