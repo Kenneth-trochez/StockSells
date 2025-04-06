@@ -30,7 +30,7 @@ namespace StockSells.forms
         {
             try
             {
-                conectar = new SqlConnection("Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;");
+                conectar = new SqlConnection("Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;");
                 conectar.Open();
 
                 chart1.Series.Clear();//Limpiar datos previos
@@ -73,6 +73,11 @@ namespace StockSells.forms
         private void btn_salir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormGraficos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
