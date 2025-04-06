@@ -315,6 +315,7 @@ namespace StockSells.forms
             this.txtUbicacionID.Location = new System.Drawing.Point(440, 206);
             this.txtUbicacionID.Margin = new System.Windows.Forms.Padding(2);
             this.txtUbicacionID.Name = "txtUbicacionID";
+            this.txtUbicacionID.ReadOnly = true;
             this.txtUbicacionID.Size = new System.Drawing.Size(76, 20);
             this.txtUbicacionID.TabIndex = 63;
             // 
@@ -339,6 +340,7 @@ namespace StockSells.forms
             this.txtVentaID.Location = new System.Drawing.Point(28, 206);
             this.txtVentaID.Margin = new System.Windows.Forms.Padding(2);
             this.txtVentaID.Name = "txtVentaID";
+            this.txtVentaID.ReadOnly = true;
             this.txtVentaID.Size = new System.Drawing.Size(76, 20);
             this.txtVentaID.TabIndex = 60;
             // 
@@ -363,6 +365,7 @@ namespace StockSells.forms
             this.txtCliente.Location = new System.Drawing.Point(440, 21);
             this.txtCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(76, 20);
             this.txtCliente.TabIndex = 57;
             // 
@@ -427,6 +430,7 @@ namespace StockSells.forms
             this.txtProductoID.Location = new System.Drawing.Point(159, 21);
             this.txtProductoID.Margin = new System.Windows.Forms.Padding(2);
             this.txtProductoID.Name = "txtProductoID";
+            this.txtProductoID.ReadOnly = true;
             this.txtProductoID.Size = new System.Drawing.Size(76, 20);
             this.txtProductoID.TabIndex = 49;
             // 
