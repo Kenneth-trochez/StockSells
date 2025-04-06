@@ -24,11 +24,11 @@ namespace StockSells.forms
 
         private void edit_Load(object sender, EventArgs e)
         {
-            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
@@ -104,17 +104,17 @@ namespace StockSells.forms
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
                     // Construir la consulta UPDATE según la tabla activa
                     string query = "";
-                    SqlCommand command;
+                    SqlCommand command = new SqlCommand();
 
                     if (TablaActiva == "Clientes")
                     {
@@ -145,9 +145,9 @@ namespace StockSells.forms
                     }
                     else if (TablaActiva == "Ubicaciones")
                     {
-                        query = "UPDATE Ubicaciones SET Cuidad = @Cuidad, Region = @Region, Pais = @Pais WHERE ID = @ID";
+                        query = "UPDATE Ubicaciones SET Ciudad = @Ciudad, Region = @Region, Pais = @Pais WHERE ID = @ID";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Cuidad", txtCiudad.Text);
+                        command.Parameters.AddWithValue("@Ciudad", txtCiudad.Text);
                         command.Parameters.AddWithValue("@Region", txtRegion.Text);
                         command.Parameters.AddWithValue("@Pais", txtPais.Text);
                     }
@@ -179,19 +179,35 @@ namespace StockSells.forms
                     // Agregar el parámetro ID para identificar el registro a actualizar
                     command.Parameters.AddWithValue("@ID", txtId.Text);
 
-                    // Ejecutar el comando UPDATE
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Registro actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Ejecutar el comando UPDATE y validar el resultado
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Registro actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se realizó ninguna actualización. Verifique el ID o los datos ingresados.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
 
-                    // Cerrar el formulario
+                    // Cerrar el formulario si todo fue exitoso
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Error de SQL: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al guardar los cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -26,6 +26,10 @@ namespace StockSells
             InitializeComponent();
         }
 
+        public string RolUsuario { get; set; }
+
+        public string TablaActiva { get; set; }
+
         private void CargarTablas()
         {
             // Cadena de conexión a tu base de datos SQL Server
@@ -92,7 +96,27 @@ namespace StockSells
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            
+            ConfigurarPermisos(RolUsuario);
+        }
+
+        private void ConfigurarPermisos(string rol)
+        {
+            if (rol == "Admin")
+            {
+                // Permisos para Administrador: Acceso completo
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+            }
+            else if (rol == "Usuario")
+            {
+                // Permisos para Usuario: Acceso limitado
+                button1.Enabled = false;  
+                button2.Enabled = false; 
+                button3.Enabled = false;
+                checkBox5.Enabled = false;
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -103,37 +127,223 @@ namespace StockSells
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             ActualizarVista();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false; 
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
+
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
         }
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
             ActualizarVista();
+            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
+            if (checkBox5.Checked)
+            {
+                checkBox1.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
+            {
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+            }
+            else
+            {
+                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
+        }
+
+        public void ActualizarTablaActiva()
+        {
+            if (checkBox1.Checked) TablaActiva = "Clientes";
+            else if (checkBox2.Checked) TablaActiva = "FactoresDeCostos";
+            else if (checkBox3.Checked) TablaActiva = "Productos";
+            else if (checkBox4.Checked) TablaActiva = "Ubicaciones";
+            else if (checkBox5.Checked) TablaActiva = "Usuarios";
+            else if (checkBox6.Checked) TablaActiva = "Ventas";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             // Crear una instancia del formulario FormAgregar
             Agreg formAgregar = new Agreg();
+
+            // Verificar qué checkbox está seleccionado
+            if (checkBox1.Checked) formAgregar.TablaActiva = "Clientes";
+            else if (checkBox2.Checked) formAgregar.TablaActiva = "FactoresDeCostos";
+            else if (checkBox3.Checked) formAgregar.TablaActiva = "Productos";
+            else if (checkBox4.Checked) formAgregar.TablaActiva = "Ubicaciones";
+            else if (checkBox5.Checked) formAgregar.TablaActiva = "Usuarios";
+            else if (checkBox6.Checked) formAgregar.TablaActiva = "Ventas";
+            else
+            {
+                MessageBox.Show("Seleccione una tabla antes de agregar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Determinar qué checkbox está activo y pasar el nombre de la tabla al formulario
             if (checkBox1.Checked)
@@ -261,112 +471,64 @@ namespace StockSells
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Validar que haya una fila seleccionada en el DataGridView
-            if (dataGridView1.CurrentRow == null)
+            try
             {
-                MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                // Validar que haya una fila seleccionada en el DataGridView
+                if (dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener el valor del ID del registro seleccionado
+                object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
+
+                if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+                {
+                    MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtener la tabla activa seleccionada
+                string tablaActiva = GetSelectedTable();
+                if (string.IsNullOrEmpty(tablaActiva))
+                {
+                    MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Instanciar la clase de conexión
+                ConexionBD conexion = new ConexionBD();
+
+                // Probar la conexión antes de continuar
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open(); // Abre la conexión
+
+                    MessageBox.Show($"Conexión exitosa a la base de datos para editar la tabla: {tablaActiva}", "Conexión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Enviar datos al formulario Editar
+                edit formEditar = new edit
+                {
+                    TablaActiva = tablaActiva,
+                    ID = idValue.ToString()
+                };
+
+                formEditar.ShowDialog();
+
+                // Recargar los datos en el DataGridView
+                CargarTablas();
             }
-
-            // Obtener el valor del ID del registro seleccionado
-            object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
-
-            if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+            catch (Exception ex)
             {
-                MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show($"Ocurrió un error al conectar a la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-         
-            string tablaActiva = GetSelectedTable();
-            if (string.IsNullOrEmpty(tablaActiva))
-            {
-                MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            edit formEditar = new edit();
-            formEditar.TablaActiva = tablaActiva;
-            formEditar.ID = idValue.ToString();
-            formEditar.ShowDialog();
-
-            
-            CargarTablas();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var tablas = new Dictionary<CheckBox, string>
-    {
-        { checkBox1, "Clientes" },
-        { checkBox2, "FactoresDeCostos" },
-        { checkBox3, "Productos" },
-        { checkBox4, "Ubicaciones" },
-        { checkBox5, "Usuarios" },
-        { checkBox6, "Ventas" }
-    };
 
-            var seleccionadas = tablas.Where(t => t.Key.Checked).Select(t => t.Value).ToList();
-
-            if (seleccionadas.Count == 0)
-            {
-                MessageBox.Show("Selecciona al menos una tabla para graficar.");
-                return;
-            }
-
-            List<SerieDatos> series = new List<SerieDatos>();
-
-            foreach (string tabla in seleccionadas)
-            {
-                switch (tabla)
-                {
-                    case "Ventas":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Ventas",
-                            Consulta = "SELECT Fecha, Total FROM Ventas",
-                            CampoX = "Fecha",
-                            CampoY = "Total"
-                        });
-                        break;
-
-                    case "Productos":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Productos más vendidos por Ciudad",
-                            Consulta = "SELECT P.Nombre AS Producto, U.Ciudad AS Ciudad, SUM(V.Cantidad) AS TotalVendido FROM Ventas V INNER JOIN Productos P ON V.Producto = P.Nombre INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY P.Nombre, U.Ciudad ORDER BY U.Ciudad, TotalVendido DESC",
-                            CampoX = "Producto",
-                            CampoY = "TotalVendido"
-                        });
-                        break;
-
-                    case "Ubicaciones":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Ventas por Ubicación",
-                            Consulta = "SELECT U.Ciudad AS Ciudad, SUM(V.Total) AS TotalVentas FROM Ventas V INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID GROUP BY U.Ciudad",
-                            CampoX = "Ciudad",
-                            CampoY = "TotalVentas"
-                        });
-                        break;
-
-                    case "Clientes":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Clientes y sus compras",
-                            Consulta = "SELECT C.Nombre AS Cliente, SUM(V.Total) AS TotalCompras FROM Ventas V INNER JOIN Clientes C ON V.Cliente = C.ID GROUP BY C.Nombre ORDER BY TotalCompras DESC",
-                            CampoX = "Cliente",
-                            CampoY = "TotalCompras"
-                        });
-                        break;
-                        // Puedes seguir agregando otras tablas si quieres...
-                }
-            }
-            // Crear una instancia del formulario FormGraficos
-            FormGraficos Grafi = new FormGraficos();
-            Grafi.Show();
-            Grafi.Conectar(series);
-            
         }
 
 
@@ -451,7 +613,7 @@ namespace StockSells
         }
 
         //funcion para cruzar datos de las tablas ventas y clientes
-        private void CargarReporteVentasPorCliente()
+        private void CargarReporteClientesConVentas()
         {
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
@@ -463,17 +625,16 @@ namespace StockSells
                     connection.Open();
 
                     string query = @"
-                SELECT 
-                    c.ID AS [ID Cliente],
-                    c.Nombre AS [Nombre Cliente],
-                    COUNT(v.ID) AS [Cantidad de Ventas],
-                    SUM(v.Total) AS [Importe Total]
-                FROM 
-                    Clientes c
-                INNER JOIN 
-                    Ventas v ON c.ID = v.Cliente
-                GROUP BY 
-                    c.ID, c.Nombre";
+            SELECT 
+                c.Nombre AS [Cliente],
+                COUNT(v.ID) AS [Cantidad de Ventas],
+                SUM(v.Total) AS [Total Ventas]
+            FROM 
+                Clientes c
+            INNER JOIN 
+                Ventas v ON c.ID = v.Cliente
+            GROUP BY 
+                c.Nombre";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -487,24 +648,203 @@ namespace StockSells
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el reporte combinado de ventas por cliente:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar el reporte combinado de clientes con ventas:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarReporteClientesPorProductos()
+        {
+            ConexionBD conexion = new ConexionBD();
+            DataTable tablaResumen = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    string query = @"
+            SELECT 
+                c.Nombre AS [Cliente],
+                p.Nombre AS [Producto],
+                SUM(v.Total) AS [Total Comprado]
+            FROM 
+                Ventas v
+            INNER JOIN 
+                Clientes c ON v.Cliente = c.ID
+            INNER JOIN 
+                Productos p ON v.Producto = p.Nombre
+            GROUP BY 
+                c.Nombre, p.Nombre
+            ORDER BY 
+                c.Nombre, [Total Comprado] DESC";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(tablaResumen);
+                            dataGridView1.DataSource = tablaResumen;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el reporte combinado de clientes por productos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarReporteClientesPorUbicaciones()
+        {
+            ConexionBD conexion = new ConexionBD();
+            DataTable tablaResumen = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    string query = @"
+            SELECT 
+                c.Nombre AS [Cliente],
+                u.Ciudad AS [Ubicación],
+                COUNT(v.ID) AS [Cantidad de Ventas],
+                SUM(v.Total) AS [Total Ventas]
+            FROM 
+                Ventas v
+            INNER JOIN 
+                Clientes c ON v.Cliente = c.ID
+            INNER JOIN 
+                Ubicaciones u ON v.UbicacionID = u.ID
+            GROUP BY 
+                c.Nombre, u.Ciudad";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(tablaResumen);
+                            dataGridView1.DataSource = tablaResumen;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el reporte combinado de clientes por ubicaciones:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarReporteVentasPorProductos()
+        {
+            ConexionBD conexion = new ConexionBD();
+            DataTable tablaResumen = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    string query = @"
+            SELECT 
+                p.Nombre AS [Producto],
+                SUM(v.Cantidad) AS [Cantidad Vendida],
+                SUM(v.Total) AS [Total Ventas]
+            FROM 
+                Ventas v
+            INNER JOIN 
+                Productos p ON v.Producto = p.Nombre
+            GROUP BY 
+                p.Nombre";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(tablaResumen);
+                            dataGridView1.DataSource = tablaResumen;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el reporte combinado de ventas por productos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarReporteVentasPorUbicaciones()
+        {
+            ConexionBD conexion = new ConexionBD();
+            DataTable tablaResumen = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    // Consulta SQL para combinar Ventas con Ubicaciones
+                    string query = @"
+            SELECT 
+                u.Ciudad AS [Ubicación],
+                SUM(v.Total) AS [Total Ventas]
+            FROM 
+                Ventas v
+            INNER JOIN 
+                Ubicaciones u ON v.UbicacionID = u.ID
+            GROUP BY 
+                u.Ciudad";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            // Cargar el resultado en el DataTable
+                            adapter.Fill(tablaResumen);
+
+                            // Mostrar los datos en el DataGridView
+                            dataGridView1.DataSource = tablaResumen;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show("Error al cargar el reporte combinado de ventas por ubicación:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ActualizarVista()
         {
-            // Si ambos checkboxes están activos: Clientes y Ventas
-            if (checkBox1.Checked && checkBox6.Checked)
+            if (checkBox1.Checked && checkBox6.Checked) // Clientes y Ventas
             {
-                CargarReporteVentasPorCliente(); // Muestra resumen cruzado
+                CargarReporteClientesConVentas();
+            }
+            else if (checkBox1.Checked && checkBox3.Checked) // Clientes y Productos
+            {
+                CargarReporteClientesPorProductos();
+            }
+            else if (checkBox1.Checked && checkBox4.Checked) // Clientes y Ubicaciones
+            {
+                CargarReporteClientesPorUbicaciones();
+            }
+            else if (checkBox3.Checked && checkBox6.Checked) // Ventas y Productos
+            {
+                CargarReporteVentasPorProductos();
+            }
+            else if (checkBox4.Checked && checkBox6.Checked) // Ventas y Ubicaciones
+            {
+                CargarReporteVentasPorUbicaciones();
             }
             else
             {
                 CargarTablas(); // Muestra las tablas seleccionadas de forma individual
             }
         }
-
-
-
     }
 }

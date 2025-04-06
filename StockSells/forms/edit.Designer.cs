@@ -85,10 +85,12 @@ namespace StockSells.forms
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(440, 255);
-            this.txtId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtId.Margin = new System.Windows.Forms.Padding(2);
             this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(76, 20);
             this.txtId.TabIndex = 86;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // lblid
             // 
@@ -103,7 +105,7 @@ namespace StockSells.forms
             // dtpFecha
             // 
             this.dtpFecha.Location = new System.Drawing.Point(438, 65);
-            this.dtpFecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFecha.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(120, 20);
             this.dtpFecha.TabIndex = 84;
@@ -311,7 +313,7 @@ namespace StockSells.forms
             // txtUbicacionID
             // 
             this.txtUbicacionID.Location = new System.Drawing.Point(440, 206);
-            this.txtUbicacionID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUbicacionID.Margin = new System.Windows.Forms.Padding(2);
             this.txtUbicacionID.Name = "txtUbicacionID";
             this.txtUbicacionID.Size = new System.Drawing.Size(76, 20);
             this.txtUbicacionID.TabIndex = 63;
@@ -319,7 +321,7 @@ namespace StockSells.forms
             // txtProducto
             // 
             this.txtProducto.Location = new System.Drawing.Point(308, 206);
-            this.txtProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProducto.Margin = new System.Windows.Forms.Padding(2);
             this.txtProducto.Name = "txtProducto";
             this.txtProducto.Size = new System.Drawing.Size(76, 20);
             this.txtProducto.TabIndex = 62;
@@ -327,7 +329,7 @@ namespace StockSells.forms
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(159, 206);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(76, 20);
             this.txtPrecio.TabIndex = 61;
@@ -335,7 +337,7 @@ namespace StockSells.forms
             // txtVentaID
             // 
             this.txtVentaID.Location = new System.Drawing.Point(28, 206);
-            this.txtVentaID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVentaID.Margin = new System.Windows.Forms.Padding(2);
             this.txtVentaID.Name = "txtVentaID";
             this.txtVentaID.Size = new System.Drawing.Size(76, 20);
             this.txtVentaID.TabIndex = 60;
@@ -343,7 +345,7 @@ namespace StockSells.forms
             // txtTotal
             // 
             this.txtTotal.Location = new System.Drawing.Point(440, 158);
-            this.txtTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(76, 20);
             this.txtTotal.TabIndex = 59;
@@ -351,7 +353,7 @@ namespace StockSells.forms
             // txtCantidad
             // 
             this.txtCantidad.Location = new System.Drawing.Point(440, 111);
-            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(76, 20);
             this.txtCantidad.TabIndex = 58;
@@ -359,7 +361,7 @@ namespace StockSells.forms
             // txtCliente
             // 
             this.txtCliente.Location = new System.Drawing.Point(440, 21);
-            this.txtCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(76, 20);
             this.txtCliente.TabIndex = 57;
@@ -367,7 +369,7 @@ namespace StockSells.forms
             // txtRol
             // 
             this.txtRol.Location = new System.Drawing.Point(308, 158);
-            this.txtRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRol.Margin = new System.Windows.Forms.Padding(2);
             this.txtRol.Name = "txtRol";
             this.txtRol.Size = new System.Drawing.Size(76, 20);
             this.txtRol.TabIndex = 56;
@@ -375,7 +377,7 @@ namespace StockSells.forms
             // txtContra
             // 
             this.txtContra.Location = new System.Drawing.Point(308, 111);
-            this.txtContra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContra.Margin = new System.Windows.Forms.Padding(2);
             this.txtContra.Name = "txtContra";
             this.txtContra.Size = new System.Drawing.Size(76, 20);
             this.txtContra.TabIndex = 55;
@@ -383,7 +385,7 @@ namespace StockSells.forms
             // txtRegion
             // 
             this.txtRegion.Location = new System.Drawing.Point(308, 65);
-            this.txtRegion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRegion.Margin = new System.Windows.Forms.Padding(2);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(76, 20);
             this.txtRegion.TabIndex = 54;
@@ -391,7 +393,7 @@ namespace StockSells.forms
             // txtPrecioCosto
             // 
             this.txtPrecioCosto.Location = new System.Drawing.Point(308, 21);
-            this.txtPrecioCosto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPrecioCosto.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrecioCosto.Name = "txtPrecioCosto";
             this.txtPrecioCosto.Size = new System.Drawing.Size(76, 20);
             this.txtPrecioCosto.TabIndex = 53;
@@ -399,7 +401,7 @@ namespace StockSells.forms
             // txtCategoria
             // 
             this.txtCategoria.Location = new System.Drawing.Point(159, 158);
-            this.txtCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(76, 20);
             this.txtCategoria.TabIndex = 52;
@@ -407,7 +409,7 @@ namespace StockSells.forms
             // txtGananciaNeta
             // 
             this.txtGananciaNeta.Location = new System.Drawing.Point(159, 111);
-            this.txtGananciaNeta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtGananciaNeta.Margin = new System.Windows.Forms.Padding(2);
             this.txtGananciaNeta.Name = "txtGananciaNeta";
             this.txtGananciaNeta.Size = new System.Drawing.Size(76, 20);
             this.txtGananciaNeta.TabIndex = 51;
@@ -415,7 +417,7 @@ namespace StockSells.forms
             // txtCostoOperativo
             // 
             this.txtCostoOperativo.Location = new System.Drawing.Point(159, 65);
-            this.txtCostoOperativo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCostoOperativo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCostoOperativo.Name = "txtCostoOperativo";
             this.txtCostoOperativo.Size = new System.Drawing.Size(76, 20);
             this.txtCostoOperativo.TabIndex = 50;
@@ -423,7 +425,7 @@ namespace StockSells.forms
             // txtProductoID
             // 
             this.txtProductoID.Location = new System.Drawing.Point(159, 21);
-            this.txtProductoID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProductoID.Margin = new System.Windows.Forms.Padding(2);
             this.txtProductoID.Name = "txtProductoID";
             this.txtProductoID.Size = new System.Drawing.Size(76, 20);
             this.txtProductoID.TabIndex = 49;
@@ -431,7 +433,7 @@ namespace StockSells.forms
             // txtPais
             // 
             this.txtPais.Location = new System.Drawing.Point(28, 158);
-            this.txtPais.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPais.Margin = new System.Windows.Forms.Padding(2);
             this.txtPais.Name = "txtPais";
             this.txtPais.Size = new System.Drawing.Size(76, 20);
             this.txtPais.TabIndex = 48;
@@ -439,7 +441,7 @@ namespace StockSells.forms
             // txtCiudad
             // 
             this.txtCiudad.Location = new System.Drawing.Point(28, 111);
-            this.txtCiudad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCiudad.Margin = new System.Windows.Forms.Padding(2);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(76, 20);
             this.txtCiudad.TabIndex = 47;
@@ -447,7 +449,7 @@ namespace StockSells.forms
             // txtTipoCliente
             // 
             this.txtTipoCliente.Location = new System.Drawing.Point(28, 65);
-            this.txtTipoCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTipoCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtTipoCliente.Name = "txtTipoCliente";
             this.txtTipoCliente.Size = new System.Drawing.Size(76, 20);
             this.txtTipoCliente.TabIndex = 46;
@@ -455,7 +457,7 @@ namespace StockSells.forms
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(28, 21);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(76, 20);
             this.txtNombre.TabIndex = 45;
@@ -463,7 +465,7 @@ namespace StockSells.forms
             // btnguardar
             // 
             this.btnguardar.Location = new System.Drawing.Point(16, 264);
-            this.btnguardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnguardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(56, 19);
             this.btnguardar.TabIndex = 44;
@@ -475,7 +477,7 @@ namespace StockSells.forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 319);
+            this.ClientSize = new System.Drawing.Size(624, 324);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblid);
             this.Controls.Add(this.dtpFecha);
