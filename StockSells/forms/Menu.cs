@@ -29,6 +29,8 @@ namespace StockSells
 
         public string RolUsuario { get; set; }
 
+        public List<Chart> graficosGenerados = new List<Chart>();
+
         public string TablaActiva { get; set; }
 
         private void CargarTablas()
@@ -615,11 +617,14 @@ namespace StockSells
                 FormGraficos grafi = new FormGraficos();
                 grafi.Conectar(series); // Conectar primero
                 grafi.Show(); // Luego mostrar
+                graficosGenerados.AddRange(grafi.Controls.OfType<Chart>());
+
             }
             else
             {
                 MessageBox.Show("No hay series válidas para graficar.");
             }
+            
         }
 
 
@@ -675,19 +680,15 @@ namespace StockSells
                 // Buscar si hay un gráfico en otro formulario abierto
                 FormGraficos graficoForm = Application.OpenForms.OfType<FormGraficos>().FirstOrDefault();
 
-                if (graficoForm != null && graficoForm.Controls.OfType<Chart>().Any())
+                foreach (Chart chart in graficosGenerados)
                 {
-                    Chart chart = graficoForm.Controls.OfType<Chart>().First();
-
-                    // Guardar gráfico como imagen temporal
-                    string imagenRuta = Path.Combine(Path.GetTempPath(), $"Grafico_{codigo}.png");
+                    string imagenRuta = Path.Combine(Path.GetTempPath(), $"Grafico_{codigo}_{graficosGenerados.IndexOf(chart)}.png");
                     chart.SaveImage(imagenRuta, ChartImageFormat.Png);
 
-                    // Insertar imagen en el PDF
                     iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(imagenRuta);
                     imagen.ScaleToFit(700f, 400f);
                     imagen.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(new Paragraph("\n\n")); // espacio antes del gráfico
+                    doc.Add(new Paragraph("\n\n"));
                     doc.Add(imagen);
                 }
 
@@ -709,6 +710,7 @@ namespace StockSells
             {
                 MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            graficosGenerados.Clear();
         }
 
 
