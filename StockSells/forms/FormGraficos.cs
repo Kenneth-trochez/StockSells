@@ -34,7 +34,7 @@ namespace StockSells.forms
                 conectar.Open();
 
                 chart1.Series.Clear();//Limpiar datos previos
-                chart1.ChartAreas.Clear(); // Limpiar áreas anteriores
+                chart1.ChartAreas.Clear(); // Limpiar áreas anterioress
 
                 ChartArea area = new ChartArea("AreaPrincipal");
                 chart1.ChartAreas.Add(area);
