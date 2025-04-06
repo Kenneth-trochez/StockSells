@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -96,11 +96,11 @@ namespace StockSells.forms
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
                     SqlCommand command;
@@ -213,6 +213,11 @@ namespace StockSells.forms
         }
 
         private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtVentaID_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using StockSells.forms;
-
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Diagnostics;
 
 namespace StockSells
 {
@@ -26,14 +29,14 @@ namespace StockSells
         private void CargarTablas()
         {
             // Cadena de conexión a tu base de datos SQL Server
-            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             // Crear un DataTable para combinar datos
             DataTable combinedTable = new DataTable();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open(); // Abrir la conexión
 
@@ -99,7 +102,7 @@ namespace StockSells
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            CargarTablas();
+            ActualizarVista();
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -124,7 +127,7 @@ namespace StockSells
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-            CargarTablas();
+            ActualizarVista();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -179,11 +182,11 @@ namespace StockSells
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
@@ -365,6 +368,143 @@ namespace StockSells
             Grafi.Conectar(series);
             
         }
+
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para generar el reporte.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                // Ruta de carpeta Descargas
+                string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+                // Código automático con fecha y hora
+                string codigo = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+                // Nombre del archivo
+                string nombreArchivo = $"ReporteTablas_{codigo}.pdf";
+
+                // Ruta completa
+                string rutaArchivo = Path.Combine(rutaDescargas, nombreArchivo);
+
+                // Crear documento PDF
+                Document doc = new Document(PageSize.A4.Rotate(), 10, 10, 10, 10);
+                PdfWriter.GetInstance(doc, new FileStream(rutaArchivo, FileMode.Create));
+                doc.Open();
+
+                // Título
+                Paragraph titulo = new Paragraph("REPORTE DE TABLAS SELECCIONADAS", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16));
+                titulo.Alignment = Element.ALIGN_CENTER;
+                doc.Add(titulo);
+                doc.Add(new Paragraph(" "));
+
+                // Crear tabla PDF
+                PdfPTable pdfTable = new PdfPTable(dataGridView1.Columns.Count);
+                pdfTable.WidthPercentage = 100;
+
+                // Encabezados
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                    cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                    pdfTable.AddCell(cell);
+                }
+
+                // Datos
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value?.ToString() ?? "");
+                        }
+                    }
+                }
+
+                doc.Add(pdfTable);
+                doc.Close();
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show($"Reporte generado en:\n{rutaArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Abrir PDF sin que se cierre
+                if (File.Exists(rutaArchivo))
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = rutaArchivo,
+                        UseShellExecute = true // Abre con el visor por defecto (sin errores)
+                    };
+                    Process.Start(psi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //funcion para cruzar datos de las tablas ventas y clientes
+        private void CargarReporteVentasPorCliente()
+        {
+            ConexionBD conexion = new ConexionBD();
+            DataTable tablaResumen = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT 
+                    c.ID AS [ID Cliente],
+                    c.Nombre AS [Nombre Cliente],
+                    COUNT(v.ID) AS [Cantidad de Ventas],
+                    SUM(v.Total) AS [Importe Total]
+                FROM 
+                    Clientes c
+                INNER JOIN 
+                    Ventas v ON c.ID = v.Cliente
+                GROUP BY 
+                    c.ID, c.Nombre";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(tablaResumen);
+                            dataGridView1.DataSource = tablaResumen;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el reporte combinado de ventas por cliente:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActualizarVista()
+        {
+            // Si ambos checkboxes están activos: Clientes y Ventas
+            if (checkBox1.Checked && checkBox6.Checked)
+            {
+                CargarReporteVentasPorCliente(); // Muestra resumen cruzado
+            }
+            else
+            {
+                CargarTablas(); // Muestra las tablas seleccionadas de forma individual
+            }
+        }
+
+
 
     }
 }

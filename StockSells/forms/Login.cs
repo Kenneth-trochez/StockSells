@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,14 +45,11 @@ namespace StockSells
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             // Cadena de conexión a tu base de datos SQL Server
-            string connectionString = "Server=MSI\\SQLEXPRESS;Database=API;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
-
-       
             string usuario = txtusuario.Text;
             string contraseña = txtpassword.Text;
 
-        
             if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña))
             {
                 MessageBox.Show("Por favor, ingrese usuario y contraseña.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,28 +58,24 @@ namespace StockSells
 
             try
             {
-               
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Usar el método ObtenerConexion() para obtener una conexión válida
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open(); // Abrir la conexión
 
-                   
                     string query = "SELECT COUNT(*) FROM Usuarios WHERE Nombre = @usuario AND Contra = @contraseña";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        
                         command.Parameters.AddWithValue("@usuario", usuario);
                         command.Parameters.AddWithValue("@contraseña", contraseña);
 
-                        
                         int count = Convert.ToInt32(command.ExecuteScalar());
 
                         if (count > 0)
                         {
                             MessageBox.Show("Inicio de sesión exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                           
                             Menu menuForm = new Menu();
                             menuForm.Show();
                             this.Hide(); // Ocultar el formulario actual
