@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
 
 
 namespace StockSells.forms
@@ -30,7 +31,7 @@ namespace StockSells.forms
         {
             try
             {
-                conectar = new SqlConnection("Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;");
+                conectar = new SqlConnection("Server=JOSE;Database=API_BD;Integrated Security=True;");
                 conectar.Open();
 
                 chart1.Series.Clear();//Limpiar datos previos
@@ -70,12 +71,26 @@ namespace StockSells.forms
             return tabla;
         }
 
+        public Bitmap ObtenerGraficoComoImagen()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                chart1.SaveImage(ms, ChartImageFormat.Png);
+                return new Bitmap(ms);
+            }
+        }
+
         private void btn_salir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void FormGraficos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
         {
 
         }
