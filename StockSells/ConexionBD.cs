@@ -9,7 +9,7 @@ namespace StockSells
 {
     public class ConexionBD
     {
-        private readonly string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+        private readonly string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
 
         public SqlConnection ObtenerConexion()
         {
