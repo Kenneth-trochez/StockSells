@@ -45,11 +45,7 @@ namespace StockSells
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             // Cadena de conexión a tu base de datos SQL Server
-
             ConexionBD conexion = new ConexionBD();
-
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
-
 
             string usuario = txtusuario.Text;
             string contraseña = txtpassword.Text;
@@ -67,20 +63,25 @@ namespace StockSells
                 {
                     connection.Open(); // Abrir la conexión
 
-                    string query = "SELECT COUNT(*) FROM Usuarios WHERE Nombre = @usuario AND Contra = @contraseña";
+                    // Consulta para verificar usuario y obtener su rol
+                    string query = "SELECT Rol FROM Usuarios WHERE Nombre = @usuario AND Contra = @contraseña";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@usuario", usuario);
                         command.Parameters.AddWithValue("@contraseña", contraseña);
 
-                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        // Obtener el rol del usuario
+                        object rol = command.ExecuteScalar();
 
-                        if (count > 0)
+                        if (rol != null)
                         {
+                            string rolUsuario = rol.ToString(); // Convertir el Rol a string
                             MessageBox.Show("Inicio de sesión exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            // Mostrar el formulario principal y aplicar permisos según el rol
                             Menu menuForm = new Menu();
+                            menuForm.RolUsuario = rolUsuario; // Pasar el Rol al formulario principal
                             menuForm.Show();
                             this.Hide(); // Ocultar el formulario actual
                         }
@@ -95,6 +96,8 @@ namespace StockSells
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
 
         private void txtpassword_TextChanged(object sender, EventArgs e)

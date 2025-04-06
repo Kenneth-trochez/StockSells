@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -96,35 +96,25 @@ namespace StockSells.forms
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
+            ConexionBD conexion = new ConexionBD();
 
+            // Validar el formato del ID antes de proceder
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtId.Text, $"^{ObtenerFormatoID()}\\d{{3}}$"))
+            {
+                MessageBox.Show($"El ID debe tener el formato '{ObtenerFormatoID()}000' a '{ObtenerFormatoID()}999'. Por favor, ingrese un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtId.Focus();
+                return;
+            }
+
+            // Proceder con el guardado
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
-                    SqlCommand command;
+                    SqlCommand command = null; // Inicializar la variable command
 
-                    // Validar que el ID no esté vacío
-                    if (string.IsNullOrEmpty(txtId.Text))
-                    {
-                        MessageBox.Show("Por favor, ingrese un valor para el ID.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Validar que el ID sea único en la tabla activa
-                    string checkQuery = $"SELECT COUNT(*) FROM {TablaActiva} WHERE ID = @ID";
-                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
-                    checkCommand.Parameters.AddWithValue("@ID", txtId.Text);
-                    int exists = (int)checkCommand.ExecuteScalar();
-
-                    if (exists > 0)
-                    {
-                        MessageBox.Show($"El ID '{txtId.Text}' ya existe en la tabla '{TablaActiva}'. Por favor, ingrese un ID único.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // INSERT dinámico según la tabla activa
+                    // Construir el INSERT según la tabla activa
                     if (TablaActiva == "Clientes")
                     {
                         string query = "INSERT INTO Clientes (ID, Nombre, TipoCliente, Ciudad, Pais) VALUES (@ID, @Nombre, @TipoCliente, @Ciudad, @Pais)";
@@ -139,7 +129,7 @@ namespace StockSells.forms
                     {
                         string query = "INSERT INTO FactoresDeCostos (ID, VentaID, ProductoID, CostoOperativo, GananciaNeta) VALUES (@ID, @VentaID, @ProductoID, @CostoOperativo, @GananciaNeta)";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ID", txtId.Text); // Agregar el ID como en Clientes
+                        command.Parameters.AddWithValue("@ID", txtId.Text);
                         command.Parameters.AddWithValue("@VentaID", txtVentaID.Text);
                         command.Parameters.AddWithValue("@ProductoID", txtProductoID.Text);
                         command.Parameters.AddWithValue("@CostoOperativo", txtCostoOperativo.Text);
@@ -149,7 +139,7 @@ namespace StockSells.forms
                     {
                         string query = "INSERT INTO Productos (ID, Nombre, Categoria, Precio, PrecioCosto) VALUES (@ID, @Nombre, @Categoria, @Precio, @PrecioCosto)";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ID", txtId.Text); // Agregar el ID como en Clientes
+                        command.Parameters.AddWithValue("@ID", txtId.Text);
                         command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                         command.Parameters.AddWithValue("@Categoria", txtCategoria.Text);
                         command.Parameters.AddWithValue("@Precio", txtPrecio.Text);
@@ -159,7 +149,7 @@ namespace StockSells.forms
                     {
                         string query = "INSERT INTO Ubicaciones (ID, Ciudad, Region, Pais) VALUES (@ID, @Ciudad, @Region, @Pais)";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ID", txtId.Text); // Agregar el ID como en Clientes
+                        command.Parameters.AddWithValue("@ID", txtId.Text);
                         command.Parameters.AddWithValue("@Ciudad", txtCiudad.Text);
                         command.Parameters.AddWithValue("@Region", txtRegion.Text);
                         command.Parameters.AddWithValue("@Pais", txtPais.Text);
@@ -168,7 +158,7 @@ namespace StockSells.forms
                     {
                         string query = "INSERT INTO Usuarios (ID, Nombre, Contra, Rol) VALUES (@ID, @Nombre, @Contra, @Rol)";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ID", txtId.Text); // Agregar el ID como en Clientes
+                        command.Parameters.AddWithValue("@ID", txtId.Text);
                         command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                         command.Parameters.AddWithValue("@Contra", txtContra.Text);
                         command.Parameters.AddWithValue("@Rol", txtRol.Text);
@@ -177,7 +167,7 @@ namespace StockSells.forms
                     {
                         string query = "INSERT INTO Ventas (ID, Producto, Cliente, Fecha, Cantidad, Total, UbicacionID) VALUES (@ID, @Producto, @Cliente, @Fecha, @Cantidad, @Total, @UbicacionID)";
                         command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ID", txtId.Text); // Agregar el ID como en Clientes
+                        command.Parameters.AddWithValue("@ID", txtId.Text);
                         command.Parameters.AddWithValue("@Producto", txtProducto.Text);
                         command.Parameters.AddWithValue("@Cliente", txtCliente.Text);
                         command.Parameters.AddWithValue("@Fecha", dtpFecha.Value); // Si usas DateTimePicker
@@ -191,20 +181,22 @@ namespace StockSells.forms
                         return;
                     }
 
-                    // Ejecutar la consulta
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Registro agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Ejecutar la consulta INSERT
+                    if (command != null)
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Registro agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Cerrar el formulario y devolver el resultado
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                        // Cerrar el formulario y devolver el resultado
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void textBox15_TextChanged(object sender, EventArgs e)
@@ -221,5 +213,178 @@ namespace StockSells.forms
         {
 
         }
+
+        private void txtId_Leave(object sender, EventArgs e)
+        {
+            // Obtener el prefijo según la tabla activa
+            string prefijo = ObtenerFormatoID();
+
+            if (string.IsNullOrEmpty(prefijo))
+            {
+                MessageBox.Show("No se ha seleccionado una tabla válida. Por favor, seleccione una tabla antes de ingresar el ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtId.Focus();
+                return;
+            }
+
+            // Validar el formato del ID ingresado
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtId.Text, $"^{prefijo}\\d{{3}}$"))
+            {
+                MessageBox.Show($"El ID debe tener el formato '{prefijo}000' a '{prefijo}999'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtId.Focus(); // Regresar el foco al TextBox para corregirlo
+                return;
+            }
+
+            // Mensaje opcional de éxito si el formato es válido
+            MessageBox.Show($"El ID '{txtId.Text}' tiene el formato válido para la tabla '{TablaActiva}'.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private string ObtenerFormatoID()
+        {
+            if (TablaActiva == "Clientes") return "C";
+            if (TablaActiva == "FactoresDeCostos") return "F";
+            if (TablaActiva == "Productos") return "P";
+            if (TablaActiva == "Ubicaciones") return "U";
+            if (TablaActiva == "Usuarios") return "A";
+            if (TablaActiva == "Ventas") return "V";
+            return string.Empty; // Retornar vacío si no hay tabla activa
+        }
+
+        private bool ValidarExistenciaEnBaseDeDatos(string tabla, string id)
+        {
+            try
+            {
+                ConexionBD conexion = new ConexionBD();
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+                    string query = $"SELECT COUNT(*) FROM {tabla} WHERE ID = @ID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ID", id);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0; // Retorna true si el ID existe
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al validar el ID en la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtVentaID_Leave(object sender, EventArgs e)
+        {
+            ValidarID("Ventas", txtVentaID.Text, "V");
+        }
+
+        private void txtProductoID_Leave(object sender, EventArgs e)
+        {
+            ValidarID("Productos", txtProductoID.Text, "P");
+        }
+
+        private void txtUbicacionID_Leave(object sender, EventArgs e)
+        {
+            ValidarID("Ubicaciones", txtUbicacionID.Text, "U");
+        }
+
+        private void txtCliente_Leave(object sender, EventArgs e)
+        {
+            ValidarID("Clientes", txtCliente.Text, "C");
+        }
+
+        private void ValidarID(string tabla, string idIngresado, string prefijo)
+        {
+            if (string.IsNullOrEmpty(idIngresado))
+            {
+                MessageBox.Show("El campo no puede estar vacío. Por favor, ingrese un ID.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validar el formato del ID (por ejemplo, "V000")
+            if (!System.Text.RegularExpressions.Regex.IsMatch(idIngresado, $"^{prefijo}\\d{{3}}$"))
+            {
+                MessageBox.Show($"El ID debe tener el formato '{prefijo}000' a '{prefijo}999'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                ConexionBD conexion = new ConexionBD();
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+
+                    // Verificar si el ID existe en la tabla correspondiente
+                    string query = $"SELECT COUNT(*) FROM {tabla} WHERE ID = @ID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ID", idIngresado);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show($"El ID '{idIngresado}' no existe en la tabla '{tabla}'. Por favor ingrese un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al validar el ID: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidarTodosLosIDs()
+        {
+            // Validar VentaID
+            if (!ValidarIDExistente("Ventas", txtVentaID.Text, "V")) return false;
+            // Validar ProductoID
+            if (!ValidarIDExistente("Productos", txtProductoID.Text, "P")) return false;
+            // Validar UbicacionID
+            if (!ValidarIDExistente("Ubicaciones", txtUbicacionID.Text, "U")) return false;
+            // Validar ClienteID
+            if (!ValidarIDExistente("Clientes", txtCliente.Text, "C")) return false;
+
+            return true;
+        }
+
+        private bool ValidarIDExistente(string tabla, string idIngresado, string prefijo)
+        {
+            if (string.IsNullOrEmpty(idIngresado) || !System.Text.RegularExpressions.Regex.IsMatch(idIngresado, $"^{prefijo}\\d{{3}}$"))
+            {
+                MessageBox.Show($"El ID '{idIngresado}' no es válido. Por favor ingrese un ID en el formato '{prefijo}000'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            try
+            {
+                ConexionBD conexion = new ConexionBD();
+                using (SqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+                    string query = $"SELECT COUNT(*) FROM {tabla} WHERE ID = @ID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ID", idIngresado);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show($"El ID '{idIngresado}' no existe en la tabla '{tabla}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al validar el ID '{idIngresado}': {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

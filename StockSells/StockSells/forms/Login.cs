@@ -45,7 +45,7 @@ namespace StockSells
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             // Cadena de conexión a tu base de datos SQL Server
-            string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+            string connectionString = "Server=JOSE;Database=API_BD;Integrated Security=True;";
 
 
        
