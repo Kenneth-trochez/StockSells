@@ -35,7 +35,7 @@ namespace StockSells
 
         private void CargarTablas()
         {
-            // Cadena de conexión a tu base de datos SQL Server
+            
             ConexionBD conexion = new ConexionBD();
 
             // Crear un DataTable para combinar datos
@@ -607,7 +607,7 @@ namespace StockSells
                         });
                         break;
 
-                        // Puedes agregar más casos si lo necesitas...
+                      
                 }
             }
 
