@@ -28,7 +28,6 @@ namespace StockSells.forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(edit));
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblid = new System.Windows.Forms.Label();
@@ -492,7 +491,7 @@ namespace StockSells.forms
             // btnguardar
             // 
             this.btnguardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnguardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnguardar.BackgroundImage")));
+            this.btnguardar.BackgroundImage = global::StockSells.Properties.Resources.oval;
             this.btnguardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnguardar.FlatAppearance.BorderSize = 0;
             this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

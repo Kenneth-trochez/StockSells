@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Agreg));
-            this.btnguardar = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtTipoCliente = new System.Windows.Forms.TextBox();
             this.txtCiudad = new System.Windows.Forms.TextBox();
@@ -72,25 +70,8 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblid = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.btnguardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnguardar
-            // 
-            this.btnguardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnguardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnguardar.BackgroundImage")));
-            this.btnguardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnguardar.FlatAppearance.BorderSize = 0;
-            this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnguardar.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnguardar.Location = new System.Drawing.Point(40, 379);
-            this.btnguardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(102, 42);
-            this.btnguardar.TabIndex = 0;
-            this.btnguardar.Text = "Guardar";
-            this.btnguardar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnguardar.UseVisualStyleBackColor = false;
-            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // txtNombre
             // 
@@ -520,6 +501,24 @@
             this.txtId.TabIndex = 43;
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
+            // 
+            // btnguardar
+            // 
+            this.btnguardar.BackColor = System.Drawing.Color.Transparent;
+            this.btnguardar.BackgroundImage = global::StockSells.Properties.Resources.oval;
+            this.btnguardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnguardar.FlatAppearance.BorderSize = 0;
+            this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnguardar.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnguardar.Location = new System.Drawing.Point(40, 379);
+            this.btnguardar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(102, 42);
+            this.btnguardar.TabIndex = 0;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnguardar.UseVisualStyleBackColor = false;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // Agreg
             // 
