@@ -948,5 +948,27 @@ namespace StockSells
                 CargarTablas(); // Muestra las tablas seleccionadas de forma individual
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // Confirmar si el usuario realmente desea cerrar sesión
+            DialogResult resultado = MessageBox.Show(
+                "¿Estás seguro que deseas cerrar sesión?",
+                "Confirmar cierre de sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Si el usuario confirma cerrar sesión
+            if (resultado == DialogResult.Yes)
+            {
+                // Abrir el formulario de Login
+                Login loginForm = new Login();
+                loginForm.Show();
+
+                // Cerrar el formulario principal
+                this.Close();
+            }
+        }
     }
 }
