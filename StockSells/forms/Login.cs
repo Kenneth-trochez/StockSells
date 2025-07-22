@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MySql.Data.MySqlClient;
 
 namespace StockSells
 {
@@ -47,7 +48,7 @@ namespace StockSells
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            // Cadena de conexión a tu base de datos SQL Server
+            // Cadena de conexión a tu base de datos MariaDB
             ConexionBD conexion = new ConexionBD();
 
             string usuario = txtusuario.Text;
@@ -62,14 +63,17 @@ namespace StockSells
             try
             {
                 // Usar el método ObtenerConexion() para obtener una conexión válida
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open(); // Abrir la conexión
 
-                    // Consulta para verificar usuario y obtener su rol
-                    string query = "SELECT Rol FROM Usuarios WHERE Nombre = @usuario AND Contra = @contraseña";
+                    // Consulta adaptada para obtener el rol desde la tabla 'roles'
+                    string query = @"SELECT r.rol_descripcion 
+                         FROM usuarios u
+                         JOIN roles r ON u.id_rol = r.rol_id
+                         WHERE u.nombre = @usuario AND u.contra = @contraseña";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@usuario", usuario);
                         command.Parameters.AddWithValue("@contraseña", contraseña);

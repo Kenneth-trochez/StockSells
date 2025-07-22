@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
+using MySql.Data.MySqlClient;
 
 namespace StockSells.forms
 {
@@ -24,151 +25,135 @@ namespace StockSells.forms
 
         private void edit_Load(object sender, EventArgs e)
         {
+
             ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
-                    // Construir la consulta SELECT para obtener los datos del registro
-                    string query = $"SELECT * FROM {TablaActiva} WHERE ID = @ID";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@ID", ID);
+                    // Mapear tabla y campo clave real
+                    string campoID = "";
 
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read())
+                    if (TablaActiva == "clientes") campoID = "Nombre";
+                    else if (TablaActiva == "productos") campoID = "id_producto";
+                    else if (TablaActiva == "usuarios") campoID = "id_usuario";
+                    else if (TablaActiva == "ventas") campoID = "id_ventas";
+                    else
                     {
-                        // Completar los campos del formulario según la tabla activa
-                        if (TablaActiva == "Clientes")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtNombre.Text = reader["Nombre"].ToString();
-                            txtTipoCliente.Text = reader["TipoCliente"].ToString();
-                            txtCiudad.Text = reader["Ciudad"].ToString();
-                            txtPais.Text = reader["Pais"].ToString();
-                        }
-                        else if (TablaActiva == "FactoresDeCostos")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtVentaID.Text = reader["VentaID"].ToString();
-                            txtProductoID.Text = reader["ProductoID"].ToString();
-                            txtCostoOperativo.Text = reader["CostoOperativo"].ToString();
-                            txtGananciaNeta.Text = reader["GananciaNeta"].ToString();
-                        }
-                        else if (TablaActiva == "Productos")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtNombre.Text = reader["Nombre"].ToString();
-                            txtCategoria.Text = reader["Categoria"].ToString();
-                            txtPrecio.Text = reader["Precio"].ToString();
-                            txtPrecioCosto.Text = reader["PrecioCosto"].ToString();
-                        }
-                        else if (TablaActiva == "Ubicaciones")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtCiudad.Text = reader["Cuidad"].ToString();
-                            txtRegion.Text = reader["Region"].ToString();
-                            txtPais.Text = reader["Pais"].ToString();
-                        }
-                        else if (TablaActiva == "Usuarios")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtNombre.Text = reader["Nombre"].ToString();
-                            txtContra.Text = reader["Contra"].ToString();
-                            txtRol.Text = reader["Rol"].ToString();
-                        }
-                        else if (TablaActiva == "Ventas")
-                        {
-                            txtId.Text = reader["ID"].ToString();
-                            txtProducto.Text = reader["Producto"].ToString();
-                            txtCliente.Text = reader["Cliente"].ToString();
-                            dtpFecha.Value = Convert.ToDateTime(reader["Fecha"]);
-                            txtCantidad.Text = reader["Cantidad"].ToString();
-                            txtTotal.Text = reader["Total"].ToString();
-                            txtUbicacionID.Text = reader["UbicacionID"].ToString();
-                        }
+                        MessageBox.Show("La tabla seleccionada no está disponible en la base actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    reader.Close();
+                    string query = $"SELECT * FROM {TablaActiva} WHERE {campoID} = @ID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", ID);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (TablaActiva == "clientes")
+                                {
+                                    txtNombre.Text = reader["Nombre"].ToString();
+                                    txtTipoCliente.Text = reader["cliente_id"].ToString();
+                                    txtPais.Text = reader["pais"].ToString();
+                                    txtDepartamentoID.Text = reader["id_departamento"].ToString();
+                                }
+                                else if (TablaActiva == "productos")
+                                {
+                                    txtProductoID.Text = reader["id_producto"].ToString();
+                                    txtNombre.Text = reader["nombre"].ToString();
+                                    txtCategoriaID.Text = reader["categoria_id"].ToString();
+                                    txtProveedorID.Text = reader["proveedor_id"].ToString();
+                                    txtPrecio.Text = reader["Precio"].ToString();
+                                    txtPrecioCosto.Text = reader["precio_costo"].ToString();
+                                }
+                                else if (TablaActiva == "usuarios")
+                                {
+                                    lblidselec.Text = reader["id_usuario"].ToString();
+                                    txtNombre.Text = reader["nombre"].ToString();
+                                    txtContra.Text = reader["contra"].ToString();
+                                    txtRolID.Text = reader["id_rol"].ToString();
+                                }
+                                else if (TablaActiva == "ventas")
+                                {
+                                    lblidselec.Text = reader["id_ventas"].ToString();
+                                    txtCliente.Text = reader["cliente"].ToString();
+                                    txtProducto.Text = reader["nombre_producto"].ToString();
+                                    txtCantidad.Text = reader["cantidad"].ToString();
+                                    dtpFecha.Value = Convert.ToDateTime(reader["fecha"]);
+                                    txtTotal.Text = reader["total"].ToString();
+                                    txtUbicacionID.Text = reader["ubicacion"].ToString();
+                                }
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al cargar el registro: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
-    
+
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
+
             ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
-                    // Construir la consulta UPDATE según la tabla activa
                     string query = "";
-                    SqlCommand command = new SqlCommand();
+                    MySqlCommand command = new MySqlCommand();
 
-                    if (TablaActiva == "Clientes")
+                    if (TablaActiva == "clientes")
                     {
-                        query = "UPDATE Clientes SET Nombre = @Nombre, TipoCliente = @TipoCliente, Ciudad = @Ciudad, Pais = @Pais WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
+                        query = "UPDATE clientes SET Nombre = @Nombre, cliente_id = @TipoCliente, pais = @Pais, id_departamento = @Departamento WHERE Nombre = @ID";
+                        command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                         command.Parameters.AddWithValue("@TipoCliente", txtTipoCliente.Text);
-                        command.Parameters.AddWithValue("@Ciudad", txtCiudad.Text);
                         command.Parameters.AddWithValue("@Pais", txtPais.Text);
+                        command.Parameters.AddWithValue("@Departamento", txtDepartamentoID.Text);
                     }
-                    else if (TablaActiva == "FactoresDeCostos")
+                    else if (TablaActiva == "productos")
                     {
-                        query = "UPDATE FactoresDeCostos SET VentaID = @VentaID, ProductoID = @ProductoID, CostoOperativo = @CostoOperativo, GananciaNeta = @GananciaNeta WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@VentaID", txtVentaID.Text);
-                        command.Parameters.AddWithValue("@ProductoID", txtProductoID.Text);
-                        command.Parameters.AddWithValue("@CostoOperativo", txtCostoOperativo.Text);
-                        command.Parameters.AddWithValue("@GananciaNeta", txtGananciaNeta.Text);
-                    }
-                    else if (TablaActiva == "Productos")
-                    {
-                        query = "UPDATE Productos SET Nombre = @Nombre, Categoria = @Categoria, Precio = @Precio, PrecioCosto = @PrecioCosto WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
+                        query = "UPDATE productos SET nombre = @Nombre, categoria_id = @Categoria, Precio = @Precio, precio_costo = @PrecioCosto WHERE id_producto = @ID";
+                        command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                        command.Parameters.AddWithValue("@Categoria", txtCategoria.Text);
+                        command.Parameters.AddWithValue("@Categoria", txtCategoriaID.Text);
                         command.Parameters.AddWithValue("@Precio", txtPrecio.Text);
                         command.Parameters.AddWithValue("@PrecioCosto", txtPrecioCosto.Text);
                     }
-                    else if (TablaActiva == "Ubicaciones")
+                    else if (TablaActiva == "usuarios")
                     {
-                        query = "UPDATE Ubicaciones SET Ciudad = @Ciudad, Region = @Region, Pais = @Pais WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Ciudad", txtCiudad.Text);
-                        command.Parameters.AddWithValue("@Region", txtRegion.Text);
-                        command.Parameters.AddWithValue("@Pais", txtPais.Text);
-                    }
-                    else if (TablaActiva == "Usuarios")
-                    {
-                        query = "UPDATE Usuarios SET Nombre = @Nombre, Contra = @Contra, Rol = @Rol WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
+                        query = "UPDATE usuarios SET nombre = @Nombre, contra = @Contra, id_rol = @Rol WHERE id_usuario = @ID";
+                        command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                         command.Parameters.AddWithValue("@Contra", txtContra.Text);
-                        command.Parameters.AddWithValue("@Rol", txtRol.Text);
+                        command.Parameters.AddWithValue("@Rol", txtRolID.Text);
                     }
-                    else if (TablaActiva == "Ventas")
+                    else if (TablaActiva == "ventas")
                     {
-                        query = "UPDATE Ventas SET Producto = @Producto, Cliente = @Cliente, Fecha = @Fecha, Cantidad = @Cantidad, Total = @Total, UbicacionID = @UbicacionID WHERE ID = @ID";
-                        command = new SqlCommand(query, connection);
+                        query = @"UPDATE ventas SET nombre_producto = @Producto, cliente = @Cliente, fecha = @Fecha, cantidad = @Cantidad, total = @Total, ubicacion = @Ubicacion 
+                      WHERE id_ventas = @ID";
+                        command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@Producto", txtProducto.Text);
                         command.Parameters.AddWithValue("@Cliente", txtCliente.Text);
-                        command.Parameters.AddWithValue("@Fecha", dtpFecha.Value); // Si usas DateTimePicker
+                        command.Parameters.AddWithValue("@Fecha", dtpFecha.Value);
                         command.Parameters.AddWithValue("@Cantidad", txtCantidad.Text);
                         command.Parameters.AddWithValue("@Total", txtTotal.Text);
-                        command.Parameters.AddWithValue("@UbicacionID", txtUbicacionID.Text);
+                        command.Parameters.AddWithValue("@Ubicacion", txtUbicacionID.Text);
                     }
                     else
                     {
@@ -176,10 +161,8 @@ namespace StockSells.forms
                         return;
                     }
 
-                    // Agregar el parámetro ID para identificar el registro a actualizar
-                    command.Parameters.AddWithValue("@ID", txtId.Text);
+                    command.Parameters.AddWithValue("@ID", lblidselec.Text);
 
-                    // Ejecutar el comando UPDATE y validar el resultado
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -190,19 +173,19 @@ namespace StockSells.forms
                         MessageBox.Show("No se realizó ninguna actualización. Verifique el ID o los datos ingresados.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
-                    // Cerrar el formulario si todo fue exitoso
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
-            catch (SqlException sqlEx)
+            catch (MySqlException sqlEx)
             {
-                MessageBox.Show($"Error de SQL: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error de MySQL: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al guardar los cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
 

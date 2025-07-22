@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Linq.Expressions;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
+using MySql.Data.MySqlClient;
 
 
 namespace StockSells.forms
@@ -29,22 +30,23 @@ namespace StockSells.forms
 
         public void Conectar(List<SerieDatos> series)
         {
+
             try
             {
-                conectar = new SqlConnection("Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;");
+                MySqlConnection conectar = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=Fallout4@;Port=3306;");
                 conectar.Open();
 
-                chart1.Series.Clear();//Limpiar datos previos
-                chart1.ChartAreas.Clear(); // Limpiar áreas anteriores
+                chart1.Series.Clear();        // Limpiar datos previos
+                chart1.ChartAreas.Clear();    // Limpiar áreas anteriores
 
                 ChartArea area = new ChartArea("AreaPrincipal");
                 chart1.ChartAreas.Add(area);
 
                 foreach (var serieData in series)
                 {
-                    DataTable datos = EnviarDatos(serieData.Consulta);
+                    DataTable datos = EnviarDatos(serieData.Consulta); // Asegúrate que esta función ahora use MySQL también
                     Series serie = new Series(serieData.NombreSerie);
-                    serie.ChartType = SeriesChartType.Column; // Puedes cambiar a .Line, .Bar, etc.
+                    serie.ChartType = SeriesChartType.Column;
 
                     foreach (DataRow row in datos.Rows)
                     {
@@ -55,19 +57,28 @@ namespace StockSells.forms
 
                     chart1.Series.Add(serie);
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al conectar: " + ex.Message);
             }
+
         }
 
         private DataTable EnviarDatos(string consulta)
         {
             DataTable tabla = new DataTable();
-            SqlDataAdapter sda = new SqlDataAdapter(consulta, conectar);
-            sda.Fill(tabla);
+
+            using (MySqlConnection connection = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=Fallout4@;Port=3306;"))
+            {
+                connection.Open();
+
+                using (MySqlDataAdapter sda = new MySqlDataAdapter(consulta, connection))
+                {
+                    sda.Fill(tabla);
+                }
+            }
+
             return tabla;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace StockSells
 {
     public class ConexionBD
     {
-        private readonly string connectionString = "Server=DESKTOP-VPG9DEB;Database=API_BD;Integrated Security=True;";
+        private string connectionString = "Server=127.0.0.1;Database=stocksells;User ID=root;Password=Fallout4@;Port=3306;";
 
-        public SqlConnection ObtenerConexion()
+
+        public MySqlConnection ObtenerConexion()
         {
-            return new SqlConnection(connectionString);
+            return new MySqlConnection(connectionString);
         }
     }
 }

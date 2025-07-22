@@ -17,6 +17,8 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
+using MySql.Data.MySqlClient;
+
 
 namespace StockSells
 {
@@ -35,7 +37,7 @@ namespace StockSells
 
         private void CargarTablas()
         {
-            
+
             ConexionBD conexion = new ConexionBD();
 
             // Crear un DataTable para combinar datos
@@ -43,50 +45,44 @@ namespace StockSells
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
-                    connection.Open(); // Abrir la conexión
+                    connection.Open();
 
-                    // Lista de tablas y sus checkboxes
+                    // Lista de tablas válidas en tu base actual
                     var tablas = new Dictionary<CheckBox, string>
-            {
-                { checkBox1, "Clientes" },
-                { checkBox2, "FactoresDeCostos" },
-                { checkBox3, "Productos" },
-                { checkBox4, "Ubicaciones" },
-                { checkBox5, "Usuarios" },
-                { checkBox6, "Ventas" }
-            };
+        {
+              { checkBox1, "clientes" },
+              { checkBox2, "proveedores" },
+              { checkBox3, "productos" },
+              { checkBox4, "compras" },
+              { checkBox5, "usuarios" },
+              { checkBox6, "ventas" }
+        };
 
                     foreach (var item in tablas)
                     {
-                        // Verificar si el checkbox está activo
                         if (item.Key.Checked)
                         {
-                            string query = $"SELECT * FROM {item.Value}"; // Consulta para la tabla
+                            string query = $"SELECT * FROM {item.Value}";
 
-                            using (SqlCommand command = new SqlCommand(query, connection))
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                             {
-                                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                                DataTable tempTable = new DataTable();
+                                adapter.Fill(tempTable);
+
+                                tempTable.Columns.Add("Tabla", typeof(string));
+                                foreach (DataRow row in tempTable.Rows)
                                 {
-                                    DataTable tempTable = new DataTable();
-                                    adapter.Fill(tempTable);
-
-                                    // Agregar columna para identificar la tabla (opcional)
-                                    tempTable.Columns.Add("Tabla", typeof(string));
-                                    foreach (DataRow row in tempTable.Rows)
-                                    {
-                                        row["Tabla"] = item.Value;
-                                    }
-
-                                    // Combinar con el DataTable principal
-                                    combinedTable.Merge(tempTable);
+                                    row["Tabla"] = item.Value;
                                 }
+
+                                combinedTable.Merge(tempTable);
                             }
                         }
                     }
 
-                    // Mostrar los datos en el DataGridView
                     dataGridView1.DataSource = combinedTable;
                 }
             }
@@ -94,6 +90,7 @@ namespace StockSells
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
 
@@ -395,30 +392,43 @@ namespace StockSells
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             ConexionBD conexion = new ConexionBD();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
-                    // Validar que haya una fila seleccionada en el DataGridView
                     if (dataGridView1.CurrentRow == null)
                     {
                         MessageBox.Show("Por favor, seleccione un registro del DataGridView para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    
-                    if (!dataGridView1.Columns.Contains("ID"))
+                    // Mapeo de tabla actual y su campo clave
+                    string tabla = "";
+                    string campoID = "";
+
+                    if (checkBox1.Checked) { tabla = "clientes"; campoID = "Nombre"; }
+                    else if (checkBox2.Checked) { tabla = "productos"; campoID = "id_producto"; }
+                    else if (checkBox3.Checked) { tabla = "usuarios"; campoID = "id_usuario"; }
+                    else if (checkBox4.Checked) { tabla = "ventas"; campoID = "id_ventas"; }
+                    else
                     {
-                        MessageBox.Show("La columna 'ID' no está presente en los datos actuales del DataGridView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Seleccione una tabla válida para eliminar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-              
-                    object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
+                    // Validar que la columna existe en el DataGridView
+                    if (!dataGridView1.Columns.Contains(campoID))
+                    {
+                        MessageBox.Show($"La columna '{campoID}' no está presente en los datos actuales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    object idValue = dataGridView1.CurrentRow.Cells[campoID].Value;
 
                     if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
                     {
@@ -426,39 +436,21 @@ namespace StockSells
                         return;
                     }
 
-                    // El ID es un valor alfanumérico, así que lo tratamos como texto
-                    string id = idValue.ToString();
+                    string query = $"DELETE FROM {tabla} WHERE {campoID} = @ID";
 
-                    
-                    string query = "";
-                    if (checkBox1.Checked) query = "DELETE FROM Clientes WHERE ID = @ID";
-                    else if (checkBox2.Checked) query = "DELETE FROM FactoresDeCostos WHERE ID = @ID";
-                    else if (checkBox3.Checked) query = "DELETE FROM Productos WHERE ID = @ID";
-                    else if (checkBox4.Checked) query = "DELETE FROM Ubicaciones WHERE ID = @ID";
-                    else if (checkBox5.Checked) query = "DELETE FROM Usuarios WHERE ID = @ID";
-                    else if (checkBox6.Checked) query = "DELETE FROM Ventas WHERE ID = @ID";
-                    else
-                    {
-                        MessageBox.Show("Seleccione una tabla para eliminar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Ejecutar el comando DELETE
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@ID", id);
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ID", idValue);
                     command.ExecuteNonQuery();
 
-                    
                     MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                   
-                    CargarTablas();
+                    CargarTablas(); // Recarga el DataGridView después de borrar
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private string GetSelectedTable()
@@ -474,25 +466,16 @@ namespace StockSells
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             try
             {
-                // Validar que haya una fila seleccionada en el DataGridView
                 if (dataGridView1.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Obtener el valor del ID del registro seleccionado
-                object idValue = dataGridView1.CurrentRow.Cells["ID"].Value;
-
-                if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
-                {
-                    MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Obtener la tabla activa seleccionada
+                // Determinar la tabla activa
                 string tablaActiva = GetSelectedTable();
                 if (string.IsNullOrEmpty(tablaActiva))
                 {
@@ -500,18 +483,43 @@ namespace StockSells
                     return;
                 }
 
-                // Instanciar la clase de conexión
+                // Obtener el campo clave para cada tabla
+                string campoID = "";
+                if (tablaActiva == "clientes") campoID = "Nombre";
+                else if (tablaActiva == "productos") campoID = "id_producto";
+                else if (tablaActiva == "usuarios") campoID = "id_usuario";
+                else if (tablaActiva == "ventas") campoID = "id_ventas";
+                else
+                {
+                    MessageBox.Show("No se reconoce el campo clave de la tabla seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Verificar que la columna existe
+                if (!dataGridView1.Columns.Contains(campoID))
+                {
+                    MessageBox.Show($"La columna '{campoID}' no está presente en el DataGridView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                object idValue = dataGridView1.CurrentRow.Cells[campoID].Value;
+
+                if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+                {
+                    MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Probar conexión
                 ConexionBD conexion = new ConexionBD();
 
-                // Probar la conexión antes de continuar
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
-                    connection.Open(); // Abre la conexión
-
+                    connection.Open();
                     MessageBox.Show($"Conexión exitosa a la base de datos para editar la tabla: {tablaActiva}", "Conexión", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                // Enviar datos al formulario Editar
+                // Mostrar formulario de edición
                 edit formEditar = new edit
                 {
                     TablaActiva = tablaActiva,
@@ -520,26 +528,27 @@ namespace StockSells
 
                 formEditar.ShowDialog();
 
-                // Recargar los datos en el DataGridView
+                // Refrescar los datos
                 CargarTablas();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al conectar a la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             var tablas = new Dictionary<CheckBox, string>
-    {
-        { checkBox1, "Clientes" },
-        { checkBox2, "FactoresDeCostos" },
-        { checkBox3, "Productos" },
-        { checkBox4, "Ubicaciones" },
-        { checkBox5, "Usuarios" },
-        { checkBox6, "Ventas" }
-    };
+{
+    { checkBox1, "clientes" },
+    { checkBox2, "proveedores" },
+    { checkBox3, "productos" },
+    { checkBox4, "compras" },
+    { checkBox5, "usuarios" },
+    { checkBox6, "ventas" }
+};
 
             var seleccionadas = tablas.Where(t => t.Key.Checked).Select(t => t.Value).ToList();
 
@@ -555,59 +564,75 @@ namespace StockSells
             {
                 switch (tabla)
                 {
-                    case "Ventas":
+                    case "ventas":
                         series.Add(new SerieDatos
                         {
-                            NombreSerie = "Ventas",
-                            Consulta = "SELECT Fecha, Total FROM Ventas",
-                            CampoX = "Fecha",
-                            CampoY = "Total"
-                        });
-                        break;
-
-                    case "Productos":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Productos más vendidos por Ciudad",
-                            Consulta = "SELECT P.Nombre AS Producto, U.Ciudad AS Ciudad, SUM(V.Cantidad) AS TotalVendido " +
-                                       "FROM Ventas V " +
-                                       "INNER JOIN Productos P ON V.Producto = P.Nombre " +
-                                       "INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID " +
-                                       "GROUP BY P.Nombre, U.Ciudad " +
-                                       "ORDER BY U.Ciudad, TotalVendido DESC",
+                            NombreSerie = "Ventas por producto",
+                            Consulta = "SELECT nombre_producto AS Producto, SUM(total) AS TotalVentas FROM ventas GROUP BY nombre_producto",
                             CampoX = "Producto",
-                            CampoY = "TotalVendido"
-                        });
-                        break;
-
-                    case "Ubicaciones":
-                        series.Add(new SerieDatos
-                        {
-                            NombreSerie = "Ventas por Ubicación",
-                            Consulta = "SELECT U.Ciudad AS Ciudad, SUM(V.Total) AS TotalVentas " +
-                                       "FROM Ventas V " +
-                                       "INNER JOIN Ubicaciones U ON V.UbicacionID = U.ID " +
-                                       "GROUP BY U.Ciudad",
-                            CampoX = "Ciudad",
                             CampoY = "TotalVentas"
                         });
                         break;
 
-                    case "Clientes":
+                    case "productos":
                         series.Add(new SerieDatos
                         {
-                            NombreSerie = "Clientes y sus compras",
-                            Consulta = "SELECT C.Nombre AS Cliente, SUM(V.Total) AS TotalCompras " +
-                                       "FROM Ventas V " +
-                                       "INNER JOIN Clientes C ON V.Cliente = C.ID " +
-                                       "GROUP BY C.Nombre " +
-                                       "ORDER BY TotalCompras DESC",
-                            CampoX = "Cliente",
+                            NombreSerie = "Productos por categoría",
+                            Consulta = "SELECT categoria_id AS Categoria, COUNT(*) AS Total FROM productos GROUP BY categoria_id",
+                            CampoX = "Categoria",
+                            CampoY = "Total"
+                        });
+                        break;
+
+                    case "clientes":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Clientes y total de compras",
+                            Consulta = "SELECT cliente AS ClienteID, SUM(total) AS TotalCompras FROM ventas GROUP BY cliente",
+                            CampoX = "ClienteID",
                             CampoY = "TotalCompras"
                         });
                         break;
 
-                      
+                    case "usuarios":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Usuarios por rol",
+                            Consulta = "SELECT id_rol AS RolID, COUNT(*) AS TotalUsuarios FROM usuarios GROUP BY id_rol",
+                            CampoX = "RolID",
+                            CampoY = "TotalUsuarios"
+                        });
+                        break;
+
+                    case "roles":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Cantidad de roles registrados",
+                            Consulta = "SELECT nombre_rol AS Rol, COUNT(*) AS Total FROM roles GROUP BY nombre_rol",
+                            CampoX = "Rol",
+                            CampoY = "Total"
+                        });
+                        break;
+
+                    case "proveedores":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Proveedores por país",
+                            Consulta = "SELECT pais AS Pais, COUNT(*) AS Total FROM proveedores GROUP BY pais",
+                            CampoX = "Pais",
+                            CampoY = "Total"
+                        });
+                        break;
+
+                    case "compras":
+                        series.Add(new SerieDatos
+                        {
+                            NombreSerie = "Compras por proveedor",
+                            Consulta = "SELECT proveedor_id AS Proveedor, SUM(total) AS TotalCompras FROM compras GROUP BY proveedor_id",
+                            CampoX = "Proveedor",
+                            CampoY = "TotalCompras"
+                        });
+                        break;
                 }
             }
 
@@ -615,16 +640,16 @@ namespace StockSells
             if (series.Count > 0)
             {
                 FormGraficos grafi = new FormGraficos();
-                grafi.Conectar(series); // Conectar primero
-                grafi.Show(); // Luego mostrar
+                grafi.Conectar(series);
+                grafi.Show();
                 graficosGenerados.AddRange(grafi.Controls.OfType<Chart>());
-
             }
             else
             {
                 MessageBox.Show("No hay series válidas para graficar.");
             }
-            
+
+
         }
 
 
@@ -717,34 +742,33 @@ namespace StockSells
         //funcion para cruzar datos de las tablas ventas y clientes
         private void CargarReporteClientesConVentas()
         {
+
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
                     string query = @"
-            SELECT 
-                c.Nombre AS [Cliente],
-                COUNT(v.ID) AS [Cantidad de Ventas],
-                SUM(v.Total) AS [Total Ventas]
-            FROM 
-                Clientes c
-            INNER JOIN 
-                Ventas v ON c.ID = v.Cliente
-            GROUP BY 
-                c.Nombre";
+SELECT 
+    c.Nombre AS Cliente,
+    COUNT(v.id_ventas) AS Cantidad_Ventas,
+    SUM(v.total) AS Total_Ventas
+FROM 
+    clientes c
+INNER JOIN 
+    ventas v ON c.Nombre = v.nombre_producto  -- Este JOIN puede ajustarse según lo que realmente conecta
+GROUP BY 
+    c.Nombre";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(tablaResumen);
-                            dataGridView1.DataSource = tablaResumen;
-                        }
+                        adapter.Fill(tablaResumen);
+                        dataGridView1.DataSource = tablaResumen;
                     }
                 }
             }
@@ -752,42 +776,40 @@ namespace StockSells
             {
                 MessageBox.Show("Error al cargar el reporte combinado de clientes con ventas:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void CargarReporteClientesPorProductos()
         {
+
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
                     string query = @"
-            SELECT 
-                c.Nombre AS [Cliente],
-                p.Nombre AS [Producto],
-                SUM(v.Total) AS [Total Comprado]
-            FROM 
-                Ventas v
-            INNER JOIN 
-                Clientes c ON v.Cliente = c.ID
-            INNER JOIN 
-                Productos p ON v.Producto = p.Nombre
-            GROUP BY 
-                c.Nombre, p.Nombre
-            ORDER BY 
-                c.Nombre, [Total Comprado] DESC";
+SELECT 
+    c.Nombre AS Cliente,
+    v.nombre_producto AS Producto,
+    SUM(v.total) AS Total_Comprado
+FROM 
+    ventas v
+INNER JOIN 
+    clientes c ON c.Nombre = (SELECT u.nombre FROM usuarios u WHERE u.id_usuario = v.cliente)
+GROUP BY 
+    c.Nombre, v.nombre_producto
+ORDER BY 
+    c.Nombre, Total_Comprado DESC";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(tablaResumen);
-                            dataGridView1.DataSource = tablaResumen;
-                        }
+                        adapter.Fill(tablaResumen);
+                        dataGridView1.DataSource = tablaResumen;
                     }
                 }
             }
@@ -795,41 +817,43 @@ namespace StockSells
             {
                 MessageBox.Show("Error al cargar el reporte combinado de clientes por productos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void CargarReporteClientesPorUbicaciones()
         {
+
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
                     string query = @"
-            SELECT 
-                c.Nombre AS [Cliente],
-                u.Ciudad AS [Ubicación],
-                COUNT(v.ID) AS [Cantidad de Ventas],
-                SUM(v.Total) AS [Total Ventas]
-            FROM 
-                Ventas v
-            INNER JOIN 
-                Clientes c ON v.Cliente = c.ID
-            INNER JOIN 
-                Ubicaciones u ON v.UbicacionID = u.ID
-            GROUP BY 
-                c.Nombre, u.Ciudad";
+SELECT 
+    u.nombre AS Cliente,
+    p.nombre_pais AS Ubicacion,
+    COUNT(v.id_ventas) AS Cantidad_Ventas,
+    SUM(v.total) AS Total_Ventas
+FROM 
+    ventas v
+INNER JOIN 
+    usuarios u ON v.cliente = u.id_usuario
+INNER JOIN 
+    pais p ON v.ubicacion = p.id_pais
+GROUP BY 
+    u.nombre, p.nombre_pais
+ORDER BY 
+    u.nombre, Total_Ventas DESC";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(tablaResumen);
-                            dataGridView1.DataSource = tablaResumen;
-                        }
+                        adapter.Fill(tablaResumen);
+                        dataGridView1.DataSource = tablaResumen;
                     }
                 }
             }
@@ -837,38 +861,40 @@ namespace StockSells
             {
                 MessageBox.Show("Error al cargar el reporte combinado de clientes por ubicaciones:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void CargarReporteVentasPorProductos()
         {
+
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
                     string query = @"
-            SELECT 
-                p.Nombre AS [Producto],
-                SUM(v.Cantidad) AS [Cantidad Vendida],
-                SUM(v.Total) AS [Total Ventas]
-            FROM 
-                Ventas v
-            INNER JOIN 
-                Productos p ON v.Producto = p.Nombre
-            GROUP BY 
-                p.Nombre";
+SELECT 
+    p.nombre AS Producto,
+    SUM(v.cantidad) AS Cantidad_Vendida,
+    SUM(v.total) AS Total_Ventas
+FROM 
+    ventas v
+INNER JOIN 
+    productos p ON v.nombre_producto = p.nombre
+GROUP BY 
+    p.nombre
+ORDER BY 
+    Total_Ventas DESC";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(tablaResumen);
-                            dataGridView1.DataSource = tablaResumen;
-                        }
+                        adapter.Fill(tablaResumen);
+                        dataGridView1.DataSource = tablaResumen;
                     }
                 }
             }
@@ -876,49 +902,47 @@ namespace StockSells
             {
                 MessageBox.Show("Error al cargar el reporte combinado de ventas por productos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void CargarReporteVentasPorUbicaciones()
         {
+
             ConexionBD conexion = new ConexionBD();
             DataTable tablaResumen = new DataTable();
 
             try
             {
-                using (SqlConnection connection = conexion.ObtenerConexion())
+                using (MySqlConnection connection = conexion.ObtenerConexion())
                 {
                     connection.Open();
 
-                    // Consulta SQL para combinar Ventas con Ubicaciones
                     string query = @"
-            SELECT 
-                u.Ciudad AS [Ubicación],
-                SUM(v.Total) AS [Total Ventas]
-            FROM 
-                Ventas v
-            INNER JOIN 
-                Ubicaciones u ON v.UbicacionID = u.ID
-            GROUP BY 
-                u.Ciudad";
+SELECT 
+    p.nombre_pais AS Ubicacion,
+    SUM(v.total) AS Total_Ventas
+FROM 
+    ventas v
+INNER JOIN 
+    pais p ON v.ubicacion = p.id_pais
+GROUP BY 
+    p.nombre_pais
+ORDER BY 
+    Total_Ventas DESC";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            // Cargar el resultado en el DataTable
-                            adapter.Fill(tablaResumen);
-
-                            // Mostrar los datos en el DataGridView
-                            dataGridView1.DataSource = tablaResumen;
-                        }
+                        adapter.Fill(tablaResumen);
+                        dataGridView1.DataSource = tablaResumen;
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejo de errores
                 MessageBox.Show("Error al cargar el reporte combinado de ventas por ubicación:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void ActualizarVista()
