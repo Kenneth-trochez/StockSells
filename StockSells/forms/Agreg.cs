@@ -23,80 +23,85 @@ namespace StockSells.forms
 
         private void Agreg_Load(object sender, EventArgs e)
         {
-            // Asegurarse de que todos los campos estén ocultos inicialmente
-            lblNombre.Visible = false; txtNombre.Visible = false;
-            lblTipoCliente.Visible = false; txtTipoCliente.Visible = false;
-            lblCuidad.Visible = false; txtCiudad.Visible = false;
-            lblPais.Visible = false; txtPais.Visible = false;
+            // Ocultar todos los campos al iniciar
+            lblNombre.Visible = txtNombreCliente.Visible = false;
+            lblPais.Visible = txtPaisCliente.Visible = false;
 
-            lblVentaID.Visible = false; txtVentaID.Visible = false;
-            lblProductoID.Visible = false; txtProductoID.Visible = false;
-            lblCostoOperativo.Visible = false; txtCostoOperativo.Visible = false;
-            lblGananciaNeta.Visible = false; txtGananciaNeta.Visible = false;
+            lblProveedorIDCompra.Visible = txtCategoria.Visible = false;
+            lblNombreProveedor.Visible = txtProveedorID.Visible = false;
+            lblPaisProveedor.Visible = txtPrecio.Visible = false;
+            lblNombreUsuario.Visible = txtPrecioCost.Visible = false;
+            lblNombreProducto.Visible = txtNombreProducto.Visible = false;
 
-            lblCategoria.Visible = false; txtCategoria.Visible = false;
-            lblPrecio.Visible = false; txtPrecio.Visible = false;
-            lblPrecioCosto.Visible = false; txtPrecioCosto.Visible = false;
+            lblNombreUsuario.Visible = txtNombreUsuario.Visible = false;
+            lblContraUsuario.Visible = txtContraUsuario.Visible = false;
+            lblRolID.Visible = txtRolID.Visible = false;
 
-            lblRegion.Visible = false; txtRegion.Visible = false;
+            lblProductoVenta.Visible = txtNombreProductoVenta.Visible = false;
+            lblClienteVenta.Visible = txtClienteVenta.Visible = false;
+            lblFechaVenta.Visible = dtpFechaVenta.Visible = false;
+            lblCantidadVenta.Visible = txtCantidadVenta.Visible = false;
+            lblTotalVenta.Visible = txtTotalVenta.Visible = false;
+            lblUbicacionVenta.Visible = txtUbicacionVenta.Visible = false;
 
-            lblContra.Visible = false; txtContra.Visible = false;
-            lblRol.Visible = false; txtRol.Visible = false;
+            lblNombreProveedor.Visible = txtNombreProveedor.Visible = false;
+            lblPaisProveedor.Visible = txtPaisProveedor.Visible = false;
 
-            lblProducto.Visible = false; txtProducto.Visible = false;
-            lblCliente.Visible = false; txtCliente.Visible = false;
-            lblFecha.Visible = false; dtpFecha.Visible = false;
-            lblCantidad.Visible = false; txtCantidad.Visible = false;
-            lblTotal.Visible = false; txtTotal.Visible = false;
-            lblUbicacionID.Visible = false; txtUbicacionID.Visible = false;
+            lblProveedorIDCompra.Visible = txtProveedorIDCompra.Visible = false;
+            lblFechaCompra.Visible = dtpFechaCompra.Visible = false;
+            lblTotalCompra.Visible = txtTotalCompra.Visible = false;
 
-            // Mostrar los campos necesarios según la tabla activa
-            if (TablaActiva == "Clientes")
+            // Mostrar según la tabla activa
+            switch (TablaActiva)
             {
-                lblNombre.Visible = true; txtNombre.Visible = true;
-                lblTipoCliente.Visible = true; txtTipoCliente.Visible = true;
-                lblCuidad.Visible = true; txtCiudad.Visible = true;
-                lblPais.Visible = true; txtPais.Visible = true;
-            }
-            else if (TablaActiva == "FactoresDeCostos")
-            {
-                lblVentaID.Visible = true; txtVentaID.Visible = true;
-                lblProductoID.Visible = true; txtProductoID.Visible = true;
-                lblCostoOperativo.Visible = true; txtCostoOperativo.Visible = true;
-                lblGananciaNeta.Visible = true; txtGananciaNeta.Visible = true;
-            }
-            else if (TablaActiva == "Productos")
-            {
-                lblNombre.Visible = true; txtNombre.Visible = true;
-                lblCategoria.Visible = true; txtCategoria.Visible = true;
-                lblPrecio.Visible = true; txtPrecio.Visible = true;
-                lblPrecioCosto.Visible = true; txtPrecioCosto.Visible = true;
-            }
-            else if (TablaActiva == "Ubicaciones")
-            {
-                lblCuidad.Visible = true; txtCiudad.Visible = true;
-                lblRegion.Visible = true; txtRegion.Visible = true;
-                lblPais.Visible = true; txtPais.Visible = true;
-            }
-            else if (TablaActiva == "Usuarios")
-            {
-                lblNombre.Visible = true; txtNombre.Visible = true;
-                lblContra.Visible = true; txtContra.Visible = true;
-                lblRol.Visible = true; txtRol.Visible = true;
-            }
-            else if (TablaActiva == "Ventas")
-            {
-                lblProducto.Visible = true; txtProducto.Visible = true;
-                lblCliente.Visible = true; txtCliente.Visible = true;
-                lblFecha.Visible = true; dtpFecha.Visible = true; // Si usas DateTimePicker
-                lblCantidad.Visible = true; txtCantidad.Visible = true;
-                lblTotal.Visible = true; txtTotal.Visible = true;
-                lblUbicacionID.Visible = true; txtUbicacionID.Visible = true;
+                case "clientes":
+                    lblNombre.Visible = txtNombreCliente.Visible = true;
+                    lblPais.Visible = txtPaisCliente.Visible = true;
+                    break;
+
+                case "productos":
+                    lblNombreProducto.Visible = txtNombreProducto.Visible = true;
+                    lblProveedorIDCompra.Visible = txtCategoria.Visible = true;
+                    lblNombreProveedor.Visible = txtProveedorID.Visible = true;
+                    lblPaisProveedor.Visible = txtPrecio.Visible = true;
+                    lblNombreUsuario.Visible = txtPrecioCost.Visible = true;
+                    break;
+
+                case "usuarios":
+                    lblNombreUsuario.Visible = txtNombreUsuario.Visible = true;
+                    lblContraUsuario.Visible = txtContraUsuario.Visible = true;
+                    lblRolID.Visible = txtRolID.Visible = true;
+                    break;
+
+                case "ventas":
+                    lblProductoVenta.Visible = txtNombreProductoVenta.Visible = true;
+                    lblClienteVenta.Visible = txtClienteVenta.Visible = true;
+                    lblFechaVenta.Visible = dtpFechaVenta.Visible = true;
+                    lblCantidadVenta.Visible = txtCantidadVenta.Visible = true;
+                    lblTotalVenta.Visible = txtTotalVenta.Visible = true;
+                    lblUbicacionVenta.Visible = txtUbicacionVenta.Visible = true;
+                    break;
+
+                case "proveedores":
+                    lblNombreProveedor.Visible = txtNombreProveedor.Visible = true;
+                    lblPaisProveedor.Visible = txtPaisProveedor.Visible = true;
+                    break;
+
+                case "compras":
+                    lblProveedorIDCompra.Visible = txtProveedorIDCompra.Visible = true;
+                    lblFechaCompra.Visible = dtpFechaCompra.Visible = true;
+                    lblTotalCompra.Visible = txtTotalCompra.Visible = true;
+                    break;
+
+                default:
+                    MessageBox.Show("No se reconoció la tabla seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
             }
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
+
 
             ConexionBD conexion = new ConexionBD();
 
@@ -107,59 +112,60 @@ namespace StockSells.forms
                     connection.Open();
                     MySqlCommand command = null;
 
-                    if (TablaActiva == "clientes")
+                    switch (TablaActiva)
                     {
-                        string query = @"INSERT INTO clientes (Nombre, cliente_id, pais, id_departamento) 
-                             VALUES (@Nombre, @TipoCliente, @Pais, @Departamento)";
-                        command = new MySqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                        command.Parameters.AddWithValue("@TipoCliente", txtTipoCliente.Text);
-                        command.Parameters.AddWithValue("@Pais", txtPais.Text);
-                        command.Parameters.AddWithValue("@Departamento", txtDepartamentoID.Text);
-                    }
-                    else if (TablaActiva == "productos")
-                    {
-                        string query = @"INSERT INTO productos (nombre, categoria_id, proveedor_id, Precio, precio_costo) 
-                             VALUES (@Nombre, @Categoria, @Proveedor, @Precio, @PrecioCosto)";
-                        command = new MySqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                        command.Parameters.AddWithValue("@Categoria", txtCategoriaID.Text);
-                        command.Parameters.AddWithValue("@Proveedor", txtProveedorID.Text);
-                        command.Parameters.AddWithValue("@Precio", txtPrecio.Text);
-                        command.Parameters.AddWithValue("@PrecioCosto", txtPrecioCosto.Text);
-                    }
-                    else if (TablaActiva == "usuarios")
-                    {
-                        string query = @"INSERT INTO usuarios (nombre, contra, id_rol) 
-                             VALUES (@Nombre, @Contra, @Rol)";
-                        command = new MySqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                        command.Parameters.AddWithValue("@Contra", txtContra.Text);
-                        command.Parameters.AddWithValue("@Rol", txtRolID.Text);
-                    }
-                    else if (TablaActiva == "ventas")
-                    {
-                        string query = @"INSERT INTO ventas (nombre_producto, cliente, fecha, cantidad, total, ubicacion) 
-                             VALUES (@Producto, @Cliente, @Fecha, @Cantidad, @Total, @Ubicacion)";
-                        command = new MySqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@Producto", txtProducto.Text);
-                        command.Parameters.AddWithValue("@Cliente", txtCliente.Text);
-                        command.Parameters.AddWithValue("@Fecha", dtpFecha.Value);
-                        command.Parameters.AddWithValue("@Cantidad", txtCantidad.Text);
-                        command.Parameters.AddWithValue("@Total", txtTotal.Text);
-                        command.Parameters.AddWithValue("@Ubicacion", txtUbicacionID.Text);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        case "clientes":
+                            command = new MySqlCommand("INSERT INTO clientes (nombre, pais) VALUES (@Nombre, @Pais)", connection);
+                            command.Parameters.AddWithValue("@Nombre", txtNombreCliente.Text);
+                            command.Parameters.AddWithValue("@Pais", txtPaisCliente.Text);
+                            break;
+
+                        case "productos":
+                            command = new MySqlCommand("INSERT INTO productos (nombre, categoria_id, proveedor_id, precio, precio_costo) VALUES (@Nombre, @Categoria, @Proveedor, @Precio, @PrecioCosto)", connection);
+                            command.Parameters.AddWithValue("@Nombre", txtNombreProducto.Text);
+                            command.Parameters.AddWithValue("@Categoria", txtCategoria.Text);
+                            command.Parameters.AddWithValue("@Proveedor", txtProveedorID.Text);
+                            command.Parameters.AddWithValue("@Precio", txtPrecio.Text);
+                            command.Parameters.AddWithValue("@PrecioCosto", txtPrecioCost.Text);
+                            break;
+
+                        case "usuarios":
+                            command = new MySqlCommand("INSERT INTO usuarios (nombre, contra, id_rol) VALUES (@Nombre, @Contra, @Rol)", connection);
+                            command.Parameters.AddWithValue("@Nombre", txtNombreUsuario.Text);
+                            command.Parameters.AddWithValue("@Contra", txtContraUsuario.Text);
+                            command.Parameters.AddWithValue("@Rol", txtRolID.Text);
+                            break;
+
+                        case "ventas":
+                            command = new MySqlCommand("INSERT INTO ventas (nombre_producto, cliente, fecha, cantidad, total, ubicacion) VALUES (@Producto, @Cliente, @Fecha, @Cantidad, @Total, @Ubicacion)", connection);
+                            command.Parameters.AddWithValue("@Producto", txtNombreProductoVenta.Text);
+                            command.Parameters.AddWithValue("@Cliente", txtClienteVenta.Text);
+                            command.Parameters.AddWithValue("@Fecha", dtpFechaVenta.Value);
+                            command.Parameters.AddWithValue("@Cantidad", txtCantidadVenta.Text);
+                            command.Parameters.AddWithValue("@Total", txtTotalVenta.Text);
+                            command.Parameters.AddWithValue("@Ubicacion", txtUbicacionVenta.Text);
+                            break;
+
+                        case "proveedores":
+                            command = new MySqlCommand("INSERT INTO proveedores (nombre, pais) VALUES (@Nombre, @Pais)", connection);
+                            command.Parameters.AddWithValue("@Nombre", txtNombreProveedor.Text);
+                            command.Parameters.AddWithValue("@Pais", txtPaisProveedor.Text);
+                            break;
+
+                        case "compras":
+                            command = new MySqlCommand("INSERT INTO compras (proveedor_id, fecha, total) VALUES (@ProveedorID, @Fecha, @Total)", connection);
+                            command.Parameters.AddWithValue("@ProveedorID", txtProveedorIDCompra.Text);
+                            command.Parameters.AddWithValue("@Fecha", dtpFechaCompra.Value);
+                            command.Parameters.AddWithValue("@Total", txtTotalCompra.Text);
+                            break;
+
+                        default:
+                            MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                     }
 
                     command.ExecuteNonQuery();
                     MessageBox.Show("Registro agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
                 }
             }
             catch (MySqlException ex)
@@ -170,6 +176,7 @@ namespace StockSells.forms
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.Close();
 
         }
 
@@ -186,41 +193,6 @@ namespace StockSells.forms
         private void txtVentaID_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void txtId_Leave(object sender, EventArgs e)
-        {
-            // Obtener el prefijo según la tabla activa
-            string prefijo = ObtenerFormatoID();
-
-            if (string.IsNullOrEmpty(prefijo))
-            {
-                MessageBox.Show("No se ha seleccionado una tabla válida. Por favor, seleccione una tabla antes de ingresar el ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.Focus();
-                return;
-            }
-
-            // Validar el formato del ID ingresado
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtId.Text, $"^{prefijo}\\d{{3}}$"))
-            {
-                MessageBox.Show($"El ID debe tener el formato '{prefijo}000' a '{prefijo}999'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtId.Focus(); // Regresar el foco al TextBox para corregirlo
-                return;
-            }
-
-            // Mensaje opcional de éxito si el formato es válido
-            MessageBox.Show($"El ID '{txtId.Text}' tiene el formato válido para la tabla '{TablaActiva}'.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private string ObtenerFormatoID()
-        {
-            if (TablaActiva == "Clientes") return "C";
-            if (TablaActiva == "FactoresDeCostos") return "F";
-            if (TablaActiva == "Productos") return "P";
-            if (TablaActiva == "Ubicaciones") return "U";
-            if (TablaActiva == "Usuarios") return "A";
-            if (TablaActiva == "Ventas") return "V";
-            return string.Empty; // Retornar vacío si no hay tabla activa
         }
 
         private bool ValidarExistenciaEnBaseDeDatos(string tabla, string id)
@@ -250,8 +222,21 @@ namespace StockSells.forms
         private void txtId_TextChanged(object sender, EventArgs e)
         {
 
-        }       
-       
+        }
 
+        private void panelClientes_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtGananciaNeta_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblGananciaNeta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

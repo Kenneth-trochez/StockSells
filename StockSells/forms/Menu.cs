@@ -121,7 +121,21 @@ namespace StockSells
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
 
+                string idSeleccionado = fila.Cells["id"].Value.ToString();
+
+                // Crear instancia del formulario de edición
+                edit editarForm = new edit();
+
+                // Pasar el ID como propiedad pública
+                editarForm.IDSeleccionado = idSeleccionado;
+
+                // Mostrar el formulario de edición
+                editarForm.Show();
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -329,51 +343,37 @@ namespace StockSells
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Crear una instancia del formulario FormAgregar
             Agreg formAgregar = new Agreg();
 
-            // Verificar qué checkbox está seleccionado
-            if (checkBox1.Checked) formAgregar.TablaActiva = "Clientes";
-            else if (checkBox2.Checked) formAgregar.TablaActiva = "FactoresDeCostos";
-            else if (checkBox3.Checked) formAgregar.TablaActiva = "Productos";
-            else if (checkBox4.Checked) formAgregar.TablaActiva = "Ubicaciones";
-            else if (checkBox5.Checked) formAgregar.TablaActiva = "Usuarios";
-            else if (checkBox6.Checked) formAgregar.TablaActiva = "Ventas";
-            else
-            {
-                MessageBox.Show("Seleccione una tabla antes de agregar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Determinar qué checkbox está activo y pasar el nombre de la tabla al formulario
+            // Determinar la tabla activa según los checkbox válidos
             if (checkBox1.Checked)
             {
-                formAgregar.TablaActiva = "Clientes";
+                formAgregar.TablaActiva = "clientes";
                 formAgregar.Text = "Agregar Nuevo Registro a Clientes";
             }
             else if (checkBox2.Checked)
             {
-                formAgregar.TablaActiva = "FactoresDeCostos";
-                formAgregar.Text = "Agregar Nuevo Registro a FactoresDeCostos";
+                formAgregar.TablaActiva = "proveedores";
+                formAgregar.Text = "Agregar Nuevo Registro a Proveedores";
             }
             else if (checkBox3.Checked)
             {
-                formAgregar.TablaActiva = "Productos";
+                formAgregar.TablaActiva = "productos";
                 formAgregar.Text = "Agregar Nuevo Registro a Productos";
             }
             else if (checkBox4.Checked)
             {
-                formAgregar.TablaActiva = "Ubicaciones";
-                formAgregar.Text = "Agregar Nuevo Registro a Ubicaciones";
+                formAgregar.TablaActiva = "compras";
+                formAgregar.Text = "Agregar Nuevo Registro a Compras";
             }
             else if (checkBox5.Checked)
             {
-                formAgregar.TablaActiva = "Usuarios";
+                formAgregar.TablaActiva = "usuarios";
                 formAgregar.Text = "Agregar Nuevo Registro a Usuarios";
             }
             else if (checkBox6.Checked)
             {
-                formAgregar.TablaActiva = "Ventas";
+                formAgregar.TablaActiva = "ventas";
                 formAgregar.Text = "Agregar Nuevo Registro a Ventas";
             }
             else
@@ -385,9 +385,9 @@ namespace StockSells
             // Mostrar el formulario como cuadro de diálogo
             if (formAgregar.ShowDialog() == DialogResult.OK)
             {
-                // Recargar el DataGridView después de agregar
-                CargarTablas();
+                CargarTablas(); // Refresca la vista del DataGridView
             }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -455,20 +455,20 @@ namespace StockSells
 
         private string GetSelectedTable()
         {
-            if (checkBox1.Checked) return "Clientes";
-            if (checkBox2.Checked) return "FactoresDeCostos";
-            if (checkBox3.Checked) return "Productos";
-            if (checkBox4.Checked) return "Ubicaciones";
-            if (checkBox5.Checked) return "Usuarios";
-            if (checkBox6.Checked) return "Ventas";
+            if (checkBox1.Checked) return "clientes";
+            if (checkBox2.Checked) return "proveedores";
+            if (checkBox3.Checked) return "productos";
+            if (checkBox4.Checked) return "compras";
+            if (checkBox5.Checked) return "usuarios";
+            if (checkBox6.Checked) return "ventas";
             return "";
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             try
             {
+                // Verificar que hay una fila seleccionada en el DataGridView
                 if (dataGridView1.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un registro del DataGridView para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -476,26 +476,17 @@ namespace StockSells
                 }
 
                 // Determinar la tabla activa
-                string tablaActiva = GetSelectedTable();
+                string tablaActiva = GetSelectedTable(); // Este método debe retornar el nombre correcto: "clientes", "productos", etc.
                 if (string.IsNullOrEmpty(tablaActiva))
                 {
                     MessageBox.Show("No se ha seleccionado una tabla válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Obtener el campo clave para cada tabla
-                string campoID = "";
-                if (tablaActiva == "clientes") campoID = "Nombre";
-                else if (tablaActiva == "productos") campoID = "id_producto";
-                else if (tablaActiva == "usuarios") campoID = "id_usuario";
-                else if (tablaActiva == "ventas") campoID = "id_ventas";
-                else
-                {
-                    MessageBox.Show("No se reconoce el campo clave de la tabla seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Campo clave (ID) estándar para todas las tablas
+                string campoID = "id";
 
-                // Verificar que la columna existe
+                // Validar que el campo exista en el DataGridView
                 if (!dataGridView1.Columns.Contains(campoID))
                 {
                     MessageBox.Show($"La columna '{campoID}' no está presente en el DataGridView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -504,36 +495,28 @@ namespace StockSells
 
                 object idValue = dataGridView1.CurrentRow.Cells[campoID].Value;
 
-                if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+                if (idValue == null || string.IsNullOrWhiteSpace(idValue.ToString()))
                 {
                     MessageBox.Show("El registro seleccionado no tiene un ID válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Probar conexión
-                ConexionBD conexion = new ConexionBD();
-
-                using (MySqlConnection connection = conexion.ObtenerConexion())
-                {
-                    connection.Open();
-                    MessageBox.Show($"Conexión exitosa a la base de datos para editar la tabla: {tablaActiva}", "Conexión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                // Mostrar formulario de edición
+                // Abrir el formulario de edición y pasarle los datos
                 edit formEditar = new edit
                 {
                     TablaActiva = tablaActiva,
-                    ID = idValue.ToString()
+                    IDSeleccionado = idValue.ToString()
                 };
 
-                formEditar.ShowDialog();
+                formEditar.StartPosition = FormStartPosition.CenterParent; // Que se abra centrado
+                formEditar.ShowDialog(); // Espera a que el formulario se cierre
 
-                // Refrescar los datos
-                CargarTablas();
+                // Refrescar el DataGridView
+                CargarTablas(); // Método que ya tienes para recargar datos
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error al conectar a la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ocurrió un error al abrir el formulario de edición: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

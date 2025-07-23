@@ -68,10 +68,11 @@ namespace StockSells
                     connection.Open(); // Abrir la conexión
 
                     // Consulta adaptada para obtener el rol desde la tabla 'roles'
-                    string query = @"SELECT r.rol_descripcion 
-                         FROM usuarios u
-                         JOIN roles r ON u.id_rol = r.rol_id
-                         WHERE u.nombre = @usuario AND u.contra = @contraseña";
+                    string query = @"SELECT r.nombre 
+    FROM usuarios u
+    JOIN roles r ON u.id_rol = r.id
+    WHERE u.nombre = @usuario AND u.contra = @contraseña";
+
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {

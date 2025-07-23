@@ -30,225 +30,199 @@ namespace StockSells.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtTipoCliente = new System.Windows.Forms.TextBox();
-            this.txtCiudad = new System.Windows.Forms.TextBox();
-            this.txtPais = new System.Windows.Forms.TextBox();
-            this.txtProductoID = new System.Windows.Forms.TextBox();
-            this.txtCostoOperativo = new System.Windows.Forms.TextBox();
-            this.txtGananciaNeta = new System.Windows.Forms.TextBox();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.txtCategoria = new System.Windows.Forms.TextBox();
-            this.txtPrecioCosto = new System.Windows.Forms.TextBox();
-            this.txtRegion = new System.Windows.Forms.TextBox();
-            this.txtContra = new System.Windows.Forms.TextBox();
-            this.txtRol = new System.Windows.Forms.TextBox();
-            this.txtCliente = new System.Windows.Forms.TextBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.txtVentaID = new System.Windows.Forms.TextBox();
+            this.txtClienteVenta = new System.Windows.Forms.TextBox();
+            this.txtPaisCliente = new System.Windows.Forms.TextBox();
+            this.txtNombreProductoVenta = new System.Windows.Forms.TextBox();
+            this.txtTotalVenta = new System.Windows.Forms.TextBox();
+            this.txtCantidadVenta = new System.Windows.Forms.TextBox();
+            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
+            this.txtContraUsuario = new System.Windows.Forms.TextBox();
+            this.txtNombreProducto = new System.Windows.Forms.TextBox();
+            this.txtProveedorIDCompra = new System.Windows.Forms.TextBox();
+            this.txtTotalCompra = new System.Windows.Forms.TextBox();
+            this.txtUbicacionVenta = new System.Windows.Forms.TextBox();
+            this.txtPaisProveedor = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.txtProducto = new System.Windows.Forms.TextBox();
-            this.txtUbicacionID = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblTipoCliente = new System.Windows.Forms.Label();
-            this.lblCuidad = new System.Windows.Forms.Label();
+            this.lblClienteVenta = new System.Windows.Forms.Label();
             this.lblPais = new System.Windows.Forms.Label();
-            this.lblVentaID = new System.Windows.Forms.Label();
-            this.lblProductoID = new System.Windows.Forms.Label();
-            this.lblCostoOperativo = new System.Windows.Forms.Label();
-            this.lblGananciaNeta = new System.Windows.Forms.Label();
-            this.lblCategoria = new System.Windows.Forms.Label();
-            this.lblPrecio = new System.Windows.Forms.Label();
-            this.lblPrecioCosto = new System.Windows.Forms.Label();
-            this.lblRegion = new System.Windows.Forms.Label();
-            this.lblContra = new System.Windows.Forms.Label();
-            this.lblRol = new System.Windows.Forms.Label();
+            this.lblUbicacionVenta = new System.Windows.Forms.Label();
+            this.lblProductoVenta = new System.Windows.Forms.Label();
+            this.lblTotalVenta = new System.Windows.Forms.Label();
+            this.lblCantidadVenta = new System.Windows.Forms.Label();
+            this.lblProveedorIDCompra = new System.Windows.Forms.Label();
+            this.lblPaisProveedor = new System.Windows.Forms.Label();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.lblContraUsuario = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblNombreProducto = new System.Windows.Forms.Label();
+            this.lblFechaVenta = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalCompra = new System.Windows.Forms.Label();
             this.lblUbicacionID = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaVenta = new System.Windows.Forms.DateTimePicker();
             this.lblid = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtProveedorID = new System.Windows.Forms.TextBox();
             this.btnguardar = new System.Windows.Forms.Button();
             this.txtRolID = new System.Windows.Forms.TextBox();
-            this.lbltidrol = new System.Windows.Forms.Label();
-            this.lblidselec = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtCategoriaID = new System.Windows.Forms.TextBox();
-            this.lblcatego = new System.Windows.Forms.Label();
-            this.txtProveedorID = new System.Windows.Forms.TextBox();
-            this.lblproveedor = new System.Windows.Forms.Label();
-            this.txtDepartamentoID = new System.Windows.Forms.TextBox();
+            this.lblRolID = new System.Windows.Forms.Label();
+            this.txtNombreProveedor = new System.Windows.Forms.TextBox();
+            this.lblNombreProveedor = new System.Windows.Forms.Label();
+            this.txtPrecioCost = new System.Windows.Forms.TextBox();
             this.lbldepartamento = new System.Windows.Forms.Label();
+            this.panelClientes = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelProveedores = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panelProductos = new System.Windows.Forms.Panel();
+            this.Productos = new System.Windows.Forms.Label();
+            this.panelUsuarios = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panelCompras = new System.Windows.Forms.Panel();
+            this.lblFechaCompra = new System.Windows.Forms.Label();
+            this.dtpFechaCompra = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panelVentas = new System.Windows.Forms.Panel();
+            this.label = new System.Windows.Forms.Label();
+            this.panelClientes.SuspendLayout();
+            this.panelProveedores.SuspendLayout();
+            this.panelProductos.SuspendLayout();
+            this.panelUsuarios.SuspendLayout();
+            this.panelCompras.SuspendLayout();
+            this.panelVentas.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtNombre
+            // txtNombreCliente
             // 
-            this.txtNombre.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(27, 33);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(100, 27);
-            this.txtNombre.TabIndex = 1;
-            // 
-            // txtTipoCliente
-            // 
-            this.txtTipoCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoCliente.Location = new System.Drawing.Point(27, 87);
-            this.txtTipoCliente.Name = "txtTipoCliente";
-            this.txtTipoCliente.Size = new System.Drawing.Size(100, 27);
-            this.txtTipoCliente.TabIndex = 2;
-            // 
-            // txtCiudad
-            // 
-            this.txtCiudad.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCiudad.Location = new System.Drawing.Point(27, 145);
-            this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(100, 27);
-            this.txtCiudad.TabIndex = 3;
-            // 
-            // txtPais
-            // 
-            this.txtPais.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPais.Location = new System.Drawing.Point(27, 203);
-            this.txtPais.Name = "txtPais";
-            this.txtPais.Size = new System.Drawing.Size(100, 27);
-            this.txtPais.TabIndex = 4;
-            // 
-            // txtProductoID
-            // 
-            this.txtProductoID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductoID.Location = new System.Drawing.Point(158, 33);
-            this.txtProductoID.Name = "txtProductoID";
-            this.txtProductoID.Size = new System.Drawing.Size(100, 27);
-            this.txtProductoID.TabIndex = 5;
-            this.txtProductoID.Leave += new System.EventHandler(this.txtProductoID_Leave);
-            // 
-            // txtCostoOperativo
-            // 
-            this.txtCostoOperativo.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostoOperativo.Location = new System.Drawing.Point(158, 87);
-            this.txtCostoOperativo.Name = "txtCostoOperativo";
-            this.txtCostoOperativo.Size = new System.Drawing.Size(100, 27);
-            this.txtCostoOperativo.TabIndex = 6;
-            // 
-            // txtGananciaNeta
-            // 
-            this.txtGananciaNeta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGananciaNeta.Location = new System.Drawing.Point(158, 145);
-            this.txtGananciaNeta.Name = "txtGananciaNeta";
-            this.txtGananciaNeta.Size = new System.Drawing.Size(100, 27);
-            this.txtGananciaNeta.TabIndex = 7;
+            this.txtNombreCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCliente.Location = new System.Drawing.Point(15, 67);
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.Size = new System.Drawing.Size(100, 27);
+            this.txtNombreCliente.TabIndex = 1;
             // 
             // txtCategoria
             // 
             this.txtCategoria.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoria.Location = new System.Drawing.Point(158, 203);
+            this.txtCategoria.Location = new System.Drawing.Point(192, 75);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(100, 27);
-            this.txtCategoria.TabIndex = 8;
+            this.txtCategoria.TabIndex = 2;
             // 
-            // txtPrecioCosto
+            // txtClienteVenta
             // 
-            this.txtPrecioCosto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioCosto.Location = new System.Drawing.Point(296, 33);
-            this.txtPrecioCosto.Name = "txtPrecioCosto";
-            this.txtPrecioCosto.Size = new System.Drawing.Size(100, 27);
-            this.txtPrecioCosto.TabIndex = 9;
+            this.txtClienteVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClienteVenta.Location = new System.Drawing.Point(168, 69);
+            this.txtClienteVenta.Name = "txtClienteVenta";
+            this.txtClienteVenta.Size = new System.Drawing.Size(100, 27);
+            this.txtClienteVenta.TabIndex = 3;
             // 
-            // txtRegion
+            // txtPaisCliente
             // 
-            this.txtRegion.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegion.Location = new System.Drawing.Point(296, 87);
-            this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(100, 27);
-            this.txtRegion.TabIndex = 10;
+            this.txtPaisCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaisCliente.Location = new System.Drawing.Point(118, 67);
+            this.txtPaisCliente.Name = "txtPaisCliente";
+            this.txtPaisCliente.Size = new System.Drawing.Size(100, 27);
+            this.txtPaisCliente.TabIndex = 4;
             // 
-            // txtContra
+            // txtNombreProductoVenta
             // 
-            this.txtContra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContra.Location = new System.Drawing.Point(296, 145);
-            this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(100, 27);
-            this.txtContra.TabIndex = 11;
-            this.txtContra.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+            this.txtNombreProductoVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreProductoVenta.Location = new System.Drawing.Point(44, 69);
+            this.txtNombreProductoVenta.Name = "txtNombreProductoVenta";
+            this.txtNombreProductoVenta.Size = new System.Drawing.Size(100, 27);
+            this.txtNombreProductoVenta.TabIndex = 5;
             // 
-            // txtRol
+            // txtTotalVenta
             // 
-            this.txtRol.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRol.Location = new System.Drawing.Point(296, 203);
-            this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(100, 27);
-            this.txtRol.TabIndex = 12;
+            this.txtTotalVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalVenta.Location = new System.Drawing.Point(562, 69);
+            this.txtTotalVenta.Name = "txtTotalVenta";
+            this.txtTotalVenta.Size = new System.Drawing.Size(100, 27);
+            this.txtTotalVenta.TabIndex = 6;
             // 
-            // txtCliente
+            // txtCantidadVenta
             // 
-            this.txtCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.Location = new System.Drawing.Point(472, 33);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(100, 27);
-            this.txtCliente.TabIndex = 13;
-            this.txtCliente.Leave += new System.EventHandler(this.txtCliente_Leave);
+            this.txtCantidadVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadVenta.Location = new System.Drawing.Point(446, 69);
+            this.txtCantidadVenta.Name = "txtCantidadVenta";
+            this.txtCantidadVenta.Size = new System.Drawing.Size(100, 27);
+            this.txtCantidadVenta.TabIndex = 7;
+            this.txtCantidadVenta.TextChanged += new System.EventHandler(this.txtGananciaNeta_TextChanged);
             // 
-            // txtCantidad
+            // txtNombreUsuario
             // 
-            this.txtCantidad.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(472, 145);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 27);
-            this.txtCantidad.TabIndex = 15;
-            this.txtCantidad.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
+            this.txtNombreUsuario.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreUsuario.Location = new System.Drawing.Point(33, 67);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(100, 27);
+            this.txtNombreUsuario.TabIndex = 9;
             // 
-            // txtTotal
+            // txtContraUsuario
             // 
-            this.txtTotal.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(472, 202);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 27);
-            this.txtTotal.TabIndex = 16;
+            this.txtContraUsuario.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraUsuario.Location = new System.Drawing.Point(33, 119);
+            this.txtContraUsuario.Name = "txtContraUsuario";
+            this.txtContraUsuario.Size = new System.Drawing.Size(100, 27);
+            this.txtContraUsuario.TabIndex = 10;
             // 
-            // txtVentaID
+            // txtNombreProducto
             // 
-            this.txtVentaID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVentaID.Location = new System.Drawing.Point(27, 262);
-            this.txtVentaID.Name = "txtVentaID";
-            this.txtVentaID.Size = new System.Drawing.Size(100, 27);
-            this.txtVentaID.TabIndex = 17;
-            this.txtVentaID.TextChanged += new System.EventHandler(this.txtVentaID_TextChanged);
-            this.txtVentaID.Leave += new System.EventHandler(this.txtVentaID_Leave);
+            this.txtNombreProducto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreProducto.Location = new System.Drawing.Point(51, 73);
+            this.txtNombreProducto.Name = "txtNombreProducto";
+            this.txtNombreProducto.Size = new System.Drawing.Size(100, 27);
+            this.txtNombreProducto.TabIndex = 13;
+            // 
+            // txtProveedorIDCompra
+            // 
+            this.txtProveedorIDCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProveedorIDCompra.Location = new System.Drawing.Point(26, 70);
+            this.txtProveedorIDCompra.Name = "txtProveedorIDCompra";
+            this.txtProveedorIDCompra.Size = new System.Drawing.Size(100, 27);
+            this.txtProveedorIDCompra.TabIndex = 15;
+            this.txtProveedorIDCompra.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
+            // 
+            // txtTotalCompra
+            // 
+            this.txtTotalCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalCompra.Location = new System.Drawing.Point(158, 70);
+            this.txtTotalCompra.Name = "txtTotalCompra";
+            this.txtTotalCompra.Size = new System.Drawing.Size(100, 27);
+            this.txtTotalCompra.TabIndex = 16;
+            // 
+            // txtUbicacionVenta
+            // 
+            this.txtUbicacionVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUbicacionVenta.Location = new System.Drawing.Point(686, 69);
+            this.txtUbicacionVenta.Name = "txtUbicacionVenta";
+            this.txtUbicacionVenta.Size = new System.Drawing.Size(100, 27);
+            this.txtUbicacionVenta.TabIndex = 17;
+            this.txtUbicacionVenta.TextChanged += new System.EventHandler(this.txtVentaID_TextChanged);
+            // 
+            // txtPaisProveedor
+            // 
+            this.txtPaisProveedor.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaisProveedor.Location = new System.Drawing.Point(125, 60);
+            this.txtPaisProveedor.Name = "txtPaisProveedor";
+            this.txtPaisProveedor.Size = new System.Drawing.Size(100, 27);
+            this.txtPaisProveedor.TabIndex = 18;
             // 
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(158, 262);
+            this.txtPrecio.Location = new System.Drawing.Point(483, 71);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(100, 27);
-            this.txtPrecio.TabIndex = 18;
-            // 
-            // txtProducto
-            // 
-            this.txtProducto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProducto.Location = new System.Drawing.Point(296, 262);
-            this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(100, 27);
-            this.txtProducto.TabIndex = 19;
-            // 
-            // txtUbicacionID
-            // 
-            this.txtUbicacionID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUbicacionID.Location = new System.Drawing.Point(472, 262);
-            this.txtUbicacionID.Name = "txtUbicacionID";
-            this.txtUbicacionID.Size = new System.Drawing.Size(100, 27);
-            this.txtUbicacionID.TabIndex = 20;
-            this.txtUbicacionID.Leave += new System.EventHandler(this.txtUbicacionID_Leave);
+            this.txtPrecio.TabIndex = 20;
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(12, 8);
+            this.lblNombre.Location = new System.Drawing.Point(8, 44);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(61, 20);
             this.lblNombre.TabIndex = 21;
@@ -258,219 +232,199 @@ namespace StockSells.forms
             // 
             this.lblTipoCliente.AutoSize = true;
             this.lblTipoCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoCliente.Location = new System.Drawing.Point(9, 65);
+            this.lblTipoCliente.Location = new System.Drawing.Point(174, 48);
             this.lblTipoCliente.Name = "lblTipoCliente";
-            this.lblTipoCliente.Size = new System.Drawing.Size(84, 20);
+            this.lblTipoCliente.Size = new System.Drawing.Size(72, 20);
             this.lblTipoCliente.TabIndex = 22;
-            this.lblTipoCliente.Text = "TipoCliente";
+            this.lblTipoCliente.Text = "Categoria";
             // 
-            // lblCuidad
+            // lblClienteVenta
             // 
-            this.lblCuidad.AutoSize = true;
-            this.lblCuidad.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCuidad.Location = new System.Drawing.Point(9, 122);
-            this.lblCuidad.Name = "lblCuidad";
-            this.lblCuidad.Size = new System.Drawing.Size(55, 20);
-            this.lblCuidad.TabIndex = 23;
-            this.lblCuidad.Text = "Cuidad";
+            this.lblClienteVenta.AutoSize = true;
+            this.lblClienteVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClienteVenta.Location = new System.Drawing.Point(136, 42);
+            this.lblClienteVenta.Name = "lblClienteVenta";
+            this.lblClienteVenta.Size = new System.Drawing.Size(115, 20);
+            this.lblClienteVenta.TabIndex = 23;
+            this.lblClienteVenta.Text = "Cliente asociado";
             // 
             // lblPais
             // 
             this.lblPais.AutoSize = true;
             this.lblPais.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPais.Location = new System.Drawing.Point(12, 180);
+            this.lblPais.Location = new System.Drawing.Point(103, 44);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(37, 20);
             this.lblPais.TabIndex = 24;
             this.lblPais.Text = "Pais";
             // 
-            // lblVentaID
+            // lblUbicacionVenta
             // 
-            this.lblVentaID.AutoSize = true;
-            this.lblVentaID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVentaID.Location = new System.Drawing.Point(12, 239);
-            this.lblVentaID.Name = "lblVentaID";
-            this.lblVentaID.Size = new System.Drawing.Size(65, 20);
-            this.lblVentaID.TabIndex = 25;
-            this.lblVentaID.Text = "VentaID";
+            this.lblUbicacionVenta.AutoSize = true;
+            this.lblUbicacionVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUbicacionVenta.Location = new System.Drawing.Point(663, 42);
+            this.lblUbicacionVenta.Name = "lblUbicacionVenta";
+            this.lblUbicacionVenta.Size = new System.Drawing.Size(75, 20);
+            this.lblUbicacionVenta.TabIndex = 25;
+            this.lblUbicacionVenta.Text = "Ubicación";
             // 
-            // lblProductoID
+            // lblProductoVenta
             // 
-            this.lblProductoID.AutoSize = true;
-            this.lblProductoID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductoID.Location = new System.Drawing.Point(143, 10);
-            this.lblProductoID.Name = "lblProductoID";
-            this.lblProductoID.Size = new System.Drawing.Size(87, 20);
-            this.lblProductoID.TabIndex = 26;
-            this.lblProductoID.Text = "ProductoID";
+            this.lblProductoVenta.AutoSize = true;
+            this.lblProductoVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductoVenta.Location = new System.Drawing.Point(14, 42);
+            this.lblProductoVenta.Name = "lblProductoVenta";
+            this.lblProductoVenta.Size = new System.Drawing.Size(70, 20);
+            this.lblProductoVenta.TabIndex = 26;
+            this.lblProductoVenta.Text = "Producto";
             // 
-            // lblCostoOperativo
+            // lblTotalVenta
             // 
-            this.lblCostoOperativo.AutoSize = true;
-            this.lblCostoOperativo.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCostoOperativo.Location = new System.Drawing.Point(143, 65);
-            this.lblCostoOperativo.Name = "lblCostoOperativo";
-            this.lblCostoOperativo.Size = new System.Drawing.Size(109, 20);
-            this.lblCostoOperativo.TabIndex = 27;
-            this.lblCostoOperativo.Text = "CostoOperativo";
+            this.lblTotalVenta.AutoSize = true;
+            this.lblTotalVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalVenta.Location = new System.Drawing.Point(548, 42);
+            this.lblTotalVenta.Name = "lblTotalVenta";
+            this.lblTotalVenta.Size = new System.Drawing.Size(86, 20);
+            this.lblTotalVenta.TabIndex = 27;
+            this.lblTotalVenta.Text = "Monto total";
             // 
-            // lblGananciaNeta
+            // lblCantidadVenta
             // 
-            this.lblGananciaNeta.AutoSize = true;
-            this.lblGananciaNeta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGananciaNeta.Location = new System.Drawing.Point(143, 122);
-            this.lblGananciaNeta.Name = "lblGananciaNeta";
-            this.lblGananciaNeta.Size = new System.Drawing.Size(102, 20);
-            this.lblGananciaNeta.TabIndex = 28;
-            this.lblGananciaNeta.Text = "GananciaNeta";
+            this.lblCantidadVenta.AutoSize = true;
+            this.lblCantidadVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadVenta.Location = new System.Drawing.Point(403, 42);
+            this.lblCantidadVenta.Name = "lblCantidadVenta";
+            this.lblCantidadVenta.Size = new System.Drawing.Size(124, 20);
+            this.lblCantidadVenta.TabIndex = 28;
+            this.lblCantidadVenta.Text = "Cantidad vendida";
+            this.lblCantidadVenta.Click += new System.EventHandler(this.lblGananciaNeta_Click);
             // 
-            // lblCategoria
+            // lblProveedorIDCompra
             // 
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(143, 180);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(72, 20);
-            this.lblCategoria.TabIndex = 29;
-            this.lblCategoria.Text = "Categoria";
+            this.lblProveedorIDCompra.AutoSize = true;
+            this.lblProveedorIDCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedorIDCompra.Location = new System.Drawing.Point(3, 47);
+            this.lblProveedorIDCompra.Name = "lblProveedorIDCompra";
+            this.lblProveedorIDCompra.Size = new System.Drawing.Size(131, 20);
+            this.lblProveedorIDCompra.TabIndex = 29;
+            this.lblProveedorIDCompra.Text = "Proveedor compra";
             // 
-            // lblPrecio
+            // lblPaisProveedor
             // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(143, 239);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(51, 20);
-            this.lblPrecio.TabIndex = 30;
-            this.lblPrecio.Text = "Precio";
+            this.lblPaisProveedor.AutoSize = true;
+            this.lblPaisProveedor.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaisProveedor.Location = new System.Drawing.Point(110, 37);
+            this.lblPaisProveedor.Name = "lblPaisProveedor";
+            this.lblPaisProveedor.Size = new System.Drawing.Size(37, 20);
+            this.lblPaisProveedor.TabIndex = 30;
+            this.lblPaisProveedor.Text = "Pais";
             // 
-            // lblPrecioCosto
+            // lblNombreUsuario
             // 
-            this.lblPrecioCosto.AutoSize = true;
-            this.lblPrecioCosto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioCosto.Location = new System.Drawing.Point(266, 8);
-            this.lblPrecioCosto.Name = "lblPrecioCosto";
-            this.lblPrecioCosto.Size = new System.Drawing.Size(87, 20);
-            this.lblPrecioCosto.TabIndex = 31;
-            this.lblPrecioCosto.Text = "PrecioCosto";
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUsuario.Location = new System.Drawing.Point(3, 44);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(126, 20);
+            this.lblNombreUsuario.TabIndex = 31;
+            this.lblNombreUsuario.Text = "Nombre Uusuario";
             // 
-            // lblRegion
+            // lblContraUsuario
             // 
-            this.lblRegion.AutoSize = true;
-            this.lblRegion.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegion.Location = new System.Drawing.Point(266, 65);
-            this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(56, 20);
-            this.lblRegion.TabIndex = 32;
-            this.lblRegion.Text = "Region";
-            // 
-            // lblContra
-            // 
-            this.lblContra.AutoSize = true;
-            this.lblContra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContra.Location = new System.Drawing.Point(266, 122);
-            this.lblContra.Name = "lblContra";
-            this.lblContra.Size = new System.Drawing.Size(54, 20);
-            this.lblContra.TabIndex = 33;
-            this.lblContra.Text = "Contra";
-            // 
-            // lblRol
-            // 
-            this.lblRol.AutoSize = true;
-            this.lblRol.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRol.Location = new System.Drawing.Point(266, 180);
-            this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(32, 20);
-            this.lblRol.TabIndex = 34;
-            this.lblRol.Text = "Rol";
+            this.lblContraUsuario.AutoSize = true;
+            this.lblContraUsuario.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContraUsuario.Location = new System.Drawing.Point(3, 97);
+            this.lblContraUsuario.Name = "lblContraUsuario";
+            this.lblContraUsuario.Size = new System.Drawing.Size(84, 20);
+            this.lblContraUsuario.TabIndex = 32;
+            this.lblContraUsuario.Text = "Contraseña";
             // 
             // lblProducto
             // 
             this.lblProducto.AutoSize = true;
             this.lblProducto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProducto.Location = new System.Drawing.Point(266, 239);
+            this.lblProducto.Location = new System.Drawing.Point(230, 11);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(70, 20);
             this.lblProducto.TabIndex = 35;
             this.lblProducto.Text = "Producto";
             // 
-            // lblCliente
+            // lblNombreProducto
             // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCliente.Location = new System.Drawing.Point(448, 8);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(54, 20);
-            this.lblCliente.TabIndex = 36;
-            this.lblCliente.Text = "Cliente";
+            this.lblNombreProducto.AutoSize = true;
+            this.lblNombreProducto.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreProducto.Location = new System.Drawing.Point(27, 48);
+            this.lblNombreProducto.Name = "lblNombreProducto";
+            this.lblNombreProducto.Size = new System.Drawing.Size(70, 20);
+            this.lblNombreProducto.TabIndex = 36;
+            this.lblNombreProducto.Text = "Producto";
             // 
-            // lblFecha
+            // lblFechaVenta
             // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(448, 65);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(50, 20);
-            this.lblFecha.TabIndex = 37;
-            this.lblFecha.Text = "Fecha";
+            this.lblFechaVenta.AutoSize = true;
+            this.lblFechaVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaVenta.Location = new System.Drawing.Point(257, 44);
+            this.lblFechaVenta.Name = "lblFechaVenta";
+            this.lblFechaVenta.Size = new System.Drawing.Size(50, 20);
+            this.lblFechaVenta.TabIndex = 37;
+            this.lblFechaVenta.Text = "Fecha";
             // 
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(448, 122);
+            this.lblCantidad.Location = new System.Drawing.Point(458, 106);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(68, 20);
             this.lblCantidad.TabIndex = 38;
             this.lblCantidad.Text = "Cantidad";
             // 
-            // lblTotal
+            // lblTotalCompra
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(448, 179);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 20);
-            this.lblTotal.TabIndex = 39;
-            this.lblTotal.Text = "Total";
+            this.lblTotalCompra.AutoSize = true;
+            this.lblTotalCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCompra.Location = new System.Drawing.Point(134, 47);
+            this.lblTotalCompra.Name = "lblTotalCompra";
+            this.lblTotalCompra.Size = new System.Drawing.Size(44, 20);
+            this.lblTotalCompra.TabIndex = 39;
+            this.lblTotalCompra.Text = "Total";
             // 
             // lblUbicacionID
             // 
             this.lblUbicacionID.AutoSize = true;
             this.lblUbicacionID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUbicacionID.Location = new System.Drawing.Point(448, 239);
+            this.lblUbicacionID.Location = new System.Drawing.Point(459, 48);
             this.lblUbicacionID.Name = "lblUbicacionID";
-            this.lblUbicacionID.Size = new System.Drawing.Size(92, 20);
+            this.lblUbicacionID.Size = new System.Drawing.Size(51, 20);
             this.lblUbicacionID.TabIndex = 40;
-            this.lblUbicacionID.Text = "UbicacionID";
+            this.lblUbicacionID.Text = "Precio";
             // 
-            // dtpFecha
+            // dtpFechaVenta
             // 
-            this.dtpFecha.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFecha.Location = new System.Drawing.Point(470, 87);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(158, 27);
-            this.dtpFecha.TabIndex = 41;
+            this.dtpFechaVenta.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaVenta.Location = new System.Drawing.Point(279, 69);
+            this.dtpFechaVenta.Name = "dtpFechaVenta";
+            this.dtpFechaVenta.Size = new System.Drawing.Size(158, 27);
+            this.dtpFechaVenta.TabIndex = 41;
             // 
             // lblid
             // 
             this.lblid.AutoSize = true;
             this.lblid.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblid.Location = new System.Drawing.Point(449, 301);
+            this.lblid.Location = new System.Drawing.Point(307, 48);
             this.lblid.Name = "lblid";
-            this.lblid.Size = new System.Drawing.Size(26, 20);
+            this.lblid.Size = new System.Drawing.Size(94, 20);
             this.lblid.TabIndex = 42;
-            this.lblid.Text = "ID";
+            this.lblid.Text = "ProveedorID";
             // 
-            // txtId
+            // txtProveedorID
             // 
-            this.txtId.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(472, 321);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 27);
-            this.txtId.TabIndex = 43;
-            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
-            this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
+            this.txtProveedorID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProveedorID.Location = new System.Drawing.Point(332, 75);
+            this.txtProveedorID.Name = "txtProveedorID";
+            this.txtProveedorID.Size = new System.Drawing.Size(100, 27);
+            this.txtProveedorID.TabIndex = 43;
+            this.txtProveedorID.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // btnguardar
             // 
@@ -480,7 +434,7 @@ namespace StockSells.forms
             this.btnguardar.FlatAppearance.BorderSize = 0;
             this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnguardar.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnguardar.Location = new System.Drawing.Point(11, 309);
+            this.btnguardar.Location = new System.Drawing.Point(18, 494);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(76, 34);
             this.btnguardar.TabIndex = 0;
@@ -491,184 +445,261 @@ namespace StockSells.forms
             // 
             // txtRolID
             // 
-            this.txtRolID.Location = new System.Drawing.Point(656, 235);
+            this.txtRolID.Location = new System.Drawing.Point(150, 124);
             this.txtRolID.Name = "txtRolID";
-            this.txtRolID.ReadOnly = true;
             this.txtRolID.Size = new System.Drawing.Size(95, 20);
-            this.txtRolID.TabIndex = 102;
+            this.txtRolID.TabIndex = 98;
             // 
-            // lbltidrol
+            // lblRolID
             // 
-            this.lbltidrol.AutoSize = true;
-            this.lbltidrol.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltidrol.Location = new System.Drawing.Point(652, 212);
-            this.lbltidrol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbltidrol.Name = "lbltidrol";
-            this.lbltidrol.Size = new System.Drawing.Size(53, 20);
-            this.lbltidrol.TabIndex = 101;
-            this.lbltidrol.Text = "ID Rol";
+            this.lblRolID.AutoSize = true;
+            this.lblRolID.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRolID.Location = new System.Drawing.Point(146, 97);
+            this.lblRolID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRolID.Name = "lblRolID";
+            this.lblRolID.Size = new System.Drawing.Size(32, 20);
+            this.lblRolID.TabIndex = 97;
+            this.lblRolID.Text = "Rol";
             // 
-            // lblidselec
+            // txtNombreProveedor
             // 
-            this.lblidselec.AutoSize = true;
-            this.lblidselec.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblidselec.Location = new System.Drawing.Point(652, 156);
-            this.lblidselec.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblidselec.Name = "lblidselec";
-            this.lblidselec.Size = new System.Drawing.Size(61, 20);
-            this.lblidselec.TabIndex = 100;
-            this.lblidselec.Text = "ID selec";
+            this.txtNombreProveedor.Location = new System.Drawing.Point(15, 63);
+            this.txtNombreProveedor.Name = "txtNombreProveedor";
+            this.txtNombreProveedor.Size = new System.Drawing.Size(95, 20);
+            this.txtNombreProveedor.TabIndex = 96;
             // 
-            // textBox1
+            // lblNombreProveedor
             // 
-            this.textBox1.Location = new System.Drawing.Point(656, 179);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(95, 20);
-            this.textBox1.TabIndex = 99;
+            this.lblNombreProveedor.AutoSize = true;
+            this.lblNombreProveedor.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreProveedor.Location = new System.Drawing.Point(11, 37);
+            this.lblNombreProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombreProveedor.Name = "lblNombreProveedor";
+            this.lblNombreProveedor.Size = new System.Drawing.Size(77, 20);
+            this.lblNombreProveedor.TabIndex = 95;
+            this.lblNombreProveedor.Text = "Proveedor";
             // 
-            // txtCategoriaID
+            // txtPrecioCost
             // 
-            this.txtCategoriaID.Location = new System.Drawing.Point(656, 110);
-            this.txtCategoriaID.Name = "txtCategoriaID";
-            this.txtCategoriaID.ReadOnly = true;
-            this.txtCategoriaID.Size = new System.Drawing.Size(95, 20);
-            this.txtCategoriaID.TabIndex = 98;
-            // 
-            // lblcatego
-            // 
-            this.lblcatego.AutoSize = true;
-            this.lblcatego.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcatego.Location = new System.Drawing.Point(652, 83);
-            this.lblcatego.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblcatego.Name = "lblcatego";
-            this.lblcatego.Size = new System.Drawing.Size(72, 20);
-            this.lblcatego.TabIndex = 97;
-            this.lblcatego.Text = "Categoria";
-            // 
-            // txtProveedorID
-            // 
-            this.txtProveedorID.Location = new System.Drawing.Point(656, 40);
-            this.txtProveedorID.Name = "txtProveedorID";
-            this.txtProveedorID.ReadOnly = true;
-            this.txtProveedorID.Size = new System.Drawing.Size(95, 20);
-            this.txtProveedorID.TabIndex = 96;
-            // 
-            // lblproveedor
-            // 
-            this.lblproveedor.AutoSize = true;
-            this.lblproveedor.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblproveedor.Location = new System.Drawing.Point(652, 14);
-            this.lblproveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblproveedor.Name = "lblproveedor";
-            this.lblproveedor.Size = new System.Drawing.Size(77, 20);
-            this.lblproveedor.TabIndex = 95;
-            this.lblproveedor.Text = "Proveedor";
-            // 
-            // txtDepartamentoID
-            // 
-            this.txtDepartamentoID.Location = new System.Drawing.Point(654, 300);
-            this.txtDepartamentoID.Name = "txtDepartamentoID";
-            this.txtDepartamentoID.ReadOnly = true;
-            this.txtDepartamentoID.Size = new System.Drawing.Size(95, 20);
-            this.txtDepartamentoID.TabIndex = 104;
+            this.txtPrecioCost.Location = new System.Drawing.Point(627, 79);
+            this.txtPrecioCost.Name = "txtPrecioCost";
+            this.txtPrecioCost.Size = new System.Drawing.Size(95, 20);
+            this.txtPrecioCost.TabIndex = 104;
             // 
             // lbldepartamento
             // 
             this.lbldepartamento.AutoSize = true;
             this.lbldepartamento.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbldepartamento.Location = new System.Drawing.Point(630, 269);
+            this.lbldepartamento.Location = new System.Drawing.Point(603, 48);
             this.lbldepartamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbldepartamento.Name = "lbldepartamento";
-            this.lbldepartamento.Size = new System.Drawing.Size(121, 20);
+            this.lbldepartamento.Size = new System.Drawing.Size(87, 20);
             this.lbldepartamento.TabIndex = 103;
-            this.lbldepartamento.Text = "DepartamentoID";
+            this.lbldepartamento.Text = "PrecioCosto";
+            // 
+            // panelClientes
+            // 
+            this.panelClientes.Controls.Add(this.label1);
+            this.panelClientes.Controls.Add(this.txtNombreCliente);
+            this.panelClientes.Controls.Add(this.lblNombre);
+            this.panelClientes.Controls.Add(this.lblPais);
+            this.panelClientes.Controls.Add(this.txtPaisCliente);
+            this.panelClientes.Location = new System.Drawing.Point(18, 13);
+            this.panelClientes.Name = "panelClientes";
+            this.panelClientes.Size = new System.Drawing.Size(236, 106);
+            this.panelClientes.TabIndex = 105;
+            this.panelClientes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelClientes_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 20);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Clientes";
+            // 
+            // panelProveedores
+            // 
+            this.panelProveedores.Controls.Add(this.label3);
+            this.panelProveedores.Controls.Add(this.lblNombreProveedor);
+            this.panelProveedores.Controls.Add(this.txtNombreProveedor);
+            this.panelProveedores.Controls.Add(this.lblPaisProveedor);
+            this.panelProveedores.Controls.Add(this.txtPaisProveedor);
+            this.panelProveedores.Controls.Add(this.lblProducto);
+            this.panelProveedores.Location = new System.Drawing.Point(18, 141);
+            this.panelProveedores.Name = "panelProveedores";
+            this.panelProveedores.Size = new System.Drawing.Size(234, 100);
+            this.panelProveedores.TabIndex = 106;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 11);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 20);
+            this.label3.TabIndex = 97;
+            this.label3.Text = "Proveedores";
+            // 
+            // panelProductos
+            // 
+            this.panelProductos.Controls.Add(this.Productos);
+            this.panelProductos.Controls.Add(this.lblNombreProducto);
+            this.panelProductos.Controls.Add(this.txtNombreProducto);
+            this.panelProductos.Controls.Add(this.txtPrecioCost);
+            this.panelProductos.Controls.Add(this.lbldepartamento);
+            this.panelProductos.Controls.Add(this.lblid);
+            this.panelProductos.Controls.Add(this.txtProveedorID);
+            this.panelProductos.Controls.Add(this.lblUbicacionID);
+            this.panelProductos.Controls.Add(this.lblTipoCliente);
+            this.panelProductos.Controls.Add(this.txtPrecio);
+            this.panelProductos.Controls.Add(this.txtCategoria);
+            this.panelProductos.Location = new System.Drawing.Point(18, 247);
+            this.panelProductos.Name = "panelProductos";
+            this.panelProductos.Size = new System.Drawing.Size(795, 117);
+            this.panelProductos.TabIndex = 107;
+            // 
+            // Productos
+            // 
+            this.Productos.AutoSize = true;
+            this.Productos.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Productos.Location = new System.Drawing.Point(11, 17);
+            this.Productos.Name = "Productos";
+            this.Productos.Size = new System.Drawing.Size(76, 20);
+            this.Productos.TabIndex = 105;
+            this.Productos.Text = "Productos";
+            // 
+            // panelUsuarios
+            // 
+            this.panelUsuarios.Controls.Add(this.label2);
+            this.panelUsuarios.Controls.Add(this.txtNombreUsuario);
+            this.panelUsuarios.Controls.Add(this.txtContraUsuario);
+            this.panelUsuarios.Controls.Add(this.lblContraUsuario);
+            this.panelUsuarios.Controls.Add(this.lblRolID);
+            this.panelUsuarios.Controls.Add(this.txtRolID);
+            this.panelUsuarios.Controls.Add(this.lblNombreUsuario);
+            this.panelUsuarios.Location = new System.Drawing.Point(264, 10);
+            this.panelUsuarios.Name = "panelUsuarios";
+            this.panelUsuarios.Size = new System.Drawing.Size(262, 153);
+            this.panelUsuarios.TabIndex = 108;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 20);
+            this.label2.TabIndex = 99;
+            this.label2.Text = "Usuarios";
+            // 
+            // panelCompras
+            // 
+            this.panelCompras.Controls.Add(this.lblFechaCompra);
+            this.panelCompras.Controls.Add(this.dtpFechaCompra);
+            this.panelCompras.Controls.Add(this.label4);
+            this.panelCompras.Controls.Add(this.txtProveedorIDCompra);
+            this.panelCompras.Controls.Add(this.txtTotalCompra);
+            this.panelCompras.Controls.Add(this.lblTotalCompra);
+            this.panelCompras.Controls.Add(this.lblProveedorIDCompra);
+            this.panelCompras.Location = new System.Drawing.Point(532, 10);
+            this.panelCompras.Name = "panelCompras";
+            this.panelCompras.Size = new System.Drawing.Size(281, 231);
+            this.panelCompras.TabIndex = 109;
+            // 
+            // lblFechaCompra
+            // 
+            this.lblFechaCompra.AutoSize = true;
+            this.lblFechaCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaCompra.Location = new System.Drawing.Point(6, 110);
+            this.lblFechaCompra.Name = "lblFechaCompra";
+            this.lblFechaCompra.Size = new System.Drawing.Size(50, 20);
+            this.lblFechaCompra.TabIndex = 42;
+            this.lblFechaCompra.Text = "Fecha";
+            // 
+            // dtpFechaCompra
+            // 
+            this.dtpFechaCompra.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaCompra.Location = new System.Drawing.Point(10, 133);
+            this.dtpFechaCompra.Name = "dtpFechaCompra";
+            this.dtpFechaCompra.Size = new System.Drawing.Size(158, 27);
+            this.dtpFechaCompra.TabIndex = 43;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 103;
+            this.label4.Text = "Compras";
+            // 
+            // panelVentas
+            // 
+            this.panelVentas.Controls.Add(this.label);
+            this.panelVentas.Controls.Add(this.lblProductoVenta);
+            this.panelVentas.Controls.Add(this.txtClienteVenta);
+            this.panelVentas.Controls.Add(this.lblFechaVenta);
+            this.panelVentas.Controls.Add(this.txtNombreProductoVenta);
+            this.panelVentas.Controls.Add(this.dtpFechaVenta);
+            this.panelVentas.Controls.Add(this.txtTotalVenta);
+            this.panelVentas.Controls.Add(this.txtUbicacionVenta);
+            this.panelVentas.Controls.Add(this.lblClienteVenta);
+            this.panelVentas.Controls.Add(this.lblUbicacionVenta);
+            this.panelVentas.Controls.Add(this.txtCantidadVenta);
+            this.panelVentas.Controls.Add(this.lblTotalVenta);
+            this.panelVentas.Controls.Add(this.lblCantidadVenta);
+            this.panelVentas.Location = new System.Drawing.Point(18, 372);
+            this.panelVentas.Name = "panelVentas";
+            this.panelVentas.Size = new System.Drawing.Size(795, 114);
+            this.panelVentas.TabIndex = 110;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(8, 10);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(54, 20);
+            this.label.TabIndex = 29;
+            this.label.Text = "Ventas";
             // 
             // Agreg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(792, 376);
-            this.Controls.Add(this.txtDepartamentoID);
-            this.Controls.Add(this.lbldepartamento);
-            this.Controls.Add(this.txtRolID);
-            this.Controls.Add(this.lbltidrol);
-            this.Controls.Add(this.lblidselec);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtCategoriaID);
-            this.Controls.Add(this.lblcatego);
-            this.Controls.Add(this.txtProveedorID);
-            this.Controls.Add(this.lblproveedor);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.lblid);
-            this.Controls.Add(this.dtpFecha);
-            this.Controls.Add(this.lblUbicacionID);
-            this.Controls.Add(this.lblTotal);
+            this.ClientSize = new System.Drawing.Size(831, 540);
+            this.Controls.Add(this.panelVentas);
+            this.Controls.Add(this.panelCompras);
+            this.Controls.Add(this.panelClientes);
+            this.Controls.Add(this.panelUsuarios);
+            this.Controls.Add(this.panelProductos);
+            this.Controls.Add(this.panelProveedores);
             this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.lblCliente);
-            this.Controls.Add(this.lblProducto);
-            this.Controls.Add(this.lblRol);
-            this.Controls.Add(this.lblContra);
-            this.Controls.Add(this.lblRegion);
-            this.Controls.Add(this.lblPrecioCosto);
-            this.Controls.Add(this.lblPrecio);
-            this.Controls.Add(this.lblCategoria);
-            this.Controls.Add(this.lblGananciaNeta);
-            this.Controls.Add(this.lblCostoOperativo);
-            this.Controls.Add(this.lblProductoID);
-            this.Controls.Add(this.lblVentaID);
-            this.Controls.Add(this.lblPais);
-            this.Controls.Add(this.lblCuidad);
-            this.Controls.Add(this.lblTipoCliente);
-            this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.txtUbicacionID);
-            this.Controls.Add(this.txtProducto);
-            this.Controls.Add(this.txtPrecio);
-            this.Controls.Add(this.txtVentaID);
-            this.Controls.Add(this.txtTotal);
-            this.Controls.Add(this.txtCantidad);
-            this.Controls.Add(this.txtCliente);
-            this.Controls.Add(this.txtRol);
-            this.Controls.Add(this.txtContra);
-            this.Controls.Add(this.txtRegion);
-            this.Controls.Add(this.txtPrecioCosto);
-            this.Controls.Add(this.txtCategoria);
-            this.Controls.Add(this.txtGananciaNeta);
-            this.Controls.Add(this.txtCostoOperativo);
-            this.Controls.Add(this.txtProductoID);
-            this.Controls.Add(this.txtPais);
-            this.Controls.Add(this.txtCiudad);
-            this.Controls.Add(this.txtTipoCliente);
-            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnguardar);
             this.Name = "Agreg";
             this.Text = "Agreg";
             this.Load += new System.EventHandler(this.Agreg_Load);
+            this.panelClientes.ResumeLayout(false);
+            this.panelClientes.PerformLayout();
+            this.panelProveedores.ResumeLayout(false);
+            this.panelProveedores.PerformLayout();
+            this.panelProductos.ResumeLayout(false);
+            this.panelProductos.PerformLayout();
+            this.panelUsuarios.ResumeLayout(false);
+            this.panelUsuarios.PerformLayout();
+            this.panelCompras.ResumeLayout(false);
+            this.panelCompras.PerformLayout();
+            this.panelVentas.ResumeLayout(false);
+            this.panelVentas.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void txtUbicacionID_Leave(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void txtVentaID_Leave(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void txtProductoID_Leave(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void txtCliente_Leave(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void TxtUbicacionID_Leave(object sender, EventArgs e)
@@ -684,57 +715,61 @@ namespace StockSells.forms
         #endregion
 
         private System.Windows.Forms.Button btnguardar;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtTipoCliente;
-        private System.Windows.Forms.TextBox txtCiudad;
-        private System.Windows.Forms.TextBox txtPais;
-        private System.Windows.Forms.TextBox txtProductoID;
-        private System.Windows.Forms.TextBox txtCostoOperativo;
-        private System.Windows.Forms.TextBox txtGananciaNeta;
+        private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.TextBox txtCategoria;
-        private System.Windows.Forms.TextBox txtPrecioCosto;
-        private System.Windows.Forms.TextBox txtRegion;
-        private System.Windows.Forms.TextBox txtContra;
-        private System.Windows.Forms.TextBox txtRol;
-        private System.Windows.Forms.TextBox txtCliente;
-        private System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.TextBox txtVentaID;
+        private System.Windows.Forms.TextBox txtClienteVenta;
+        private System.Windows.Forms.TextBox txtPaisCliente;
+        private System.Windows.Forms.TextBox txtNombreProductoVenta;
+        private System.Windows.Forms.TextBox txtTotalVenta;
+        private System.Windows.Forms.TextBox txtCantidadVenta;
+        private System.Windows.Forms.TextBox txtNombreUsuario;
+        private System.Windows.Forms.TextBox txtContraUsuario;
+        private System.Windows.Forms.TextBox txtNombreProducto;
+        private System.Windows.Forms.TextBox txtProveedorIDCompra;
+        private System.Windows.Forms.TextBox txtTotalCompra;
+        private System.Windows.Forms.TextBox txtUbicacionVenta;
+        private System.Windows.Forms.TextBox txtPaisProveedor;
         private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.TextBox txtProducto;
-        private System.Windows.Forms.TextBox txtUbicacionID;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblTipoCliente;
-        private System.Windows.Forms.Label lblCuidad;
+        private System.Windows.Forms.Label lblClienteVenta;
         private System.Windows.Forms.Label lblPais;
-        private System.Windows.Forms.Label lblVentaID;
-        private System.Windows.Forms.Label lblProductoID;
-        private System.Windows.Forms.Label lblCostoOperativo;
-        private System.Windows.Forms.Label lblGananciaNeta;
-        private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Label lblPrecioCosto;
-        private System.Windows.Forms.Label lblRegion;
-        private System.Windows.Forms.Label lblContra;
-        private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.Label lblUbicacionVenta;
+        private System.Windows.Forms.Label lblProductoVenta;
+        private System.Windows.Forms.Label lblTotalVenta;
+        private System.Windows.Forms.Label lblCantidadVenta;
+        private System.Windows.Forms.Label lblProveedorIDCompra;
+        private System.Windows.Forms.Label lblPaisProveedor;
+        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.Label lblContraUsuario;
         private System.Windows.Forms.Label lblProducto;
-        private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblNombreProducto;
+        private System.Windows.Forms.Label lblFechaVenta;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTotalCompra;
         private System.Windows.Forms.Label lblUbicacionID;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.DateTimePicker dtpFechaVenta;
         private System.Windows.Forms.Label lblid;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.TextBox txtRolID;
-        private System.Windows.Forms.Label lbltidrol;
-        private System.Windows.Forms.Label lblidselec;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txtCategoriaID;
-        private System.Windows.Forms.Label lblcatego;
         private System.Windows.Forms.TextBox txtProveedorID;
-        private System.Windows.Forms.Label lblproveedor;
-        private System.Windows.Forms.TextBox txtDepartamentoID;
+        private System.Windows.Forms.TextBox txtRolID;
+        private System.Windows.Forms.Label lblRolID;
+        private System.Windows.Forms.TextBox txtNombreProveedor;
+        private System.Windows.Forms.Label lblNombreProveedor;
+        private System.Windows.Forms.TextBox txtPrecioCost;
         private System.Windows.Forms.Label lbldepartamento;
+        private System.Windows.Forms.Panel panelClientes;
+        private System.Windows.Forms.Panel panelProveedores;
+        private System.Windows.Forms.Panel panelProductos;
+        private System.Windows.Forms.Panel panelUsuarios;
+        private System.Windows.Forms.Panel panelCompras;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Productos;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panelVentas;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label lblFechaCompra;
+        private System.Windows.Forms.DateTimePicker dtpFechaCompra;
     }
 }
