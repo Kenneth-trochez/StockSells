@@ -401,8 +401,123 @@ namespace StockSells
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private bool TieneDependencias(MySqlConnection conexion, string tablaPadre, string campoPadreID, object valorID)
         {
+            var dependencias = new Dictionary<string, string>();
+
+            // Relación entre tabla padre → tabla hija (y columna foránea en hija)
+            switch (tablaPadre)
+            {
+                case "Proveedores":
+                    dependencias.Add("Compras", "proveedor_id");
+                    break;
+
+                case "Clientes":
+                    dependencias.Add("Ventas", "cliente");
+                    break;
+
+                case "Productos":
+                    dependencias.Add("Ventas", "id_producto");
+                    dependencias.Add("Compras", "id_producto");
+                    break;
+
+                    // Podés agregar más si querés controlar otras dependencias
+            }
+
+            foreach (var dependencia in dependencias)
+            {
+                string query = $"SELECT COUNT(*) FROM {dependencia.Key} WHERE {dependencia.Value} = @ID";
+                using (var cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@ID", valorID);
+                    var resultado = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (resultado > 0)
+                        return true; // Tiene dependencias
+                }
+            }
+
+            return false; // No tiene dependencias
+        }
+
+        private Dictionary<string, int> ObtenerResumenDependencias(MySqlConnection conexion, string tablaPadre, string campoID, object valorID)
+        {
+            var dependencias = new Dictionary<string, List<(string tablaHija, string campoForaneo)>>()
+    {
+        { "Proveedores", new List<(string, string)> { ("Compras", "proveedor_id") } },
+        { "Clientes", new List<(string, string)> { ("Ventas", "cliente") } },
+        { "Productos", new List<(string, string)> { ("Compras", "id_producto"), ("Ventas", "id_producto") } }
+    };
+
+            var resumen = new Dictionary<string, int>();
+
+            if (!dependencias.ContainsKey(tablaPadre)) return resumen;
+
+            foreach (var (tablaHija, campoForaneo) in dependencias[tablaPadre])
+            {
+                string query = $"SELECT COUNT(*) FROM {tablaHija} WHERE {campoForaneo} = @ID";
+                using (var cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@ID", valorID);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                        resumen.Add(tablaHija, count);
+                }
+            }
+
+            return resumen;
+        }
+
+
+
+            private void button3_Click(object sender, EventArgs e)
+        {
+            var tablas = new Dictionary<CheckBox, string>
+    {
+        { checkBox1, "Clientes" },
+        { checkBox2, "Proveedores" },
+        { checkBox3, "Productos" },
+        { checkBox4, "Compras" },
+        { checkBox5, "Usuarios" },
+        { checkBox6, "Ventas" }
+    };
+
+            var seleccionadas = tablas.Where(t => t.Key.Checked).Select(t => t.Value).ToList();
+
+            if (seleccionadas.Count == 0)
+            {
+                MessageBox.Show("Selecciona una tabla para eliminar registros.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (seleccionadas.Count > 1)
+            {
+                MessageBox.Show("Solo se puede eliminar registros de UNA tabla a la vez. Desmarca las demás.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string tabla = seleccionadas[0];
+            string campoID = "id"; // ← campo único usado en todas las tablas
+
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un registro para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!dataGridView1.Columns.Contains(campoID))
+            {
+                MessageBox.Show($"La columna '{campoID}' no está presente en los datos actuales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            object idValue = dataGridView1.CurrentRow.Cells[campoID].Value;
+
+            if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
+            {
+                MessageBox.Show("El ID del registro está vacío o nulo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             ConexionBD conexion = new ConexionBD();
 
@@ -412,56 +527,34 @@ namespace StockSells
                 {
                     connection.Open();
 
-                    if (dataGridView1.CurrentRow == null)
+                    // Verificar dependencias antes de eliminar
+                    var resumen = ObtenerResumenDependencias(connection, tabla, campoID, idValue);
+
+                    if (resumen.Any())
                     {
-                        MessageBox.Show("Por favor, seleccione un registro del DataGridView para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string detalle = string.Join("\n", resumen.Select(r => $"{r.Key}: {r.Value} registro(s) relacionado(s)"));
+                        MessageBox.Show($"Este registro está vinculado con:\n{detalle}\n\nDebes eliminar esos datos primero.", "Relaciones activas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Mapeo de tabla actual y su campo clave
-                    string tabla = "";
-                    string campoID = "";
-
-                    if (checkBox1.Checked) { tabla = "clientes"; campoID = "Nombre"; }
-                    else if (checkBox2.Checked) { tabla = "productos"; campoID = "id_producto"; }
-                    else if (checkBox3.Checked) { tabla = "usuarios"; campoID = "id_usuario"; }
-                    else if (checkBox4.Checked) { tabla = "ventas"; campoID = "id_ventas"; }
-                    else
-                    {
-                        MessageBox.Show("Seleccione una tabla válida para eliminar datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Validar que la columna existe en el DataGridView
-                    if (!dataGridView1.Columns.Contains(campoID))
-                    {
-                        MessageBox.Show($"La columna '{campoID}' no está presente en los datos actuales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    object idValue = dataGridView1.CurrentRow.Cells[campoID].Value;
-
-                    if (idValue == null || string.IsNullOrEmpty(idValue.ToString()))
-                    {
-                        MessageBox.Show("El valor del ID seleccionado está vacío o es nulo. Por favor, seleccione un registro válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    DialogResult confirmacion = MessageBox.Show($"¿Seguro que deseas eliminar el registro de {tabla}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmacion != DialogResult.Yes) return;
 
                     string query = $"DELETE FROM {tabla} WHERE {campoID} = @ID";
-
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@ID", idValue);
-                    command.ExecuteNonQuery();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", idValue);
+                        command.ExecuteNonQuery();
+                    }
 
                     MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarTablas(); // Recarga el DataGridView después de borrar
+                    CargarTablas();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private string GetSelectedTable()
