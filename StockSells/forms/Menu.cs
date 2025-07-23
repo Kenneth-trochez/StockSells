@@ -57,7 +57,7 @@ namespace StockSells
               { checkBox3, "productos" },
               { checkBox4, "compras" },
               { checkBox5, "usuarios" },
-              { checkBox6, "ventas" }
+              { checkBox6, "ventas" },
         };
 
                     foreach (var item in tablas)
@@ -340,6 +340,7 @@ namespace StockSells
             else if (checkBox5.Checked) TablaActiva = "Usuarios";
             else if (checkBox6.Checked) TablaActiva = "Ventas";
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
