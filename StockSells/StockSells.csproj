@@ -112,17 +112,17 @@
     <Compile Include="forms\edit.Designer.cs">
       <DependentUpon>edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FormGraficoFiltrado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormGraficoFiltrado.Designer.cs">
+      <DependentUpon>FormGraficoFiltrado.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FormGraficos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FormGraficos.Designer.cs">
       <DependentUpon>FormGraficos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Viewtables.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Viewtables.Designer.cs">
-      <DependentUpon>Viewtables.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\Menu.cs">
       <SubType>Form</SubType>
@@ -144,6 +144,9 @@
     <EmbeddedResource Include="forms\edit.resx">
       <DependentUpon>edit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormGraficoFiltrado.resx">
+      <DependentUpon>FormGraficoFiltrado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FormGraficos.resx">
       <DependentUpon>FormGraficos.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,9 +155,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Viewtables.resx">
-      <DependentUpon>Viewtables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

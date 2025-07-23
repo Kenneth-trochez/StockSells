@@ -97,6 +97,16 @@ namespace StockSells
         private void Menu_Load(object sender, EventArgs e)
         {
             ConfigurarPermisos(RolUsuario);
+
+            cmbTipoGrafico.Items.AddRange(new string[]
+{
+    "Ventas por producto",
+    "Compras por proveedor",
+    "Clientes por país",
+    "Productos por categoría",
+    "Usuarios por rol"
+});
+            cmbTipoGrafico.SelectedIndex = 0; 
         }
 
         private void ConfigurarPermisos(string rol)
@@ -977,6 +987,123 @@ ORDER BY
                 // Cerrar el formulario principal
                 this.Close();
             }
+        }
+
+        private void btnAplicarFiltros_Click(object sender, EventArgs e)
+        {
+            ConexionBD conexion = new ConexionBD();
+
+            var tablas = new Dictionary<CheckBox, string>
+    {
+        { checkBox1, "Clientes" },
+        { checkBox2, "Proveedores" },
+        { checkBox3, "Productos" },
+        { checkBox4, "Compras" },
+        { checkBox5, "Usuarios" },
+        { checkBox6, "Ventas" }
+    };
+
+            var seleccionadas = tablas.Where(t => t.Key.Checked).Select(t => t.Value).ToList();
+
+            if (seleccionadas.Count == 0)
+            {
+                MessageBox.Show("Selecciona al menos una tabla para aplicar filtros.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = conexion.ObtenerConexion())
+                {
+                    connection.Open();
+                    DataTable datosFiltrados = new DataTable();
+
+                    foreach (string tabla in seleccionadas)
+                    {
+                        string query = $"SELECT * FROM {tabla}";
+
+                        // 🔎 Filtros personalizados por tabla (puedes modificarlos según tu lógica)
+                        if (tabla == "Clientes")
+                            query += " WHERE pais = 'Honduras'";
+
+                        if (tabla == "Proveedores")
+                            query += " WHERE pais = 'Honduras'";
+
+                        if (tabla == "Productos")
+                            query += " WHERE precio > 100";
+
+                        if (tabla == "Usuarios")
+                            query += " WHERE id_rol = 1";
+
+                        if (tabla == "Compras")
+                            query += " WHERE total > 500";
+
+                        if (tabla == "Ventas")
+                            query += " WHERE total > 200";
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                        {
+                            DataTable resultado = new DataTable();
+                            adapter.Fill(resultado);
+
+                            // 🧩 Añadir columna de origen para saber de dónde viene cada fila
+                            resultado.Columns.Add("OrigenTabla");
+                            foreach (DataRow row in resultado.Rows)
+                            {
+                                row["OrigenTabla"] = tabla;
+                            }
+
+                            datosFiltrados.Merge(resultado);
+                        }
+                    }
+
+                    dgvFiltrado.DataSource = datosFiltrados;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al aplicar filtros: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+
+            dgvFiltrado.DataSource = null;
+        }
+
+        private void btnGraficarDesdeCombo_Click(object sender, EventArgs e)
+        {
+            string tipoGrafico = cmbTipoGrafico.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(tipoGrafico))
+            {
+                MessageBox.Show("Selecciona un tipo de gráfico desde la lista.");
+                return;
+            }
+
+            if (dgvFiltrado.DataSource == null)
+            {
+                MessageBox.Show("No hay datos filtrados para graficar.");
+                return;
+            }
+
+            DataTable datosFiltrados = (DataTable)dgvFiltrado.DataSource;
+
+            // Crear y mostrar el formulario de gráfico
+            FormGraficoFiltrado graficoForm = new FormGraficoFiltrado();
+            graficoForm.MostrarGrafico(datosFiltrados, tipoGrafico);
+            graficoForm.Show();
+        }
+
+        private void cmbTipoGrafico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

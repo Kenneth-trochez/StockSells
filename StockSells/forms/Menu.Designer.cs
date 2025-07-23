@@ -37,12 +37,18 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgvFiltrado = new System.Windows.Forms.DataGridView();
+            this.cmbTipoGrafico = new System.Windows.Forms.ComboBox();
+            this.btnGraficarDesdeCombo = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnAplicarFiltros = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFiltrado)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -142,6 +148,98 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Tablas a Mostrar";
             // 
+            // dgvFiltrado
+            // 
+            this.dgvFiltrado.AllowUserToOrderColumns = true;
+            this.dgvFiltrado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFiltrado.Location = new System.Drawing.Point(711, 32);
+            this.dgvFiltrado.Name = "dgvFiltrado";
+            this.dgvFiltrado.ReadOnly = true;
+            this.dgvFiltrado.RowHeadersWidth = 51;
+            this.dgvFiltrado.Size = new System.Drawing.Size(539, 222);
+            this.dgvFiltrado.TabIndex = 14;
+            // 
+            // cmbTipoGrafico
+            // 
+            this.cmbTipoGrafico.FormattingEnabled = true;
+            this.cmbTipoGrafico.Location = new System.Drawing.Point(1086, 260);
+            this.cmbTipoGrafico.Name = "cmbTipoGrafico";
+            this.cmbTipoGrafico.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoGrafico.TabIndex = 18;
+            this.cmbTipoGrafico.SelectedIndexChanged += new System.EventHandler(this.cmbTipoGrafico_SelectedIndexChanged);
+            // 
+            // btnGraficarDesdeCombo
+            // 
+            this.btnGraficarDesdeCombo.BackColor = System.Drawing.Color.Transparent;
+            this.btnGraficarDesdeCombo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGraficarDesdeCombo.BackgroundImage")));
+            this.btnGraficarDesdeCombo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGraficarDesdeCombo.FlatAppearance.BorderSize = 0;
+            this.btnGraficarDesdeCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGraficarDesdeCombo.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGraficarDesdeCombo.Location = new System.Drawing.Point(898, 274);
+            this.btnGraficarDesdeCombo.Name = "btnGraficarDesdeCombo";
+            this.btnGraficarDesdeCombo.Size = new System.Drawing.Size(167, 37);
+            this.btnGraficarDesdeCombo.TabIndex = 17;
+            this.btnGraficarDesdeCombo.TabStop = false;
+            this.btnGraficarDesdeCombo.Text = "Graficar filtros";
+            this.btnGraficarDesdeCombo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGraficarDesdeCombo.UseVisualStyleBackColor = false;
+            this.btnGraficarDesdeCombo.Click += new System.EventHandler(this.btnGraficarDesdeCombo_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(804, 274);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(78, 37);
+            this.button5.TabIndex = 16;
+            this.button5.TabStop = false;
+            this.button5.Text = "Limpiar";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // btnAplicarFiltros
+            // 
+            this.btnAplicarFiltros.BackColor = System.Drawing.Color.Transparent;
+            this.btnAplicarFiltros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAplicarFiltros.BackgroundImage")));
+            this.btnAplicarFiltros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAplicarFiltros.FlatAppearance.BorderSize = 0;
+            this.btnAplicarFiltros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAplicarFiltros.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAplicarFiltros.Location = new System.Drawing.Point(711, 274);
+            this.btnAplicarFiltros.Name = "btnAplicarFiltros";
+            this.btnAplicarFiltros.Size = new System.Drawing.Size(78, 37);
+            this.btnAplicarFiltros.TabIndex = 15;
+            this.btnAplicarFiltros.TabStop = false;
+            this.btnAplicarFiltros.Text = "Filtrar";
+            this.btnAplicarFiltros.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAplicarFiltros.UseVisualStyleBackColor = false;
+            this.btnAplicarFiltros.Click += new System.EventHandler(this.btnAplicarFiltros_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(1201, 319);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(78, 56);
+            this.button6.TabIndex = 13;
+            this.button6.TabStop = false;
+            this.button6.Text = "Cerrar Sesion";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Transparent;
@@ -211,30 +309,17 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(655, 319);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(78, 56);
-            this.button6.TabIndex = 13;
-            this.button6.TabStop = false;
-            this.button6.Text = "Cerrar Sesion";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(745, 387);
+            this.ClientSize = new System.Drawing.Size(1291, 387);
+            this.Controls.Add(this.cmbTipoGrafico);
+            this.Controls.Add(this.btnGraficarDesdeCombo);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnAplicarFiltros);
+            this.Controls.Add(this.dgvFiltrado);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox6);
@@ -252,6 +337,7 @@
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFiltrado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,5 +358,10 @@
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DataGridView dgvFiltrado;
+        private System.Windows.Forms.Button btnAplicarFiltros;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnGraficarDesdeCombo;
+        private System.Windows.Forms.ComboBox cmbTipoGrafico;
     }
 }
