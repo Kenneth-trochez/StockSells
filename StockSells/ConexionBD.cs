@@ -10,7 +10,7 @@ namespace StockSells
 {
     public class ConexionBD
     {
-        private string connectionString = "Server=127.0.0.1;Database=sistema_ventas;User ID=root;Password=;Port=3307;";
+        private string connectionString = "Server=127.0.0.1;Database=sistema_ventas;User ID=root;Password=Fallout4@;Port=3306;";
 
 
         public MySqlConnection ObtenerConexion()
