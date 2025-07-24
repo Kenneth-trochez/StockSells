@@ -378,5 +378,15 @@ namespace StockSells.forms
             this.Close();
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRolID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

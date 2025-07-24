@@ -136,7 +136,7 @@
             this.checkBox6.TabIndex = 11;
             this.checkBox6.Text = "Ventas";
             this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // label1
             // 

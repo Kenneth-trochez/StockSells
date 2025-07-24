@@ -57,20 +57,43 @@ namespace StockSells.forms
                 case "clientes":
                     lblNombre.Visible = txtNombreCliente.Visible = true;
                     lblPais.Visible = txtPaisCliente.Visible = true;
+                    //quiero ocultar todo lo que no sea de clientes
+                   lblNombreUsuario.Visible = txtNombreUsuario.Visible = false;
+                    lblContraUsuario.Visible = txtContraUsuario.Visible = false;
+                    lblProveedorIDCompra.Visible = txtProveedorIDCompra.Visible = false;
+                    //quieo ocultar estos labesl:lblTipoCliente,lblid,lblUbicacionID,lbldepartamento
+                    lblTipoCliente.Visible = false;
+                    lblid.Visible = false;
+                    lblUbicacionID.Visible = false;
+                    lbldepartamento.Visible = false;
+
+
+
                     break;
 
                 case "productos":
                     lblNombreProducto.Visible = txtNombreProducto.Visible = true;
                     lblProveedorIDCompra.Visible = txtCategoria.Visible = true;
                     lblNombreProveedor.Visible = txtProveedorID.Visible = true;
-                    lblPaisProveedor.Visible = txtPrecio.Visible = true;
-                    lblNombreUsuario.Visible = txtPrecioCost.Visible = true;
+                    lblPaisProveedor.Visible = txtPrecio.Visible = false;
+                    lblNombreUsuario.Visible = txtPrecioCost.Visible = false;
+                    txtPrecioCost.Visible = true;
+                    txtPrecio.Visible = true;
+                    lblNombreProveedor.Visible = false;
+                    lblProveedorIDCompra.Visible = false;
+
+
+
                     break;
 
                 case "usuarios":
                     lblNombreUsuario.Visible = txtNombreUsuario.Visible = true;
                     lblContraUsuario.Visible = txtContraUsuario.Visible = true;
                     lblRolID.Visible = txtRolID.Visible = true;
+                    lblTipoCliente.Visible = false;
+                    lblid.Visible = false;
+                    lblUbicacionID.Visible = false;
+                    lbldepartamento.Visible = false;
                     break;
 
                 case "ventas":
@@ -80,17 +103,29 @@ namespace StockSells.forms
                     lblCantidadVenta.Visible = txtCantidadVenta.Visible = true;
                     lblTotalVenta.Visible = txtTotalVenta.Visible = true;
                     lblUbicacionVenta.Visible = txtUbicacionVenta.Visible = true;
+                    lblTipoCliente.Visible = false;
+                    lblid.Visible = false;
+                    lblUbicacionID.Visible = false;
+                    lbldepartamento.Visible = false;
                     break;
 
                 case "proveedores":
                     lblNombreProveedor.Visible = txtNombreProveedor.Visible = true;
                     lblPaisProveedor.Visible = txtPaisProveedor.Visible = true;
+                    lblTipoCliente.Visible = false;
+                    lblid.Visible = false;
+                    lblUbicacionID.Visible = false;
+                    lbldepartamento.Visible = false;
                     break;
 
                 case "compras":
                     lblProveedorIDCompra.Visible = txtProveedorIDCompra.Visible = true;
                     lblFechaCompra.Visible = dtpFechaCompra.Visible = true;
                     lblTotalCompra.Visible = txtTotalCompra.Visible = true;
+                    lblTipoCliente.Visible = false;
+                    lblid.Visible = false;
+                    lblUbicacionID.Visible = false;
+                    lbldepartamento.Visible = false;
                     break;
 
                 default:
@@ -235,6 +270,31 @@ namespace StockSells.forms
         }
 
         private void lblGananciaNeta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUbicacionID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelCompras_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Productos_Click(object sender, EventArgs e)
         {
 
         }

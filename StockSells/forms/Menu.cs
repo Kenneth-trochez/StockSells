@@ -27,6 +27,12 @@ namespace StockSells
         public Menu()
         {
             InitializeComponent();
+            checkBox1.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox2.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox3.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox4.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox5.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox6.CheckedChanged += CheckBox_CheckedChanged;
         }
 
         public string RolUsuario { get; set; }
@@ -147,199 +153,80 @@ namespace StockSells
                 editarForm.Show();
             }
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ActualizarVista();
-            // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
+            // Lista de todos tus checkboxes
+            CheckBox[] todos = { checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6 };
+
+            // Contar cuántos están seleccionados
+            int seleccionados = todos.Count(cb => cb.Checked);
+
+            if (seleccionados >= 2)
             {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false; 
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
+                // Deshabilitar los que NO están seleccionados
+                foreach (var cb in todos)
+                {
+                    if (!cb.Checked)
+                        cb.Enabled = false;
+                }
             }
             else
             {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
+                // Si hay menos de 2 seleccionados, habilitar todos
+                foreach (var cb in todos)
+                {
+                    cb.Enabled = true;
+                }
             }
 
+            // Llamar a tu método para actualizar la tabla si deseas
+            CargarTablas(); // o ActualizarVista(); según el caso
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarTablas();
+        }
+
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
             // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
-            {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
+          
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
             // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
-            {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
+          
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
             // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
-            {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
+          
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             CargarTablas();
             // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
-            {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
+           
         }
-
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-            ActualizarVista();
+            CargarTablas();
+            
             // Si checkBox5 (Usuarios) está seleccionado, deshabilitar los demás checkboxes
-            if (checkBox5.Checked)
-            {
-                checkBox1.Enabled = false;
-                checkBox2.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else if (checkBox2.Checked) // Si checkBox2 (FactoresDeCostos) está seleccionado
-            {
-                checkBox1.Enabled = false;
-                checkBox3.Enabled = false;
-                checkBox4.Enabled = false;
-                checkBox5.Enabled = false;
-                checkBox6.Enabled = false;
-            }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
+
         }
+
+       
+
+       
 
         public void ActualizarTablaActiva()
         {
@@ -443,11 +330,12 @@ namespace StockSells
         private Dictionary<string, int> ObtenerResumenDependencias(MySqlConnection conexion, string tablaPadre, string campoID, object valorID)
         {
             var dependencias = new Dictionary<string, List<(string tablaHija, string campoForaneo)>>()
-    {
-        { "Proveedores", new List<(string, string)> { ("Compras", "proveedor_id") } },
-        { "Clientes", new List<(string, string)> { ("Ventas", "cliente") } },
-        { "Productos", new List<(string, string)> { ("Compras", "id_producto"), ("Ventas", "id_producto") } }
-    };
+{
+    { "proveedores", new List<(string, string)> { ("productos", "proveedor_id") } },
+
+    { "clientes", new List<(string, string)> { ("ventas", "cliente") } },
+    { "productos", new List<(string, string)> { ("compras", "producto_id"), ("ventas", "producto_id") } }
+};
 
             var resumen = new Dictionary<string, int>();
 
@@ -532,9 +420,51 @@ namespace StockSells
 
                     if (resumen.Any())
                     {
+                        // Mensaje personalizado si se intenta eliminar un proveedor con productos asociados
+                        if (tabla.ToLower() == "proveedores" && resumen.ContainsKey("productos"))
+                        {
+                            MessageBox.Show(
+                                "Este proveedor tiene productos registrados asociados.\n" +
+                                "No se puede eliminar hasta que se eliminen dichos productos\n" +
+                                "o se obtenga autorización del administrador.",
+                                "Eliminación bloqueada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning
+                            );
+                            return;
+                        }
+
+                        // Mensaje genérico para otras dependencias
                         string detalle = string.Join("\n", resumen.Select(r => $"{r.Key}: {r.Value} registro(s) relacionado(s)"));
-                        MessageBox.Show($"Este registro está vinculado con:\n{detalle}\n\nDebes eliminar esos datos primero.", "Relaciones activas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(
+                            $"Este registro está vinculado con:\n{detalle}\n\nDebes eliminar esos datos primero.",
+                            "Relaciones activas",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
                         return;
+                    }
+                    if (tabla.ToLower() == "proveedores")
+                    {
+                        string verificar = "SELECT COUNT(*) FROM productos WHERE proveedor_id = @ID";
+                        using (var cmdVerificar = new MySqlCommand(verificar, connection))
+                        {
+                            cmdVerificar.Parameters.AddWithValue("@ID", idValue);
+                            int cuenta = Convert.ToInt32(cmdVerificar.ExecuteScalar());
+
+                            if (cuenta > 0)
+                            {
+                                MessageBox.Show(
+                                    "Este proveedor tiene productos registrados asociados.\n" +
+                                    "No se puede eliminar hasta que se eliminen dichos productos\n" +
+                                    "o se obtenga autorización del administrador.",
+                                    "Eliminación bloqueada",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning
+                                );
+                                return;
+                            }
+                        }
                     }
 
                     DialogResult confirmacion = MessageBox.Show($"¿Seguro que deseas eliminar el registro de {tabla}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
