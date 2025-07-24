@@ -33,7 +33,7 @@ namespace StockSells.forms
 
             try
             {
-                MySqlConnection conectar = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=Fallout4@;Port=3306;");
+                MySqlConnection conectar = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=mdot;Port=3306;");
                 conectar.Open();
 
                 chart1.Series.Clear();        // Limpiar datos previos
@@ -69,7 +69,7 @@ namespace StockSells.forms
         {
             DataTable tabla = new DataTable();
 
-            using (MySqlConnection connection = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=Fallout4@;Port=3306;"))
+            using (MySqlConnection connection = new MySqlConnection("Server=127.0.0.1;Database=stocksells;User ID=root;Password=mdot;Port=3306;"))
             {
                 connection.Open();
 
