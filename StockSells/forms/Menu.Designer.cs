@@ -47,6 +47,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiltrado)).BeginInit();
             this.SuspendLayout();
@@ -309,12 +310,30 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Transparent;
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Bodoni MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(470, 341);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 32);
+            this.button7.TabIndex = 19;
+            this.button7.Text = "Cards";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1291, 387);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.cmbTipoGrafico);
             this.Controls.Add(this.btnGraficarDesdeCombo);
             this.Controls.Add(this.button5);
@@ -363,5 +382,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnGraficarDesdeCombo;
         private System.Windows.Forms.ComboBox cmbTipoGrafico;
+        private System.Windows.Forms.Button button7;
     }
 }

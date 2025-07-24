@@ -1128,5 +1128,39 @@ ORDER BY
         {
 
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            List<string> tablasSeleccionadas = new List<string>();
+
+            if (checkBox1.Checked)
+                tablasSeleccionadas.Add("clientes");
+
+            if (checkBox2.Checked)
+                tablasSeleccionadas.Add("proveedores");
+
+            if (checkBox3.Checked)
+                tablasSeleccionadas.Add("productos");
+
+            if (checkBox4.Checked)
+                tablasSeleccionadas.Add("compras");
+
+            if (checkBox5.Checked)
+                tablasSeleccionadas.Add("ventas");
+
+            if (checkBox6.Checked)
+                tablasSeleccionadas.Add("usuarios");
+
+            // Si no se seleccionó ninguna tabla, puedes mostrar un mensaje
+            if (tablasSeleccionadas.Count == 0)
+            {
+                MessageBox.Show("Por favor, selecciona al menos una tabla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Abres el formulario y le pasas la lista
+            FRMCards frm = new FRMCards(tablasSeleccionadas);
+            frm.Show();
+        }
     }
 }
