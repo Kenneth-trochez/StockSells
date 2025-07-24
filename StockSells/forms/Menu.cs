@@ -179,7 +179,6 @@ namespace StockSells
                 checkBox6.Enabled = true;
             }
 
-        }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
@@ -233,17 +232,6 @@ namespace StockSells
                 checkBox5.Enabled = false;
                 checkBox6.Enabled = false;
             }
-            else
-            {
-                // Si ninguno de los dos está seleccionado, habilitar todos los checkboxes
-                checkBox1.Enabled = true;
-                checkBox2.Enabled = true;
-                checkBox3.Enabled = true;
-                checkBox4.Enabled = true;
-                checkBox5.Enabled = true;
-                checkBox6.Enabled = true;
-            }
-        }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
